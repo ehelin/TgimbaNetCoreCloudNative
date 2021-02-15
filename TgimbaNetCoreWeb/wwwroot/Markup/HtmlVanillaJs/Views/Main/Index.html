@@ -1,0 +1,33 @@
+﻿<div class="tgimbaMain">
+    <div class="tgimbaMainheader" id="tgimbaMainHeader">
+        <div class="tgimbaMain header right">
+            <select id="hvJsSearchAvailableSearchAlgorithmsSelect" />
+            <input type="button"
+                   id="USER_CONTROL_SEARCH_BUTTON"
+                   onclick="MainController.Search()" />
+            <input type="text" id="USER_CONTROL_SEARCH_TEXT_BOX" />
+        </div>
+        <div class="tgimbaMain header left">
+            <input type="button"
+                   id="btnMainMenu"
+                   class="menu"
+                   onclick="MainController.ShowMenu()" />
+        </div>
+    </div>
+
+    <div class="tgimbaMain title">
+        TGIMBA
+    </div>
+    
+    <div id="cancelSrchResults" class="tgimbaMainheadercenterhidden">
+        <div>
+            <p>Viewing Search Results</p>
+            <p id="USER_CONTROL_SRCH_TERM_TYPE_LABEL"></p>
+            <input type="button"
+                   id="USER_CONTROL_CANCEL_BUTTON"
+                   onclick="MainController.Index()" value="Cancel" />
+        </div>
+    </div>
+
+    <div id="bucketListItems" />
+</div>

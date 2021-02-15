@@ -1,0 +1,114 @@
+﻿/*main welcome page*/
+/*duplicate code from mobile.css...refactor?*/
+.tgimbaBody {
+    background-color: #F4E4C1;
+    font-family: Arial;
+    font-size: 12pt;
+    overflow-y: scroll;
+    color: #080FB5;
+    height: 485px;
+}
+
+.circleGreen:before {
+  content: ' \25CF';
+  font-size: 15px;
+  color: green;
+}
+
+.circleRed:before {
+  content: ' \25CF';
+  font-size: 15px;
+  color: red;
+}
+
+.welcomeBody {
+    width: 100%;
+    border-style: solid;
+    border-color: #080FB5;
+    text-align: center;
+    background-color: #F4E4C1;
+}
+
+.button {    
+    font-family: Arial;
+    font-size: 12pt;
+    background-color: #e6d5bf;
+    color: #080FB5;
+}
+
+/*sub panels*/
+.statisticsPanel {    
+    height: 50%;
+    width: 100%;
+}
+.systemStatistics {
+    position: fixed;
+    top: 200px; 
+    left: 0;
+    right: 0;
+    height: 0;
+    text-align: center;
+}
+.systemStatistics table {
+    display: inline-block;
+    text-align: center;
+}
+.systemStatisticsDataCss {
+    position: fixed;
+    top: 300px; 
+    left: 0;
+    right: 0;
+    height: 0;
+    text-align: center;
+    font-size: small;
+}
+.systemStatisticsDataCss table {
+    display: inline-block;
+    text-align: center;
+    border-style: solid;
+}
+.systemStatisticsDataCss table .hdrCol {
+    text-decoration: underline;
+}
+.systemBuildStatisticsDataCss {
+    position: fixed;
+    top: 400px; 
+    left: 0;
+    right: 0;
+    height: 0;
+    text-align: center;
+    font-size: small;
+}
+.systemBuildStatisticsDataCss table {
+    display: inline-block;
+    text-align: center;
+    border-style: solid;
+}
+.systemBuildStatisticsDataCss table .hdrCol {
+    text-decoration: underline;
+}
+.horizontalLineOn {
+    text-align: right;
+    background-color: forestgreen;
+}
+.horizontalLineOff {
+    text-align: right;
+    background-color: gray;
+    border: none;
+}
+.verticalLineOn {
+    text-align: left;
+    background-color: forestgreen;
+}
+.verticalLineOff {
+    text-align: left;
+    background-color: gray;
+}
+
+.buildStatistics {
+    height: 50%;
+    width: 50%;
+    margin: 0 auto;
+	position: relative;
+	background: green;
+}

@@ -1,0 +1,66 @@
+﻿<div class="tgimbaComponent">
+    <div class="tgimbaForm">
+        <table>
+            <tr>
+                <td class="tgimbaForm leftLabel">
+                    <label>Item Name:</label>
+                </td>
+                <td class="tgimbaForm rightLabel">
+                    <input type="text" id="USER_CONTROL_ADD_ITEM_NAME" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm leftLabel">
+                    <label>Date Created:</label>
+                </td>
+                <td class="tgimbaForm rightLabel">
+                    <input type="text" id="USER_CONTROL_ADD_DATE_CREATED" readonly />
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm leftLabel">
+                    <label>Category:</label>
+                </td>
+                <td class="tgimbaForm rightLabel">
+                    <select id="USER_CONTROL_ADD_ITEM_CATEGORY">
+                        <option value="Hot">Hot</option>
+                        <option value="Warm" selected="selected">Warm</option>
+                        <option value="Cool">Cool</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm leftLabel">
+                    <label>Completed:</label>
+                </td>
+                <td class="tgimbaForm rightLabel">
+                    <input type="checkbox" id="USER_CONTROL_ADD_COMPLETED" value="Completed" checked>
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm leftLabel">
+                    <label>Latitude:</label>
+                </td>
+                <td class="tgimbaForm rightLabel">
+                    <input type="text" id="USER_CONTROL_ADD_LATITUDE" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm leftLabel">
+                    <label>Longitude:</label>
+                </td>
+                <td class="tgimbaForm rightLabel">
+                    <input type="text" id="USER_CONTROL_ADD_LONGITUDE" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm leftLabel">
+                    <input type="button" class="button" id="hvJsAddSubmitBtn" value="Add" onclick="MainController.Add()" />
+                </td>
+                <td class="tgimbaForm rightLabel">
+                    <input type="button" class="button" id="hvJsAddCancellBtn" value="Cancel" onclick="MainController.Index()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

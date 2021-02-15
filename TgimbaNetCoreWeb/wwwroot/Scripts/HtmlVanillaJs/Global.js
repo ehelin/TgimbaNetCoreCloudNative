@@ -1,0 +1,3 @@
+﻿function Init() {	  
+	ApplicationFlow.SetView();
+}

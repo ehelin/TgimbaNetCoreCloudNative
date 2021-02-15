@@ -1,0 +1,55 @@
+﻿<div class="tgimbaComponent">
+    <div class="tgimbaForm">
+        <table>
+            <tr>
+                <td class="tgimbaForm centerLabel">
+                    <label>Available Sorting Algorithm(s)</label>
+                </td>
+            <tr>
+            <tr>
+                <td class="tgimbaForm centerLabel">
+                    <select id="hvJsSortAvailableSortAlgorithmsSelect" />
+                </td>
+            <tr>
+            <tr>
+                <td class="tgimbaForm centerLabel"></td>
+            <tr>
+            </tr>
+            <td class="tgimbaForm centerLabel">
+                <input type="button" class="button" id="hvJsSortItemBtn" value="Name"
+                       onclick="MenuController.Sort('ListItemName')" />
+            </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm centerLabel">
+                    <input type="button" class="button" id="hvJsSortCreatedBtn" value="Created"
+                           onclick="MenuController.Sort('Created')" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm centerLabel">
+                    <input type="button" class="button" id="hvJsSortCategoryBtn" value="Category"
+                           onclick="MenuController.Sort('Category')" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm centerLabel">
+                    <input type="button" class="button" id="hvJsSortAchievedBtn" value="Achieved"
+                           onclick="MenuController.Sort('Achieved')" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm centerLabel">
+                    <label>Descending Order:</label>
+                    <input type="checkbox" id="hvJsDescCheckbox" value="false">
+                </td>
+            </tr>
+            <tr>
+                <td class="tgimbaForm centerLabel">
+                    <input type="button" class="button" id="hvJsCancelBtn" value="Cancel"
+                           onclick="MenuController.Cancel()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
