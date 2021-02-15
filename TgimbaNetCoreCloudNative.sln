@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TgimbaNetCoreWeb", "TgimbaNetCoreWeb\TgimbaNetCoreWeb.csproj", "{1B344C78-B76E-47B7-AC71-05B0319BDA0A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containerization", "Containerization", "{EA3189B7-BA7F-4D4F-B3D1-4564A2C3C409}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+		Containerization\TgimbaApache.conf = Containerization\TgimbaApache.conf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
