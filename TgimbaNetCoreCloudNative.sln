@@ -11,6 +11,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containerization", "Contain
 		Containerization\TgimbaApache.conf = Containerization\TgimbaApache.conf
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "Algorithms\Algorithms.csproj", "{A12A73E3-20FA-4BF1-92FC-644E0024E7D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLNetCore", "BLLNetCore\BLLNetCore.csproj", "{F0EE378B-2997-488D-8D7B-36E49ECAF2DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALNetCore", "DALNetCore\DALNetCore.csproj", "{EEC9DA43-55DE-4899-944E-AC2138012BC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{F796E478-3EE8-4097-A1F1-1B9A75CBA963}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TgimbaNetCoreWebShared", "TgimbaNetCoreWebShared\TgimbaNetCoreWebShared.csproj", "{46288FEB-8E4F-4840-8983-CC95026B6C64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +31,26 @@ Global
 		{1B344C78-B76E-47B7-AC71-05B0319BDA0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B344C78-B76E-47B7-AC71-05B0319BDA0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B344C78-B76E-47B7-AC71-05B0319BDA0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A12A73E3-20FA-4BF1-92FC-644E0024E7D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A12A73E3-20FA-4BF1-92FC-644E0024E7D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A12A73E3-20FA-4BF1-92FC-644E0024E7D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A12A73E3-20FA-4BF1-92FC-644E0024E7D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0EE378B-2997-488D-8D7B-36E49ECAF2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0EE378B-2997-488D-8D7B-36E49ECAF2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0EE378B-2997-488D-8D7B-36E49ECAF2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0EE378B-2997-488D-8D7B-36E49ECAF2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC9DA43-55DE-4899-944E-AC2138012BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC9DA43-55DE-4899-944E-AC2138012BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC9DA43-55DE-4899-944E-AC2138012BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC9DA43-55DE-4899-944E-AC2138012BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F796E478-3EE8-4097-A1F1-1B9A75CBA963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F796E478-3EE8-4097-A1F1-1B9A75CBA963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F796E478-3EE8-4097-A1F1-1B9A75CBA963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F796E478-3EE8-4097-A1F1-1B9A75CBA963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46288FEB-8E4F-4840-8983-CC95026B6C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46288FEB-8E4F-4840-8983-CC95026B6C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46288FEB-8E4F-4840-8983-CC95026B6C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46288FEB-8E4F-4840-8983-CC95026B6C64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
