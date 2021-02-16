@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containerization", "Containerization", "{EA3189B7-BA7F-4D4F-B3D1-4564A2C3C409}"
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile = Dockerfile
+		Containerization\EC2LambdaCreation.js = Containerization\EC2LambdaCreation.js
 		Containerization\TgimbaApache.conf = Containerization\TgimbaApache.conf
 	EndProjectSection
 EndProject
