@@ -7,20 +7,20 @@ exports.handler = async (event) => {
     console.log(JSON.stringify(event, null, 2))
     var jobId = event["CodePipeline.job"].id
     var params = {
-	jobId: jobId
-    };
+        jobId: jobId
+    }
 
     console.log("Load credentials and set region from JSON file");
     AWS.config.update({region: 'us-east-2'});
 
     var userData = `#!/bin/bash
-		yum update -y
-		yum install git -y
-		amazon-linux-extras install docker -y
-		service docker start
-		cd home/ec2-user
-		git clone https://github.com/ehelin/TgimbaNetCoreCloudNative.git
-		docker build TgimbaNetCoreCloudNative/. -t myawesomerepository`;
+			yum update -y
+			yum install git -y
+			amazon-linux-extras install docker -y
+			service docker start
+			cd home/ec2-user
+			git clone https://github.com/ehelin/TgimbaNetCoreCloudNative.git
+			docker build TgimbaNetCoreCloudNative/. -t myawesomerepository`;
     console.log('User data: ')
     console.log(JSON.stringify(userData, null, 2))
 
@@ -35,7 +35,10 @@ exports.handler = async (event) => {
        UserData: userDataEncoded,
 	   SecurityGroupIds: ['sg-0f2d4961192b272f3'],
        MinCount: 1,
-       MaxCount: 1
+       MaxCount: 1,
+       IamInstanceProfile: {
+	   Name: 'GetTgimbaSourceArtifactRole',
+       },
     };
     console.log('Instance params: ')
     console.log(JSON.stringify(instanceParams, null, 2))
