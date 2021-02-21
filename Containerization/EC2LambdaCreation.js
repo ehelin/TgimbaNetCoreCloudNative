@@ -33,7 +33,7 @@ exports.handler = async (event) => {
        InstanceType: 't2.micro',
        KeyName: 'NetCore3_1SampleApp',
        UserData: userDataEncoded,
-	   SecurityGroupIds: ['sg-0f2d4961192b272f3'],
+       SecurityGroupIds: ['sg-0f2d4961192b272f3'],
        MinCount: 1,
        MaxCount: 1,
        IamInstanceProfile: {
