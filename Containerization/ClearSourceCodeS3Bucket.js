@@ -17,7 +17,7 @@ async function DeleteAllDataFromDir(bucket, dir, params) {
 
 		const listedObjects = await s3.listObjects(listParams).promise();
 		console.log('reponse: ');
-    	console.log(JSON.stringify(listedObjects, null, 2))
+    		console.log(JSON.stringify(listedObjects, null, 2))
     
 		if (listedObjects.Contents.length === 0) {
 			console.log('There are no files to delete');
@@ -47,27 +47,32 @@ async function DeleteAllDataFromDir(bucket, dir, params) {
 		
 		console.log('Done deleting all files');
 
-		return 0; //codepipeline.putJobSuccessResult(params).promise();
+		return codepipeline.putJobSuccessResult(params).promise();
 	} 
 	catch(err)
 	{
 		console.log('exports.handler() error: ' + err);
 			
-		return 0; //codepipeline.putJobFailureResult(params).promise();
+		return codepipeline.putJobFailureResult(params).promise();
 	}
+}
+
+async function timeout(ms) {
+    	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 exports.handler = async (event) => {
 	console.log('exports.handler() starting...');
-	
-	//var jobId = event["CodePipeline.job"].id
-	//var awsHost = '';
-	//AWS.config.update({region: 'us-east-2'});
-	
-	var jobId = 1;
+
+	// give ec2 instance time to spin up...w/o this delay, the source artifact is removed too soon
+	await timeout(120000);
+
+	var jobId = event["CodePipeline.job"].id;
+	AWS.config.update({region: 'us-east-2'});
+
 	var params = { jobId: jobId	};
-	var bucket = 'codepipeline-us-east-2-778197328464';
-	var dir = 'NetCore3_1SampleApp2/SourceArti';
+	var bucket = 'your bucket name here (no slashes or s3://)';
+	var dir = 'your bucket sub path (i.e. /path/path2/)';
 
 	return DeleteAllDataFromDir(bucket, dir, params);
 }
