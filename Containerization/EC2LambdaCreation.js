@@ -7,7 +7,7 @@ exports.handler = async (event) => {
     console.log(JSON.stringify(event, null, 2))
     var jobId = event["CodePipeline.job"].id
     var params = {
-        jobId: jobId
+	jobId: jobId
     }
 
     console.log("Load credentials and set region from JSON file");
@@ -18,9 +18,9 @@ exports.handler = async (event) => {
 			yum install git -y
 			amazon-linux-extras install docker -y
 			service docker start
-			cd home/ec2-user
-			git clone https://github.com/ehelin/TgimbaNetCoreCloudNative.git
-			docker build TgimbaNetCoreCloudNative/. -t myawesomerepository`;
+			aws s3 sync s3://<your bucket name here w/sub path> /home/ec2-user
+			unzip /home/ec2-user/*.zip -d /home/ec2-user/
+			docker build /home/ec2-user/. -t myawesomerepository`;
     console.log('User data: ')
     console.log(JSON.stringify(userData, null, 2))
 
@@ -37,7 +37,7 @@ exports.handler = async (event) => {
        MinCount: 1,
        MaxCount: 1,
        IamInstanceProfile: {
-	   Name: 'GetTgimbaSourceArtifactRole',
+	  Name: 'GetTgimbaSourceArtifactRole',
        },
     };
     console.log('Instance params: ')
