@@ -31,8 +31,8 @@ namespace TestDALNetCore_Integration
             var now = DateTime.Now;
             var buildStatisticsToSave = new BuildStatistics
             {
-                Start = now,
-                End = now.AddMinutes(1),
+                StartTime = now,
+                EndTime = now.AddMinutes(1),
                 BuildNumber = "123",
                 Status = "Succeeded",
                 Type = "CICD Pipeline - Website"
@@ -48,8 +48,8 @@ namespace TestDALNetCore_Integration
             var buildStatistic = buildStatistics
                                     .OrderByDescending(x => Convert.ToDateTime(x.Start))
                                     .FirstOrDefault();
-            Assert.AreEqual(buildStatistic.Start, buildStatisticsToSave.Start.ToString());
-            Assert.AreEqual(buildStatistic.End, buildStatisticsToSave.End.ToString());
+            Assert.AreEqual(buildStatistic.Start, buildStatisticsToSave.StartTime.ToString());
+            Assert.AreEqual(buildStatistic.End, buildStatisticsToSave.EndTime.ToString());
             Assert.AreEqual(buildStatistic.BuildNumber, buildStatisticsToSave.BuildNumber);
             Assert.AreEqual(buildStatistic.Status, buildStatisticsToSave.Status);
 
@@ -103,7 +103,7 @@ namespace TestDALNetCore_Integration
             bd.LogMsg(msg);
             dbContext.SaveChanges();
 
-            var logModel = dbContext.Log
+            var logModel = dbContext.Logs
                                     .Where(x => x.LogMessage == msg)
                                     .FirstOrDefault();
 

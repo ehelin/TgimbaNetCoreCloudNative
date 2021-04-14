@@ -5,7 +5,12 @@ namespace DALNetCore.Models
 {
     public partial class BucketListItem
     {
-        public int BucketListItemId { get; set; }
+        public BucketListItem()
+        {
+            BucketListUsers = new HashSet<BucketListUser>();
+        }
+
+        public long BucketListItemId { get; set; }
         public string ListItemName { get; set; }
         public DateTime? Created { get; set; }
         public string Category { get; set; }
@@ -13,5 +18,7 @@ namespace DALNetCore.Models
         public int? CategorySortOrder { get; set; }
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
+
+        public virtual ICollection<BucketListUser> BucketListUsers { get; set; }
     }
 }

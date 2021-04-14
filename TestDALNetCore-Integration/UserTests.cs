@@ -61,7 +61,7 @@ namespace TestDALNetCore_Integration
             Assert.IsInstanceOfType(user, typeof(User));
             Assert.IsNotNull(user);
             Assert.AreEqual(user.UserName, dbUser.UserName);
-            Assert.AreEqual(user.Password, dbUser.PassWord);
+            Assert.AreEqual(user.Password, dbUser.Password);
             Assert.AreEqual(user.Salt, dbUser.Salt);
             Assert.AreEqual(user.Email, dbUser.Email);
             Assert.AreEqual(token, dbUser.Token);

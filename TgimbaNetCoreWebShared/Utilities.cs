@@ -40,15 +40,16 @@ namespace TgimbaNetCoreWebShared
             services.AddSingleton<IUserHelper>(new UserHelper());
 
             // true load test db connection, false load prod db connection
-            services.AddSingleton(new BucketListContext
+            services.AddSingleton(new DALNetCore.Models.BucketListContext
             (
-                Configuration["Env"] != null
-                    && Configuration["Env"] == "Development"
-                        ? true
-                            : false
+                // TODO - reinstate this code inside context
+                //Configuration["Env"] != null
+                //    && Configuration["Env"] == "Development"
+                //        ? true
+                //            : false
             ));
             services.AddSingleton<IBucketListData>(x =>
-                new BucketListData(x.GetRequiredService<BucketListContext>(),
+                new BucketListData(x.GetRequiredService<DALNetCore.Models.BucketListContext>(),
                                    x.GetRequiredService<IUserHelper>()
                                    ));
             services.AddSingleton<IPassword>(new PasswordHelper());

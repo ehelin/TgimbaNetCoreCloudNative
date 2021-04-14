@@ -1,5 +1,6 @@
-﻿using Shared.dto;
+﻿using System;
 using DALNetCore.interfaces;
+using Shared.dto;
 using models = DALNetCore.Models;
 
 namespace DALNetCore.helpers
@@ -10,10 +11,10 @@ namespace DALNetCore.helpers
         {
             var user = new User()
             {
-                UserId = dbUser.UserId,
+                UserId = Convert.ToInt32(dbUser.UserId),  //TODO - fix conversion (temp hack)
                 UserName = dbUser.UserName,
                 Salt = dbUser.Salt,
-                Password = dbUser.PassWord,
+                Password = dbUser.Password,
                 Email = dbUser.Email,
                 Token = dbUser.Token
             };

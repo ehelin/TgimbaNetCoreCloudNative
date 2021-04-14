@@ -25,20 +25,20 @@ namespace TestDALNetCore_Integration
 
             if (user != null)
             {
-                var dbBucketListItems = from bli in dbContext.BucketListItem
-                                        join blu in dbContext.BucketListUser on bli.BucketListItemId equals blu.BucketListItemId
+                var dbBucketListItems = from bli in dbContext.BucketListItems
+                                        join blu in dbContext.BucketListUsers on bli.BucketListItemId equals blu.BucketListItemId
                                         join u in dbContext.User on blu.UserId equals u.UserId
                                         where u.UserName == this.UserName
                                         select bli;
 
                 foreach(var dbBucketListItem in dbBucketListItems)
                 {
-                    var dbBucketListUser = dbContext.BucketListUser
+                    var dbBucketListUser = dbContext.BucketListUsers
                                                     .Where(x => x.BucketListItemId == dbBucketListItem.BucketListItemId)
                                                     .FirstOrDefault();
 
-                    dbContext.BucketListUser.Remove(dbBucketListUser);
-                    dbContext.BucketListItem.Remove(dbBucketListItem);
+                    dbContext.BucketListUsers.Remove(dbBucketListUser);
+                    dbContext.BucketListItems.Remove(dbBucketListItem);
                     dbContext.SaveChanges();
                 }
 
@@ -62,10 +62,11 @@ namespace TestDALNetCore_Integration
             return bucketListItem;
         }
 
-        protected BucketListContext GetDbContext(bool useTestDb = false)
+        protected DALNetCore.Models.BucketListContext GetDbContext(bool useTestDb = false)
         {
-            var dbContext = new BucketListContext(useTestDb);
-
+            // TODO - add boolean back in (temp hack)
+            //var dbContext = new DALNetCore.Models.BucketListContext(useTestDb);
+            var dbContext = new DALNetCore.Models.BucketListContext();
             return dbContext;
         }
 
@@ -75,7 +76,7 @@ namespace TestDALNetCore_Integration
             {
                 UserName = this.UserName,
                 Salt = "salt",
-                PassWord = this.Password,
+                Password = this.Password,
                 Email = "user@email.com",
                 Token = token
             };
