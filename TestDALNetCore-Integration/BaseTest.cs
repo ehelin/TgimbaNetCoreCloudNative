@@ -64,9 +64,7 @@ namespace TestDALNetCore_Integration
 
         protected DALNetCore.Models.BucketListContext GetDbContext(bool useTestDb = false)
         {
-            // TODO - add boolean back in (temp hack)
-            //var dbContext = new DALNetCore.Models.BucketListContext(useTestDb);
-            var dbContext = new DALNetCore.Models.BucketListContext();
+            var dbContext = new DALNetCore.Models.BucketListContext(useTestDb);
             return dbContext;
         }
 

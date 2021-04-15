@@ -22,7 +22,7 @@ namespace DALNetCore
 
         #region User 
 
-        public void AddToken(int userId, string token)
+        public void AddToken(long userId, string token)
         {
             var dbUser = this.context.User
                                    .Where(x => x.UserId == userId)
@@ -38,7 +38,7 @@ namespace DALNetCore
             this.context.SaveChanges();
         }
 
-        public User GetUser(int id)
+        public User GetUser(long id)
         {
             var dbUser = this.context.User
                                    .Where(x => x.UserId == id)
@@ -67,7 +67,7 @@ namespace DALNetCore
             return user;
         }
 
-        public int AddUser(User user)
+        public long AddUser(User user)
         {
             var dbUser = new models.User
             {
@@ -83,11 +83,10 @@ namespace DALNetCore
             this.context.User.Add(dbUser);
             this.context.SaveChanges();
 
-            // TODO - fix conversion (temp hack)
-            return Convert.ToInt32(dbUser.UserId);
+            return dbUser.UserId;
         }
 
-        public void DeleteUser(int userId)
+        public void DeleteUser(long userId)
         {
             var dbUser = this.context.User
                                    .Where(x => x.UserId == userId)
@@ -208,8 +207,7 @@ namespace DALNetCore
                     Category = dbBucketListItem.Category,
                     Achieved = dbBucketListItem.Achieved.HasValue
                                     ? dbBucketListItem.Achieved.Value : false,
-                    // TODO - fix conversion (temp hack)
-                    Id = Convert.ToInt32(dbBucketListItem.BucketListItemId),
+                    Id = dbBucketListItem.BucketListItemId,
                     Latitude = dbBucketListItem.Latitude.HasValue ? (decimal)dbBucketListItem.Latitude : (decimal)0,
                     Longitude = dbBucketListItem.Longitude.HasValue ? (decimal)dbBucketListItem.Longitude : (decimal)0
                 };
@@ -220,7 +218,7 @@ namespace DALNetCore
             return bucketListItems;
         }
 
-        public void DeleteBucketListItem(int bucketListItemDbId)
+        public void DeleteBucketListItem(long bucketListItemDbId)
         {
             var bucketListItemToDelete = this.context.BucketListItems
                                                         .Where(x => x.BucketListItemId == bucketListItemDbId)

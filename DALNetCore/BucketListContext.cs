@@ -6,8 +6,11 @@ namespace DALNetCore.Models
 {
     public partial class BucketListContext : DbContext
     {
-        public BucketListContext()
+        private bool useTestDatabase;
+
+        public BucketListContext(bool userTestDatabase = false)
         {
+            this.useTestDatabase = userTestDatabase;
         }
 
         public BucketListContext(DbContextOptions<BucketListContext> options)
@@ -26,8 +29,17 @@ namespace DALNetCore.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=postgres;Username=postgres;Password=localPostgres");
+                //TODO - uncomment once you roll out a production
+                //if (useTestDatabase)
+                //{
+                    // TODO - move to EnvironmentalConfig.GetDbSetting()
+                    optionsBuilder.UseSqlServer("Host=localhost;Database=postgres;Username=postgres;Password=localPostgres");
+                //}
+                //else
+                //{
+                //    // TODO - add production and move to EnvironmentalConfig.GetDbSetting()
+                //    optionsBuilder.UseSqlServer(EnvironmentalConfig.GetDbSetting());
+                //}
             }
         }
 

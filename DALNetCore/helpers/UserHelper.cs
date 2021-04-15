@@ -11,7 +11,7 @@ namespace DALNetCore.helpers
         {
             var user = new User()
             {
-                UserId = Convert.ToInt32(dbUser.UserId),  //TODO - fix conversion (temp hack)
+                UserId = dbUser.UserId,
                 UserName = dbUser.UserName,
                 Salt = dbUser.Salt,
                 Password = dbUser.Password,
