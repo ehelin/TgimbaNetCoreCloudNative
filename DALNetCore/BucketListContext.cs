@@ -32,8 +32,8 @@ namespace DALNetCore.Models
                 //TODO - uncomment once you roll out a production
                 //if (useTestDatabase)
                 //{
-                    // TODO - move to EnvironmentalConfig.GetDbSetting()
-                    optionsBuilder.UseSqlServer("Host=localhost;Database=postgres;Username=postgres;Password=localPostgres");
+                    // TODO - move to EnvironmentalConfig.GetDbSetting
+                    optionsBuilder.UseNpgsql("Host=localhost;Database=postgres;Username=postgres;Password=localPostgres");
                 //}
                 //else
                 //{
