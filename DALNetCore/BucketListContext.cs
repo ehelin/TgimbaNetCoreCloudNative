@@ -29,17 +29,28 @@ namespace DALNetCore.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //TODO - uncomment once you roll out a production
-                //if (useTestDatabase)
-                //{
+                if (useTestDatabase)
+                {
                     // TODO - move to EnvironmentalConfig.GetDbSetting
-                    optionsBuilder.UseNpgsql("Host=localhost;Database=postgres;Username=postgres;Password=localPostgres");
-                //}
-                //else
-                //{
-                //    // TODO - add production and move to EnvironmentalConfig.GetDbSetting()
-                //    optionsBuilder.UseSqlServer(EnvironmentalConfig.GetDbSetting());
-                //}
+                    optionsBuilder.UseNpgsql(
+                        String.Format("Host={0};Database={1};Username={2};Password={3}",
+                            "localhost",
+                            "postgres",
+                            "postgres",
+                            "localPostgres"
+                        ));
+                }
+                else
+                {
+                    // TODO - add production and move to EnvironmentalConfig.GetDbSetting()    
+                    optionsBuilder.UseNpgsql(
+                        String.Format("Host={0};Database={1};Username={2};Password={3}",
+                            "",
+                            "tgimba",
+                            "",
+                            ""
+                    ));
+                }
             }
         }
 

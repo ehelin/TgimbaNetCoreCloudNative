@@ -18,7 +18,7 @@ namespace TestDALNetCore_Integration
 
         protected void RemoveTestUser() 
         {
-            var dbContext = GetDbContext(true);
+            var dbContext = GetDbContext(false);
 
             var user = dbContext.User.Where(x => x.UserName == this.UserName)
                                         .FirstOrDefault();
