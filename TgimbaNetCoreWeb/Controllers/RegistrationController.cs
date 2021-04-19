@@ -4,9 +4,9 @@ using TgimbaNetCoreWebShared.Controllers;
 
 namespace TgimbaNetCoreWeb.Controllers
 {
-//#if !DEBUG
-//    [RequireHttpsAttribute]
-//#endif
+#if !DEBUG
+    [RequireHttpsAttribute]
+#endif
     public class RegistrationController	: Controller
     {
 		private SharedRegistrationController sharedRegistrationController = null;

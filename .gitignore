@@ -339,3 +339,5 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /TestDALNetCore-Integration/Properties/launchSettings.json
+/API-IntegrationTests/Properties/launchSettings.json
+/WebUIIntegrationTests/Properties/launchSettings.json

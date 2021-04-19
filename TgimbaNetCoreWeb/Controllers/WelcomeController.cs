@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shared.dto;
-using Shared.interfaces;
 using TgimbaNetCoreWebShared;
 using TgimbaNetCoreWebShared.Controllers;
 
 namespace TgimbaNetCoreWeb.Controllers
 {
-//#if !DEBUG
-//    [RequireHttpsAttribute]
-//#endif
+#if !DEBUG
+    [RequireHttpsAttribute]
+#endif
     public class WelcomeController : Controller
     {
 		private SharedWelcomeController sharedWelcomeController = null;

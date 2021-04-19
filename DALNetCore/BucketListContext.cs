@@ -1,6 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared.misc;
 
 namespace DALNetCore.Models
 {
@@ -31,25 +30,11 @@ namespace DALNetCore.Models
             {
                 if (useTestDatabase)
                 {
-                    // TODO - move to EnvironmentalConfig.GetDbSetting
-                    optionsBuilder.UseNpgsql(
-                        String.Format("Host={0};Database={1};Username={2};Password={3}",
-                            "localhost",
-                            "postgres",
-                            "postgres",
-                            "localPostgres"
-                        ));
+                    optionsBuilder.UseNpgsql(EnvironmentalConfig.GetDbSetting(true));
                 }
                 else
-                {
-                    // TODO - add production and move to EnvironmentalConfig.GetDbSetting()    
-                    optionsBuilder.UseNpgsql(
-                        String.Format("Host={0};Database={1};Username={2};Password={3}",
-                            "",
-                            "tgimba",
-                            "",
-                            ""
-                    ));
+                { 
+                    optionsBuilder.UseNpgsql(EnvironmentalConfig.GetDbSetting());
                 }
             }
         }

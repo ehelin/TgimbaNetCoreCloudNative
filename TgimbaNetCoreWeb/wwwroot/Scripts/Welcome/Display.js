@@ -14,7 +14,7 @@ Display.SetView = function (view, contentDiv, loadedView, htmlContent) {
 
 Display.SetAjaxView = function (view, contentDiv, loadedView, htmlContent) {
     contentDiv.innerHTML = loadedView;
-    //WelcomeServerCalls.GetSystemStatistics();
+    WelcomeServerCalls.GetSystemStatistics();
 };
 
 Display.SetSystemStatistics = function (systemStatistics) {
