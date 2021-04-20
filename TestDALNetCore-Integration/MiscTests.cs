@@ -27,7 +27,7 @@ namespace TestDALNetCore_Integration
         public void GetSystemBuildStatisticsHappyPath_Test()
         {
             //set up ------------------------------------------------------
-            var dbContext = this.GetDbContext(false);
+            var dbContext = this.GetDbContext(true);
             var now = DateTime.Now;
             var buildStatisticsToSave = new BuildStatistics
             {
@@ -62,7 +62,7 @@ namespace TestDALNetCore_Integration
         public void GetSystemSystemStatisticsGetSystemBuildStatisticsHappyPath_Test()
         {        
             //set up ------------------------------------------------------
-            var dbContext = this.GetDbContext(false);
+            var dbContext = this.GetDbContext(true);
             var now = DateTime.Now;
             var systemStatisticsToSave = new SystemStatistics
             {
@@ -95,7 +95,7 @@ namespace TestDALNetCore_Integration
         [TestMethod]
         public void LogMsgHappyPath_Test()
         {
-            var dbContext = this.GetDbContext(false);
+            var dbContext = this.GetDbContext(true);
             IBucketListData bd = new BucketListData(dbContext, this.userHelper);
 
             //test ----------------------------

@@ -86,6 +86,21 @@ namespace DALNetCore
             return dbUser.UserId;
         }
 
+        // TODO - add test
+        public void DeleteUser(string userName)
+        {
+            var dbUser = this.context.User
+                                   .Where(x => x.UserName == userName)
+                                   .FirstOrDefault();
+            if (dbUser == null)
+            {
+                throw new RecordDoesNotExistException("DeleteUser - User to delete does not exist. userName - " + userName);
+            }
+
+            this.context.Remove(dbUser);
+            this.context.SaveChanges();
+        }
+
         public void DeleteUser(long userId)
         {
             var dbUser = this.context.User

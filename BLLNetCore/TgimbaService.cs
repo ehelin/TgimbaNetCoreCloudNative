@@ -105,8 +105,27 @@ namespace APINetCore
             return userAdded;
         }
 
+        // TODO - add test
+        public bool DeleteUser
+        (
+            string userName,
+            string encodedUser,
+            string encodedToken
+        )
+        {
+            bool userDeleted = false;
+
+            if (this.IsValidToken(encodedUser, encodedToken))
+            {
+                this.bucketListData.DeleteUser(userName);
+                userDeleted = true;
+            }
+
+            return userDeleted;
+        }
+
         #endregion
-        
+
         #region BucketList
 
         public bool DeleteBucketListItem

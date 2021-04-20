@@ -13,7 +13,7 @@ namespace API_IntegrationTests
     [TestClass]
     public class HappyPathTests
     {
-        private string host = "https://www.tgimba.com/api/TgimbaApi/";
+        private string host = "https://localhost:44394/api/TgimbaApi/";
         private string userName = "fredFlintstone";
         private string password = "wilmaRules87&";
         private string email = "fred@bedrock.com";
@@ -34,7 +34,6 @@ namespace API_IntegrationTests
         public void HappyPathTest()
         {
             EndPoint_TestPage();
-            CleanUser();
 
             EndPoint_Register();
             var token = EndPoint_Login();
@@ -49,9 +48,10 @@ namespace API_IntegrationTests
             Assert.IsTrue(resultsAfterUpsert.Count == 1);
             var bucketListItem = resultsAfterUpsert[0];
 
-            EndPoint_Delete(token, bucketListItem.Id.Value);
+            var tempIdHack = System.Convert.ToInt32(bucketListItem.Id.Value);
+            EndPoint_Delete(token, tempIdHack);
 
-            var resultsAfterDelete = EndPoint_Get(token);
+            EndPoint_Get(token);
             Assert.IsNotNull(resultBeforeUpsert);
             Assert.IsTrue(resultBeforeUpsert.Count == 0);
 
@@ -59,9 +59,8 @@ namespace API_IntegrationTests
             EndPoint_GetSystemStatistics(token);
             EndPoint_GetSystemBuildStatistics(token);
             EndPoint_Log(token);
+            EndPoint_UserDelete(token, userName);
             EndPoint_TestPage();
-
-            CleanUser();
         }
 
         #region Http methods
@@ -181,6 +180,13 @@ namespace API_IntegrationTests
 
             Assert.AreEqual(true, System.Convert.ToBoolean(result));
         }
+        private void EndPoint_UserDelete(string token, string userName)
+        {
+            var url = host + "deleteuser/" + userName;
+            var result = Delete(url, Base64Encode(userName), Base64Encode(token)).Result;
+
+            Assert.AreEqual(true, System.Convert.ToBoolean(result));
+        }
         private void EndPoint_GetSystemStatistics(string token)
         {
             var url = host + "getsystemstatistics";
@@ -220,13 +226,6 @@ namespace API_IntegrationTests
 
             Assert.AreEqual("Test Service Response", result);
         }
-
-        private void CleanUser()
-        {
-            var utilities = new Shared.misc.testUtilities.TestUtilities();
-            utilities.CleanUpLocal(userName);
-        }
-
         private void CheckStatus(HttpResponseMessage response)
         {
             Assert.IsNotNull(response);

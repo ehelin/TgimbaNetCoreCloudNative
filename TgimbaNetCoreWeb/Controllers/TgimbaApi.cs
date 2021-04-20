@@ -34,10 +34,19 @@ namespace TgimbaNetCoreWeb.Controllers
             return this.sharedTgimbaApiController.ProcessUser(request);
         }
 
+        [HttpDelete("deleteuser/{userName:alpha}")]
+        public IActionResult DeleteUser(string userName)
+        {
+            return this.sharedTgimbaApiController.DeleteUser(
+                 Utilities.GetHeaderValue("EncodedUserName", this.Request),
+                 Utilities.GetHeaderValue("EncodedToken", this.Request),
+                 userName);
+        }
+
         #endregion
 
         #region Bucket List Items
-        
+
         [HttpDelete("delete/{BucketListItemId:int}")]
         public IActionResult DeleteBucketListItem(int BucketListItemId)
         {

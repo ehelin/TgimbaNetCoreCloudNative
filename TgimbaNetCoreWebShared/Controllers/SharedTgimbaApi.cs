@@ -55,6 +55,23 @@ namespace TgimbaNetCoreWebShared.Controllers
             }
         }
 
+        // TODO - add test
+        public IActionResult DeleteUser(string EncodedUserName, string EncodedToken, string userName)
+        {
+            try
+            {
+                this.validationHelper.IsValidRequest(userName);
+
+                var userRegistered = this.service.DeleteUser(userName, EncodedUserName, EncodedToken);
+
+                return Ok(userRegistered); // 200
+            }
+            catch (Exception ex)
+            {
+                return this.HandleError(ex);
+            }
+        }
+
         #endregion
 
         #region Bucket List Items

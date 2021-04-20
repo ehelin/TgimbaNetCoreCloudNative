@@ -29,7 +29,7 @@ namespace TestDALNetCore_Integration
             RemoveTestUser();
             
             var user = GetUser("token");
-            IBucketListData bd = new BucketListData(this.GetDbContext(), this.userHelper);
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
             var bucketListItemToSave = GetBucketListItem();
 
             // test ---------------------------------------------------------
@@ -69,7 +69,7 @@ namespace TestDALNetCore_Integration
             // set up ------------------------------------------------------
             RemoveTestUser();
 
-            IBucketListData bd = new BucketListData(this.GetDbContext(), this.userHelper);
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
             var bucketListItemToSave = GetBucketListItem();
 
             // test ---------------------------------------------------------
@@ -85,7 +85,7 @@ namespace TestDALNetCore_Integration
             // set up ------------------------------------------------------
             RemoveTestUser();
 
-            IBucketListData bd = new BucketListData(this.GetDbContext(), this.userHelper);
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
 
             // test ---------------------------------------------------------
             var nonExistantBucketListItemId = -12412;

@@ -31,7 +31,7 @@ namespace TestDALNetCore_Integration
 
             var token = "token";
             var user = GetUser(token);
-            IBucketListData bd = new BucketListData(this.GetDbContext(false), this.userHelper);
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
 
 
             var userId = bd.AddUser(user);
@@ -74,7 +74,7 @@ namespace TestDALNetCore_Integration
             RemoveTestUser();
 
             var unknownUserId = -12521;
-            IBucketListData bd = new BucketListData(this.GetDbContext(false), this.userHelper);
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
 
             bd.AddToken(unknownUserId, this.Token);
 
@@ -88,7 +88,7 @@ namespace TestDALNetCore_Integration
             RemoveTestUser();
 
             var unknownUserId = -12521;
-            IBucketListData bd = new BucketListData(this.GetDbContext(false), this.userHelper);
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
 
             bd.GetUser(unknownUserId);
 
@@ -102,7 +102,7 @@ namespace TestDALNetCore_Integration
             RemoveTestUser();
 
             var unknownUserId = -12521;
-            IBucketListData bd = new BucketListData(this.GetDbContext(false), this.userHelper);
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
 
             bd.DeleteUser(unknownUserId);
 

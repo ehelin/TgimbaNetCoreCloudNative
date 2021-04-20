@@ -6,6 +6,14 @@ namespace TgimbaNetCoreWebShared
 {
     public class ValidationHelper : IValidationHelper
     {
+        // TODO - add test
+        public void IsValidRequest(string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+            {
+                throw new ArgumentNullException("userName is not set");
+            }
+        }
         public void IsValidRequest(string EncodedUserName, string EncodedToken, int BucketListItemId)
         {
             if (string.IsNullOrEmpty(EncodedUserName))
