@@ -18,5 +18,6 @@ namespace Shared.interfaces
         long AddUser(User user);
         void DeleteUser(long userId);
         void DeleteUser(string userName);
+        List<User> GetUsers(string userName);
     }
 }

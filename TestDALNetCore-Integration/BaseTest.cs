@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using DALNetCore;
+using System.Collections.Generic;
 using Shared.misc;
 using DALNetCore.interfaces;
 using DALNetCore.helpers;
@@ -11,7 +11,7 @@ namespace TestDALNetCore_Integration
 {
     public class BaseTest
     {
-        protected string UserName = "user";
+        protected const string UserName = "user";
         protected string Password = "password";
         protected string Token = "token";
         protected IUserHelper userHelper = new UserHelper();
@@ -20,7 +20,7 @@ namespace TestDALNetCore_Integration
         {
             var dbContext = GetDbContext(true);
 
-            var user = dbContext.User.Where(x => x.UserName == this.UserName)
+            var user = dbContext.User.Where(x => x.UserName == UserName)
                                         .FirstOrDefault();
 
             if (user != null)
@@ -28,7 +28,7 @@ namespace TestDALNetCore_Integration
                 var dbBucketListItems = from bli in dbContext.BucketListItems
                                         join blu in dbContext.BucketListUsers on bli.BucketListItemId equals blu.BucketListItemId
                                         join u in dbContext.User on blu.UserId equals u.UserId
-                                        where u.UserName == this.UserName
+                                        where u.UserName == UserName
                                         select bli;
 
                 foreach(var dbBucketListItem in dbBucketListItems)
@@ -45,6 +45,19 @@ namespace TestDALNetCore_Integration
                 dbContext.User.Remove(user);
                 dbContext.SaveChanges();
             }
+        }
+
+        protected List<dto.BucketListItem> GetBucketListItems()
+        {
+            List< dto.BucketListItem> bucketListItems = new List<dto.BucketListItem>();
+
+            bucketListItems.Add(GetBucketListItem("Item1"));
+            bucketListItems.Add(GetBucketListItem("Item2"));
+            bucketListItems.Add(GetBucketListItem("Item3"));
+            bucketListItems.Add(GetBucketListItem("Item4"));
+            bucketListItems.Add(GetBucketListItem("Item5"));
+
+            return bucketListItems;
         }
 
         protected dto.BucketListItem GetBucketListItem(string name = "I am a bucket list item")
@@ -72,7 +85,7 @@ namespace TestDALNetCore_Integration
         {
             var user = new models.User()
             {
-                UserName = this.UserName,
+                UserName = UserName,
                 Salt = "salt",
                 Password = this.Password,
                 Email = "user@email.com",
@@ -82,11 +95,11 @@ namespace TestDALNetCore_Integration
             return user;
         }
 
-        protected dto.User GetUser(string token)
+        protected dto.User GetUser(string token, string userName = UserName)
         {
             var user = new dto.User()
             {
-                UserName = this.UserName,
+                UserName = userName,
                 Salt = "salt",
                 Password = this.Password,
                 Email = "user@email.com",

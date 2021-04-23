@@ -13,6 +13,7 @@ namespace API_IntegrationTests
     [TestClass]
     public class HappyPathTests
     {
+        // TODO - consolidate w/ui test code that is similar
         private string host = "https://localhost:44394/api/TgimbaApi/";
         private string userName = "fredFlintstone";
         private string password = "wilmaRules87&";

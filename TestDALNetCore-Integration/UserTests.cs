@@ -2,6 +2,7 @@ using DALNetCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shared.interfaces;
 using Shared.exceptions;
+using System.Collections.Generic;
 using Shared.dto;
 using Shared.misc.testUtilities;
 using models = DALNetCore.Models;
@@ -11,7 +12,6 @@ namespace TestDALNetCore_Integration
     [TestClass]
     public class UserTests : BaseTest
     {
-
         [TestCleanup]
         public void Cleanup()
         {
@@ -46,6 +46,79 @@ namespace TestDALNetCore_Integration
             Assert.AreEqual(token, savedUser.Token);
 
             bd.DeleteUser(savedUser.UserId);
+        }
+
+        [TestMethod]
+        public void User_DeleteUser_UserName_DeleteMultiple_Test()
+        {
+            var userName = "testUser";
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
+
+            bd.AddToken(bd.AddUser(GetUser("token1", userName)), "token1");
+            bd.AddToken(bd.AddUser(GetUser("token2", userName)), "token2");
+            bd.AddToken(bd.AddUser(GetUser("token3", userName)), "token3");
+
+            AssertUsersExist(true, false, bd, userName);
+
+            bd.DeleteUser(userName);
+
+            AssertUsersExist(false, false, bd, userName);
+        }
+
+        [TestMethod]
+        public void User_DeleteUserBucketListItems_UserName_DeleteMultiple_Test()
+        {
+            var userName = "testUser";
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
+            List<User> users = new List<User>();
+
+            var userId1 = bd.AddUser(GetUser("token1", userName));
+            var userId2 = bd.AddUser(GetUser("token2", userName));
+            var userId3 = bd.AddUser(GetUser("token3", userName));
+            bd.AddToken(userId1, "token1");
+            bd.AddToken(userId2, "token2");
+            bd.AddToken(userId3, "token3");
+
+            var bucketListItems = GetBucketListItems();
+            foreach(var bucketListItem in bucketListItems) 
+            {
+                bd.UpsertBucketListItem(bucketListItem, userName);
+            }
+
+            AssertUsersExist(true, true, bd, userName);
+
+            bd.DeleteUser(userName);
+
+            AssertUsersExist(false, true, bd, userName);
+        }
+
+        private void AssertUsersExist(bool shouldExist, 
+            bool evaluateBucketListItems,
+            IBucketListData bd, 
+            string userName)
+        {
+            var savedUsers = bd.GetUsers("testUser");
+
+            if (shouldExist) 
+            {
+                if (evaluateBucketListItems)
+                {
+                    var bucketListItems = bd.GetBucketList(userName);
+                    Assert.IsTrue(bucketListItems.Count > 0);
+                }
+
+                Assert.IsTrue(savedUsers.Count > 0);
+            }
+            else
+            {
+                if (evaluateBucketListItems)
+                {
+                    var bucketListItems = bd.GetBucketList(userName);
+                    Assert.IsFalse(bucketListItems.Count > 0);
+                }
+
+                Assert.IsFalse(savedUsers.Count > 0);
+            }
         }
 
         [TestMethod]

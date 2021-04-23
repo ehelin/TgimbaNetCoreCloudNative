@@ -53,6 +53,20 @@ namespace DALNetCore
             return user;
         }
 
+        // TODO - add test
+        public List<User> GetUsers(string userName)
+        {
+            List<User> users = new List<User>();
+
+            var dbUsers = this.context.User.Where(x => x.UserName == userName).ToList();
+            foreach(var dbUser in dbUsers)
+            {
+                users.Add(this.userHelper.ConvertDbUserToUser(dbUser));
+            }
+
+            return users;
+        }
+
         public User GetUser(string userName)
         {
             var dbUser = this.context.User
@@ -86,19 +100,15 @@ namespace DALNetCore
             return dbUser.UserId;
         }
 
-        // TODO - add test
         public void DeleteUser(string userName)
-        {
-            var dbUser = this.context.User
-                                   .Where(x => x.UserName == userName)
-                                   .FirstOrDefault();
-            if (dbUser == null)
-            {
-                throw new RecordDoesNotExistException("DeleteUser - User to delete does not exist. userName - " + userName);
-            }
+        {            
+            var users = this.context.User.Where(x => x.UserName == userName).ToList();
 
-            this.context.Remove(dbUser);
-            this.context.SaveChanges();
+            foreach(var user in users)
+            {
+                this.context.Remove(user);
+                this.context.SaveChanges();
+            }
         }
 
         public void DeleteUser(long userId)

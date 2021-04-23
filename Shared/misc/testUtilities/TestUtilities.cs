@@ -1,45 +1,92 @@
 ﻿using System;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using Shared.dto.api;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Shared.misc.testUtilities
 {
     public class TestUtilities
     {
-        private const string DELETE_TEST_USER = "delete from [Bucket].[BucketListItem]   "
-                                   + " where bucketlistitemid in (select bucketListItemId   "
-                                   + "                            from [Bucket].[BucketListUser]   "
-                                   + " 						   where userid in (select userid   "
-                                   + " 						                    from [Bucket].[User]   "
-                                   + " 										    where UserName = @userName)   "
-                                   + " 						   )   "
-                                   + "    "
-                                   + " delete from [Bucket].[BucketListUser]   "
-                                   + " where userid in (select userid   "
-                                   + " 				from [Bucket].[User]   "
-                                   + " 				where UserName = @userName)   "
-                                   + "    "
-                                   + " delete from [Bucket].[User]   "
-                                   + " where UserName = @userName ";
-
-        private const string DELETE_TEST_USER_BUCKET_LIST_ITEMS = "delete from [Bucket].[BucketListItem]   "
-                           + " where bucketlistitemid in (select bucketListItemId   "
-                           + "                            from [Bucket].[BucketListUser]   "
-                           + " 						   where userid in (select userid   "
-                           + " 						                    from [Bucket].[User]   "
-                           + " 										    where UserName = @userName)   "
-                           + " 						   )   "
-                           + "    "
-                           + " delete from [Bucket].[BucketListUser]   "
-                           + " where userid in (select userid   "
-                           + " 				from [Bucket].[User]   "
-                           + " 				where UserName = @userName)   ";
-
         public void CleanUpLocal(string user, bool deleteBucketListItems = false)
         {
-            //var connectionString = Shared.misc.EnvironmentalConfig.GetTestDbSetting();
-            var connectionString = Shared.misc.EnvironmentalConfig.GetDbSetting();
-            DeleteTestUser(user, connectionString, deleteBucketListItems);
+            EndPoint_Register();
+            var token = EndPoint_Login();
+            EndPoint_UserDelete(token, userName);
+        }
+
+        // TODO - consolidate w/api test code that is similar
+        private string userName = "testUser";
+        private string password = "testUser23";
+        private string email = "test@aol.com";
+        private string host = "https://localhost:44394/api/TgimbaApi/";
+        private void EndPoint_UserDelete(string token, string userName)
+        {
+            var url = host + "deleteuser/" + userName;
+            var result = Delete(url, Base64Encode(userName), Base64Encode(token)).Result;
+        }
+        private async Task<string> Delete(string url, string userName, string token)
+        {
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Add("EncodedUserName", userName);
+            client.DefaultRequestHeaders.Add("EncodedToken", token);
+
+            var response = await client.DeleteAsync(url);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            return result;
+        }
+        private void EndPoint_Register()
+        {
+            var request = new RegistrationRequest()
+            {
+                Login = new LoginRequest()
+                {
+                    EncodedUserName = Base64Encode(userName),
+                    EncodedPassword = Base64Encode(password)
+                },
+                EncodedEmail = Base64Encode(email)
+            };
+
+            var json = JsonConvert.SerializeObject(request);
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var url = host + "processuserregistration";
+            var result = Post(url, content).Result;
+        }
+        private string EndPoint_Login()
+        {
+            var request = new LoginRequest()
+            {
+                EncodedUserName = Base64Encode(userName),
+                EncodedPassword = Base64Encode(password)
+            };
+
+            var json = JsonConvert.SerializeObject(request);
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var url = host + "processuser";
+            var token = Post(url, content).Result;
+
+            return token;
+        }
+
+        private async Task<string> Post(string url, StringContent content)
+        {
+            var client = new HttpClient();
+
+            var response = await client.PostAsync(url, content);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            return result;
+        }
+
+        private string Base64Encode(string value)
+        {
+            byte[] data = System.Text.Encoding.UTF8.GetBytes(value);
+            return System.Convert.ToBase64String(data);
         }
 
         private void DeleteTestUser(string userName, string connectionString, bool deleteBucketListItems)
@@ -51,7 +98,7 @@ namespace Shared.misc.testUtilities
             {
                 conn = new SqlConnection(connectionString);
                 cmd = conn.CreateCommand();
-                cmd.CommandText = deleteBucketListItems ? DELETE_TEST_USER_BUCKET_LIST_ITEMS : DELETE_TEST_USER;
+                cmd.CommandText = "";//deleteBucketListItems ? DELETE_TEST_USER_BUCKET_LIST_ITEMS : DELETE_TEST_USER;
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cmd.Parameters.Add(new SqlParameter("@userName", userName));
