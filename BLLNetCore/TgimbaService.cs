@@ -117,7 +117,7 @@ namespace APINetCore
 
             if (this.IsValidToken(encodedUser, encodedToken))
             {
-                this.bucketListData.DeleteUser(userName);
+                this.bucketListData.DeleteUserBucketListItems(userName);
                 userDeleted = true;
             }
 

@@ -100,11 +100,17 @@ namespace DALNetCore
             return dbUser.UserId;
         }
 
-        public void DeleteUser(string userName)
-        {            
-            var users = this.context.User.Where(x => x.UserName == userName).ToList();
+        public void DeleteUserBucketListItems(string userName)
+        {
+            var bucketListItems = GetBucketList(userName);
 
-            foreach(var user in users)
+            foreach (var bucketListItem in bucketListItems)
+            {
+                DeleteBucketListItem(bucketListItem.Id.Value);
+            }
+
+            var users = this.context.User.Where(x => x.UserName == userName).ToList();
+            foreach (var user in users)
             {
                 this.context.Remove(user);
                 this.context.SaveChanges();

@@ -17,7 +17,7 @@ namespace Shared.interfaces
         User GetUser(string userName);
         long AddUser(User user);
         void DeleteUser(long userId);
-        void DeleteUser(string userName);
+        void DeleteUserBucketListItems(string userName);
         List<User> GetUsers(string userName);
     }
 }

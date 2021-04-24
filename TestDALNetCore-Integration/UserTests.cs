@@ -60,7 +60,7 @@ namespace TestDALNetCore_Integration
 
             AssertUsersExist(true, false, bd, userName);
 
-            bd.DeleteUser(userName);
+            bd.DeleteUserBucketListItems(userName);
 
             AssertUsersExist(false, false, bd, userName);
         }
@@ -87,7 +87,7 @@ namespace TestDALNetCore_Integration
 
             AssertUsersExist(true, true, bd, userName);
 
-            bd.DeleteUser(userName);
+            bd.DeleteUserBucketListItems(userName);
 
             AssertUsersExist(false, true, bd, userName);
         }
