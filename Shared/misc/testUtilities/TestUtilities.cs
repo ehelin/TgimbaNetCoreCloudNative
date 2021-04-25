@@ -11,7 +11,6 @@ namespace Shared.misc.testUtilities
     {
         public void CleanUpLocal(string user, bool deleteBucketListItems = false)
         {
-            EndPoint_Register();
             var token = EndPoint_Login();
             EndPoint_UserDelete(token, userName);
         }
@@ -39,29 +38,12 @@ namespace Shared.misc.testUtilities
 
             return result;
         }
-        private void EndPoint_Register()
-        {
-            var request = new RegistrationRequest()
-            {
-                Login = new LoginRequest()
-                {
-                    EncodedUserName = Base64Encode(userName),
-                    EncodedPassword = Base64Encode(password)
-                },
-                EncodedEmail = Base64Encode(email)
-            };
-
-            var json = JsonConvert.SerializeObject(request);
-            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-            var url = host + "processuserregistration";
-            var result = Post(url, content).Result;
-        }
         private string EndPoint_Login()
         {
             var request = new LoginRequest()
             {
-                EncodedUserName = Base64Encode(userName),
-                EncodedPassword = Base64Encode(password)
+                EncodedUserName = Base64Encode(Shared.Constants.DEMO_USER),
+                EncodedPassword = Base64Encode(Shared.Constants.DEMO_USER_PASSWORD)
             };
 
             var json = JsonConvert.SerializeObject(request);

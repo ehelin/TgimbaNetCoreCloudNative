@@ -106,6 +106,7 @@ namespace APINetCore
         }
 
         // TODO - add test
+        // TODO - meant to be only for cleanup for the automated tests....add security
         public bool DeleteUser
         (
             string userName,
@@ -115,11 +116,8 @@ namespace APINetCore
         {
             bool userDeleted = false;
 
-            if (this.IsValidToken(encodedUser, encodedToken))
-            {
-                this.bucketListData.DeleteUserBucketListItems(userName);
-                userDeleted = true;
-            }
+            this.bucketListData.DeleteUserBucketListItems(userName);
+            userDeleted = true;
 
             return userDeleted;
         }

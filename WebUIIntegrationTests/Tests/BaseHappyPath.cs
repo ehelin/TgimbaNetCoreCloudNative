@@ -66,12 +66,7 @@ namespace TgimbaSeleniumTests.Tests
             //search -------------------------------------------------------            
             Search(browser);                    // regular search (i.e. linq)
 
-            // clear out previous bucket list items
-            var utilities = new Shared.misc.testUtilities.TestUtilities();
-            utilities.CleanUpLocal(Constants.TEST_USER, true);
-            System.Threading.Thread.Sleep(_testStepInterval);
-
-            // repopulate bucket list items for binary search test
+            // add bucket list items for binary search test
             AddSortCategoryTestItems(browser);
             System.Threading.Thread.Sleep(_testStepInterval);
           
