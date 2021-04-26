@@ -56,13 +56,13 @@ namespace TgimbaNetCoreWebShared.Controllers
         }
 
         // TODO - add test
-        public IActionResult DeleteUser(string EncodedUserName, string EncodedToken, string userName)
+        public IActionResult DeleteUserBucketListItems(string EncodedJwtPrivateKey, string userName, bool onlyDeleteBucketListItems)
         {
             try
             {
-                this.validationHelper.IsValidRequest(userName);
+                this.validationHelper.IsValidRequest(userName, EncodedJwtPrivateKey);
 
-                var userRegistered = this.service.DeleteUser(userName, EncodedUserName, EncodedToken);
+                var userRegistered = this.service.DeleteUserBucketListItems(userName, EncodedJwtPrivateKey, onlyDeleteBucketListItems);
 
                 return Ok(userRegistered); // 200
             }

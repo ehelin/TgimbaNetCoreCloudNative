@@ -14,6 +14,7 @@ namespace API_IntegrationTests
     public class HappyPathTests
     {
         // TODO - consolidate w/ui test code that is similar
+        private string hostOnly = "https://localhost:44394//";
         private string host = "https://localhost:44394/api/TgimbaApi/";
         private string userName = "fredFlintstone";
         private string password = "wilmaRules87&";
@@ -34,6 +35,9 @@ namespace API_IntegrationTests
         [TestMethod]
         public void HappyPathTest()
         {
+            var utilities = new Shared.misc.testUtilities.TestUtilities();
+            utilities.CleanUpLocal(hostOnly, false);
+
             EndPoint_TestPage();
 
             EndPoint_Register();
@@ -60,7 +64,6 @@ namespace API_IntegrationTests
             EndPoint_GetSystemStatistics(token);
             EndPoint_GetSystemBuildStatistics(token);
             EndPoint_Log(token);
-            EndPoint_UserDelete(token, userName);
             EndPoint_TestPage();
         }
 
@@ -177,13 +180,6 @@ namespace API_IntegrationTests
         private void EndPoint_Delete(string token, int id)
         {
             var url = host + "delete/" + id.ToString();
-            var result = Delete(url, Base64Encode(userName), Base64Encode(token)).Result;
-
-            Assert.AreEqual(true, System.Convert.ToBoolean(result));
-        }
-        private void EndPoint_UserDelete(string token, string userName)
-        {
-            var url = host + "deleteuser/" + userName;
             var result = Delete(url, Base64Encode(userName), Base64Encode(token)).Result;
 
             Assert.AreEqual(true, System.Convert.ToBoolean(result));

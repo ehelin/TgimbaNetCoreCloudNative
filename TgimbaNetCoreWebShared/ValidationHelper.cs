@@ -7,11 +7,15 @@ namespace TgimbaNetCoreWebShared
     public class ValidationHelper : IValidationHelper
     {
         // TODO - add test
-        public void IsValidRequest(string userName)
+        public void IsValidRequest(string userName, string EncodedJwtPrivateKey)
         {
             if (string.IsNullOrEmpty(userName))
             {
                 throw new ArgumentNullException("userName is not set");
+            }
+            if (string.IsNullOrEmpty(EncodedJwtPrivateKey))
+            {
+                throw new ArgumentNullException("EncodedJwtPrivateKey is not set");
             }
         }
         public void IsValidRequest(string EncodedUserName, string EncodedToken, int BucketListItemId)

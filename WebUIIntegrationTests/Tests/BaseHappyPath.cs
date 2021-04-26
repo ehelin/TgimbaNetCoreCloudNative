@@ -10,7 +10,7 @@ namespace TgimbaSeleniumTests.Tests
     {
         public BaseHappyPath() {}
 
-        protected void TestHappyPath(RemoteWebDriver browser)
+        protected void TestHappyPath(RemoteWebDriver browser, string url)
         {
             browser.Manage().Window.Maximize();
 
@@ -67,6 +67,9 @@ namespace TgimbaSeleniumTests.Tests
             Search(browser);                    // regular search (i.e. linq)
 
             // add bucket list items for binary search test
+            var utilities = new Shared.misc.testUtilities.TestUtilities();
+            utilities.CleanUpLocal(url, true);
+            System.Threading.Thread.Sleep(10000);
             AddSortCategoryTestItems(browser);
             System.Threading.Thread.Sleep(_testStepInterval);
           

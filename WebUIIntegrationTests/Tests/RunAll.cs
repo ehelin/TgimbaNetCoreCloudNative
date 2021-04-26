@@ -23,26 +23,24 @@ namespace TgimbaSeleniumTests.Tests
         {				  
 			foreach (string url in Utilities.GetUrls())
 			{
-				CleanUpLocal();
+				CleanUpLocal(url);
 				RunAllTestsLocalDesktop(url);
 			}
 		}
         
-        public void CleanUpLocal()
+        public void CleanUpLocal(string host, bool onlyDeleteBucketListItems = false)
         {
             var utilities = new Shared.misc.testUtilities.TestUtilities();
-            utilities.CleanUpLocal(Constants.TEST_USER);
+            utilities.CleanUpLocal(host, onlyDeleteBucketListItems);
         }
         
         private void RunAllTestsLocalDesktop(string url)
         {
 			Chrome.Chrome chromeDesk = new Chrome.Chrome(url);
-			chromeDesk.TestHappyPathChrome();
-			//CleanUpLocal();
+			chromeDesk.TestHappyPathChrome(url);
 
 			//Firefox.Firefox firefoxDesk = new Firefox.Firefox(url);
             //firefoxDesk.TestHappyPathFireFox();
-            //CleanUpLocal();				
         }    
     }
 }

@@ -19,8 +19,13 @@ namespace Shared.interfaces
         );
         bool UpsertBucketListItem(BucketListItem bucketListItem, string encodedUser, string encodedToken);
         bool DeleteBucketListItem(int bucketListDbId, string encodedUser, string encodedToken);
-        // TODO - add test
-        bool DeleteUser(string userName, string encodedUser, string encodedToken);
+        // TODO - add test    
+        public bool DeleteUserBucketListItems
+        (
+            string userName,
+            string encodedJwtPrivateKey,
+            bool onlyDeleteBucketListItems
+        );
 
         IList<SystemStatistic> GetSystemStatistics(string encodedUser, string encodedToken);
         IList<SystemBuildStatistic> GetSystemBuildStatistics(string encodedUser, string encodedToken);

@@ -9,56 +9,24 @@ namespace Shared.misc.testUtilities
 {
     public class TestUtilities
     {
-        public void CleanUpLocal(string user, bool deleteBucketListItems = false)
+        public void CleanUpLocal(string host, bool onlyDeleteBucketListItems = false)
         {
-            var token = EndPoint_Login();
-            EndPoint_UserDelete(token, userName);
+            EndPoint_UserDelete(host, "testUser", onlyDeleteBucketListItems);
         }
 
-        // TODO - consolidate w/api test code that is similar
-        private string userName = "testUser";
-        private string password = "testUser23";
-        private string email = "test@aol.com";
-        private string host = "https://localhost:44394/api/TgimbaApi/";
-        private void EndPoint_UserDelete(string token, string userName)
+        private void EndPoint_UserDelete(string host, string userName, bool onlyDeleteBucketListItems = false)
         {
-            var url = host + "deleteuser/" + userName;
-            var result = Delete(url, Base64Encode(userName), Base64Encode(token)).Result;
+            var url = host + "api/TgimbaApi/deleteuserbucketlistitems/" + userName + "/" + onlyDeleteBucketListItems.ToString();
+            var privateKey = EnvironmentalConfig.GetJwtPrivateKey();
+            var result = Delete(url, Base64Encode(userName), Base64Encode(privateKey)).Result;
         }
-        private async Task<string> Delete(string url, string userName, string token)
+        private async Task<string> Delete(string url, string userName, string privateKey)
         {
             var client = new HttpClient();
 
-            client.DefaultRequestHeaders.Add("EncodedUserName", userName);
-            client.DefaultRequestHeaders.Add("EncodedToken", token);
+            client.DefaultRequestHeaders.Add("EncodedJwtPrivateKey", privateKey);
 
             var response = await client.DeleteAsync(url);
-
-            var result = await response.Content.ReadAsStringAsync();
-
-            return result;
-        }
-        private string EndPoint_Login()
-        {
-            var request = new LoginRequest()
-            {
-                EncodedUserName = Base64Encode(Shared.Constants.DEMO_USER),
-                EncodedPassword = Base64Encode(Shared.Constants.DEMO_USER_PASSWORD)
-            };
-
-            var json = JsonConvert.SerializeObject(request);
-            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-            var url = host + "processuser";
-            var token = Post(url, content).Result;
-
-            return token;
-        }
-
-        private async Task<string> Post(string url, StringContent content)
-        {
-            var client = new HttpClient();
-
-            var response = await client.PostAsync(url, content);
 
             var result = await response.Content.ReadAsStringAsync();
 
@@ -71,44 +39,7 @@ namespace Shared.misc.testUtilities
             return System.Convert.ToBase64String(data);
         }
 
-        private void DeleteTestUser(string userName, string connectionString, bool deleteBucketListItems)
-        {
-            SqlConnection conn = null;
-            SqlCommand cmd = null;
-
-            try
-            {
-                conn = new SqlConnection(connectionString);
-                cmd = conn.CreateCommand();
-                cmd.CommandText = "";//deleteBucketListItems ? DELETE_TEST_USER_BUCKET_LIST_ITEMS : DELETE_TEST_USER;
-                cmd.CommandType = System.Data.CommandType.Text;
-
-                cmd.Parameters.Add(new SqlParameter("@userName", userName));
-
-                cmd.Connection.Open();
-
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                    conn.Dispose();
-                    conn = null;
-                }
-
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                    cmd = null;
-                }
-            }
-        }
+       
 
         #region Unit Test Environment Variables
 

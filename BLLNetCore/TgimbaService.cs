@@ -107,19 +107,20 @@ namespace APINetCore
 
         // TODO - add test
         // TODO - meant to be only for cleanup for the automated tests....add security
-        public bool DeleteUser
+        public bool DeleteUserBucketListItems
         (
             string userName,
-            string encodedUser,
-            string encodedToken
+            string encodedJwtPrivateKey,
+            bool onlyDeleteBucketListItems
         )
         {
-            bool userDeleted = false;
+            if (this.IsValidCall(encodedJwtPrivateKey))
+            {
+                this.bucketListData.DeleteUserBucketListItems(userName, onlyDeleteBucketListItems);
+                return true;
+            }
 
-            this.bucketListData.DeleteUserBucketListItems(userName);
-            userDeleted = true;
-
-            return userDeleted;
+            return false;
         }
 
         #endregion
@@ -306,6 +307,16 @@ namespace APINetCore
         #endregion
 
         #region Private Methods
+
+        // TODO - add test
+        private bool IsValidCall(string encodedJwtPrivateKey)
+        {
+            string decodedJwtPrivateKey = this.stringHelper.DecodeBase64String(encodedJwtPrivateKey);
+
+            var expectedJwtPrivateKey = EnvironmentalConfig.GetJwtPrivateKey();
+            
+            return expectedJwtPrivateKey == decodedJwtPrivateKey;
+        }
 
         private bool IsValidToken(string encodedUser, string encodedToken)
         {

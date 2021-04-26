@@ -25,12 +25,12 @@ namespace TgimbaSeleniumTests.Tests.Chrome
             }
         }
 					  
-        public void TestHappyPathChrome()
+        public void TestHappyPathChrome(string url)
         {
             ChromeOptions co = new ChromeOptions();
             co.AddArgument("--test-type");
             ChromeDriver cd = new ChromeDriver();
-            TestHappyPath(cd);
+            TestHappyPath(cd, url);
         }
     }
 }

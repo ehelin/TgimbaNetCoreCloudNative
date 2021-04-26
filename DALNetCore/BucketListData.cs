@@ -100,7 +100,7 @@ namespace DALNetCore
             return dbUser.UserId;
         }
 
-        public void DeleteUserBucketListItems(string userName)
+        public void DeleteUserBucketListItems(string userName, bool onlyDeleteBucketListItems)
         {
             var bucketListItems = GetBucketList(userName);
 
@@ -109,11 +109,14 @@ namespace DALNetCore
                 DeleteBucketListItem(bucketListItem.Id.Value);
             }
 
-            var users = this.context.User.Where(x => x.UserName == userName).ToList();
-            foreach (var user in users)
+            if (!onlyDeleteBucketListItems)
             {
-                this.context.Remove(user);
-                this.context.SaveChanges();
+                var users = this.context.User.Where(x => x.UserName == userName).ToList();
+                foreach (var user in users)
+                {
+                    this.context.Remove(user);
+                    this.context.SaveChanges();
+                }
             }
         }
 

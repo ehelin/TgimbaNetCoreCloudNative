@@ -27,7 +27,9 @@ namespace TgimbaSeleniumTests.Tests.Firefox
 						   
         public void TestHappyPathFireFox()
         {
-            TestHappyPath(new FirefoxDriver());
+            // TODO - set
+            string url = "";
+            TestHappyPath(new FirefoxDriver(), url);
         }
     }
 }

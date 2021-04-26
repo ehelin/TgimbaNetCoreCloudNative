@@ -5,7 +5,7 @@ namespace Shared.interfaces
     public interface IValidationHelper
     {
         //TODO - add test
-        void IsValidRequest(string userName);
+        void IsValidRequest(string userName, string EncodedJwtPrivateKey);
         void IsValidRequest(UpsertBucketListItemRequest request);
         void IsValidRequest(string EncodedUserName, string EncodedToken, int BucketListItemId);
         void IsValidRequest(GetBucketListItemRequest request);

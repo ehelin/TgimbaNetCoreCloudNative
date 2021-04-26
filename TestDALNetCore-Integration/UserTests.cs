@@ -60,7 +60,7 @@ namespace TestDALNetCore_Integration
 
             AssertUsersExist(true, false, bd, userName);
 
-            bd.DeleteUserBucketListItems(userName);
+            bd.DeleteUserBucketListItems(userName, false);
 
             AssertUsersExist(false, false, bd, userName);
         }
@@ -87,9 +87,39 @@ namespace TestDALNetCore_Integration
 
             AssertUsersExist(true, true, bd, userName);
 
-            bd.DeleteUserBucketListItems(userName);
+            bd.DeleteUserBucketListItems(userName, false);
 
             AssertUsersExist(false, true, bd, userName);
+        }
+
+        [TestMethod]
+        public void User_DeleteUserBucketListItems_OnlyDeleteBucketListItems_Test()
+        {
+            var userName = "testUser";
+            IBucketListData bd = new BucketListData(this.GetDbContext(true), this.userHelper);
+            List<User> users = new List<User>();
+
+            var userId1 = bd.AddUser(GetUser("token1", userName));
+            var userId2 = bd.AddUser(GetUser("token2", userName));
+            var userId3 = bd.AddUser(GetUser("token3", userName));
+            bd.AddToken(userId1, "token1");
+            bd.AddToken(userId2, "token2");
+            bd.AddToken(userId3, "token3");
+
+            var bucketListItems = GetBucketListItems();
+            foreach (var bucketListItem in bucketListItems)
+            {
+                bd.UpsertBucketListItem(bucketListItem, userName);
+            }
+
+            AssertUsersExist(true, true, bd, userName);
+
+            bd.DeleteUserBucketListItems(userName, true);
+            
+            var bucketListItemSaved = bd.GetBucketList(userName);
+            Assert.IsFalse(bucketListItemSaved.Count > 0);
+            var savedUsers = bd.GetUsers("testUser");
+            Assert.IsTrue(savedUsers.Count > 0);
         }
 
         private void AssertUsersExist(bool shouldExist, 
