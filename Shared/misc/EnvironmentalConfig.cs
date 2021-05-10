@@ -1,4 +1,6 @@
-﻿namespace Shared.misc
+﻿using System;
+
+namespace Shared.misc
 {
     public class EnvironmentalConfig
     {
@@ -8,11 +10,11 @@
 
             if (useTestDb)
             {
-                dbConn = System.Environment.GetEnvironmentVariable("DbConnectionTest");
+                dbConn = Environment.GetEnvironmentVariable("DbConnectionTest");
             }
             else
             {
-                dbConn = System.Environment.GetEnvironmentVariable("DbConnection");
+                dbConn = Environment.GetEnvironmentVariable("DbConnection");
             }
 
             return dbConn;
@@ -20,14 +22,14 @@
 
         public static string GetJwtPrivateKey()
         {
-            var key = System.Environment.GetEnvironmentVariable("JwtPrivateKey");
+            var key = Environment.GetEnvironmentVariable("JwtPrivateKey");
 
             return key;
         }
 
         public static string GetJwtIssuer()
         {
-            var key = System.Environment.GetEnvironmentVariable("JwtIssuer");
+            var key = Environment.GetEnvironmentVariable("JwtIssuer");
 
             return key;
         }
