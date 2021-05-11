@@ -17,15 +17,13 @@ namespace TgimbaNetCoreWeb
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     var env = hostingContext.HostingEnvironment;
-                    //config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-                    // HACK: I cannot do environmental variables on my shared production environment, so if not 
-                    //       development, force production app settings to load.
+                    //load config from aws
                     if (env.EnvironmentName != "Development")
                     {
                         config.AddSystemsManager($"/", System.TimeSpan.FromMinutes(5));
-                        //config.AddJsonFile("appsettings.Production.json", optional: true, reloadOnChange: true);
                     } 
+                    //load config from local appsettings.json
                     else
                     {
                         config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
