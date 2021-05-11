@@ -5,6 +5,9 @@ using Algorithms.Algorithms.Search;
 using Algorithms.Algorithms.Search.Implementations;
 using Algorithms.Algorithms.Sorting;
 using Algorithms.Algorithms.Sorting.Implementations;
+using Amazon;
+using Amazon.SecretsManager;
+using Amazon.SecretsManager.Model;
 using APINetCore;
 using BLLNetCore.helpers;
 using BLLNetCore.Security;  // TODO - remove after namespaces changed to bllnetcore.helpers
@@ -14,6 +17,7 @@ using DALNetCore.interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Shared.interfaces;
 using Shared.misc;
 using TgimbaNetCoreWebShared.Models;
@@ -32,6 +36,32 @@ namespace TgimbaNetCoreWebShared
             }
 
             return section.Value;
+        }
+
+        public static void SetProductionEnvironmentalVariables(IConfiguration Configuration)
+        {
+            var dbConn = Configuration.GetSection("DbConnection")?.Value;
+            var jwtIssuer = Configuration.GetSection("JwtIssuer")?.Value;
+
+            dynamic jwtPrivateKeyObj = JsonConvert.DeserializeObject(GetSecret());
+            var jwtPrivateKey = jwtPrivateKeyObj["JwtPrivateKey"]?.ToString();
+
+            Environment.SetEnvironmentVariable("DbConnection", dbConn);
+            Environment.SetEnvironmentVariable("JwtPrivateKey", jwtPrivateKey);
+            Environment.SetEnvironmentVariable("JwtIssuer", jwtIssuer);
+        }
+
+        private static string GetSecret()
+        {
+            IAmazonSecretsManager client = new AmazonSecretsManagerClient(RegionEndpoint.GetBySystemName("us-east-2"));
+            GetSecretValueRequest request = new GetSecretValueRequest();
+            request.SecretId = "TgimbaJwtPrivateKey";
+            request.VersionStage = "AWSCURRENT";
+
+            var response = client.GetSecretValueAsync(request).Result;
+            var secret = response.SecretString;
+
+            return secret;
         }
 
         public static void SetUpDI(IServiceCollection services, IConfiguration Configuration)
