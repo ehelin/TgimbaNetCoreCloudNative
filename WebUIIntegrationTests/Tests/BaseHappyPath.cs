@@ -12,8 +12,6 @@ namespace TgimbaSeleniumTests.Tests
 
         protected void TestHappyPath(RemoteWebDriver browser, string url)
         {
-            browser.Manage().Window.Maximize();
-
             //welcome page -----------------------------------------------------
             LaunchPageTest(browser, url);
             System.Threading.Thread.Sleep(_testStepInterval);
@@ -68,7 +66,7 @@ namespace TgimbaSeleniumTests.Tests
 
             // add bucket list items for binary search test
             var utilities = new Shared.misc.testUtilities.TestUtilities();
-            utilities.CleanUpLocal(url, true);
+            utilities.CleanUpLocal(url, "testUser", true);
             System.Threading.Thread.Sleep(10000);
             AddSortCategoryTestItems(browser);
             System.Threading.Thread.Sleep(_testStepInterval);
@@ -108,9 +106,8 @@ namespace TgimbaSeleniumTests.Tests
         // TODO - update to include binary search
         protected void Search(RemoteWebDriver browser, bool isBinarySearch = false)
         {
-            //search 1 - find item
-            if (isBinarySearch) { SelectSearch(browser); }
-            var searchTerm = isBinarySearch ? "item" : "Bucket item test 1";
+            ////search 1 - find item
+            var searchTerm = "item";
             browser.FindElement(By.Id("USER_CONTROL_SEARCH_TEXT_BOX")).SendKeys(searchTerm);
             System.Threading.Thread.Sleep(_testStepInterval);
 
@@ -137,7 +134,7 @@ namespace TgimbaSeleniumTests.Tests
             link.Click();
             System.Threading.Thread.Sleep(_testStepInterval);
 
-            //search 3 - find item and edit it	
+            //search 3 - find item and edit it
             if (isBinarySearch) { SelectSearch(browser); }
             browser.FindElement(By.Id("USER_CONTROL_SEARCH_TEXT_BOX")).Clear();
             System.Threading.Thread.Sleep(_testStepInterval);
@@ -147,13 +144,13 @@ namespace TgimbaSeleniumTests.Tests
             link = browser.FindElement(By.Id("USER_CONTROL_SEARCH_BUTTON"));
             link.Click();
             System.Threading.Thread.Sleep(_testStepInterval);
-																	
+
             link = browser.FindElement(By.Id("hvJsFormEditBtn"));
             link.Click();
             System.Threading.Thread.Sleep(_testStepInterval);
 
             browser.FindElement(By.Id("USER_CONTROL_EDIT_ITEM_NAME")).SendKeys("Edited item value");
-            System.Threading.Thread.Sleep(_testStepInterval);	  
+            System.Threading.Thread.Sleep(_testStepInterval);
 
             link = browser.FindElement(By.Id("hvJsEditSubmitBtn"));
             link.Click();
@@ -170,7 +167,7 @@ namespace TgimbaSeleniumTests.Tests
             link = browser.FindElement(By.Id("USER_CONTROL_SEARCH_BUTTON"));
             link.Click();
             System.Threading.Thread.Sleep(_testStepInterval);
-																	
+
             link = browser.FindElement(By.Id("hvJsFormDeleteBtn"));
             link.Click();
             System.Threading.Thread.Sleep(_testStepInterval);

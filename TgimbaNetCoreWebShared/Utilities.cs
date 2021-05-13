@@ -40,6 +40,11 @@ namespace TgimbaNetCoreWebShared
 
         public static void SetProductionEnvironmentalVariables(IConfiguration Configuration)
         {
+            Environment.SetEnvironmentVariable("DbConnectionTest", null);
+            Environment.SetEnvironmentVariable("DbConnection", null);
+            Environment.SetEnvironmentVariable("JwtPrivateKey", null);
+            Environment.SetEnvironmentVariable("JwtIssuer", null);
+
             var dbConn = Configuration.GetSection("DbConnection")?.Value;
             var jwtIssuer = Configuration.GetSection("JwtIssuer")?.Value;
 

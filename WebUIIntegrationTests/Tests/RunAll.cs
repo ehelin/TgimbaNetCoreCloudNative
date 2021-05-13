@@ -31,7 +31,7 @@ namespace TgimbaSeleniumTests.Tests
         public void CleanUpLocal(string host, bool onlyDeleteBucketListItems = false)
         {
             var utilities = new Shared.misc.testUtilities.TestUtilities();
-            utilities.CleanUpLocal(host, onlyDeleteBucketListItems);
+            utilities.CleanUpLocal(host, "testUser", onlyDeleteBucketListItems);
         }
         
         private void RunAllTestsLocalDesktop(string url)

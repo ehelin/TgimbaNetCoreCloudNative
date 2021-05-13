@@ -9,9 +9,9 @@ namespace Shared.misc.testUtilities
 {
     public class TestUtilities
     {
-        public void CleanUpLocal(string host, bool onlyDeleteBucketListItems = false)
+        public void CleanUpLocal(string host, string userName = "testUser", bool onlyDeleteBucketListItems = false)
         {
-            EndPoint_UserDelete(host, "testUser", onlyDeleteBucketListItems);
+            EndPoint_UserDelete(host, userName, onlyDeleteBucketListItems);
         }
 
         private void EndPoint_UserDelete(string host, string userName, bool onlyDeleteBucketListItems = false)
