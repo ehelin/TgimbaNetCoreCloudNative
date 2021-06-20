@@ -18,7 +18,7 @@ create table bucket.bucketlistitem (
 	listitemname varchar NULL,
 	created timestamp with time zone NULL,
 	category varchar(255) NULL,
-	achieved boolean NULL,A
+	achieved boolean NULL,
 	categorysortorder int NULL,
 	latitude decimal(18, 10) NULL,
 	longitude decimal(18, 10) NULL,
