@@ -7,7 +7,7 @@ exports.handler = async (event) => {
     console.log(JSON.stringify(event, null, 2))
     var jobId = event["CodePipeline.job"].id
     var params = {
-	jobId: jobId
+	    jobId: jobId
     }
 
     console.log("Load credentials and set region from JSON file");

@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgimbaNetCoreWeb", "TgimbaN
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containerization", "Containerization", "{EA3189B7-BA7F-4D4F-B3D1-4564A2C3C409}"
 	ProjectSection(SolutionItems) = preProject
+		Containerization\ClearSourceCodeS3Bucket.js = Containerization\ClearSourceCodeS3Bucket.js
 		Dockerfile = Dockerfile
 		Containerization\EC2LambdaCreation.js = Containerization\EC2LambdaCreation.js
 		Containerization\TgimbaApache.conf = Containerization\TgimbaApache.conf
