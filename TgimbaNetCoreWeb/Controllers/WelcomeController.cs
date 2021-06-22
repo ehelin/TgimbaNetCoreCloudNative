@@ -5,9 +5,9 @@ using TgimbaNetCoreWebShared.Controllers;
 
 namespace TgimbaNetCoreWeb.Controllers
 {
-#if !DEBUG
-    [RequireHttpsAttribute]
-#endif
+//#if !DEBUG
+//    [RequireHttpsAttribute]
+//#endif
     public class WelcomeController : Controller
     {
 		private SharedWelcomeController sharedWelcomeController = null;

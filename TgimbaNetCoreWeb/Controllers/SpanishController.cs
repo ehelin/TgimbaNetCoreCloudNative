@@ -2,9 +2,9 @@
 
 namespace TgimbaNetCoreWeb.Controllers
 {
-    #if !DEBUG
-    [RequireHttpsAttribute]
-    #endif
+    //#if !DEBUG
+    //[RequireHttpsAttribute]
+    //#endif
     public class SpanishController : Controller
     {			
         public SpanishController() {}

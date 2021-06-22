@@ -6,9 +6,9 @@ using TgimbaNetCoreWebShared.Controllers;
 
 namespace TgimbaNetCoreWeb.Controllers
 {
-#if !DEBUG
-    [RequireHttpsAttribute]
-#endif
+//#if !DEBUG
+//    [RequireHttpsAttribute]
+//#endif
     [Route("api/[controller]")]
     [ApiController]
     public class TgimbaApiController : ControllerBase
