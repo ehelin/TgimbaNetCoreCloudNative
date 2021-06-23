@@ -8,7 +8,7 @@ Display.SetView = function (view, contentDiv, loadedView, htmlContent) {
 	var systemStatsDiv = document.getElementById('systemStatistics');
 	if (systemStatsDiv) {
 	    systemStatsDiv.innerHTML = "Loading...";
-	    //ServerCalls.GetAjaxView(VIEW_PARTIAL_SYSTEM_STATISTICS, systemStatsDiv, null);
+	    ServerCalls.GetAjaxView(VIEW_PARTIAL_SYSTEM_STATISTICS, systemStatsDiv, null);
 	}
 };
 
