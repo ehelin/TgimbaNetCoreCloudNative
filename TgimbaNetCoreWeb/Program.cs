@@ -8,6 +8,9 @@ namespace TgimbaNetCoreWeb
     {
         public static void Main(string[] args)
         {
+            System.Console.WriteLine("Console-Main(args)");
+            System.Diagnostics.Debug.WriteLine("Debug-Main(args)");
+            System.Diagnostics.Trace.WriteLine("Trace-Main(args)");
             BuildWebHost(args).Run();
         }
 

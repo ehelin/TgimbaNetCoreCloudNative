@@ -18,6 +18,9 @@ namespace TgimbaNetCoreWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            System.Console.WriteLine("Console-ConfigureServices(args)");
+            System.Diagnostics.Debug.WriteLine("Debug-ConfigureServices(args)");
+            System.Diagnostics.Trace.WriteLine("Trace-ConfigureServices(args)");
             Utilities.SetUpDI(services, Configuration);
             services.AddMvc();
 
@@ -28,6 +31,10 @@ namespace TgimbaNetCoreWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            System.Console.WriteLine("Console-Configure(args)");
+            System.Diagnostics.Debug.WriteLine("Debug-Configure(args)");
+            System.Diagnostics.Trace.WriteLine("Trace-Configure(args)");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();      

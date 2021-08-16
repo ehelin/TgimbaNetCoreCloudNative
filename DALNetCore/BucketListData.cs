@@ -178,6 +178,10 @@ namespace DALNetCore
 
         public IList<SystemStatistic> GetSystemStatistics()
         {
+            System.Console.WriteLine("Console-BucketListData-GetSystemStatistics()");
+            System.Diagnostics.Debug.WriteLine("Debug-BucketListData-GetSystemStatistics()");
+            System.Diagnostics.Trace.WriteLine("Trace-BucketListData-GetSystemStatistics()");
+
             var systemStatistics = this.context.SystemStatistics
                                     .OrderByDescending(s => s.Created)
                                     .Take(2)

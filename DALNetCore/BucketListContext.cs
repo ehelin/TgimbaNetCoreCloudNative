@@ -26,6 +26,10 @@ namespace DALNetCore.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            System.Console.WriteLine("Console-BucketListContext-OnConfiguring(arg)");
+            System.Diagnostics.Debug.WriteLine("Debug-BucketListContext-OnConfiguring(arg)");
+            System.Diagnostics.Trace.WriteLine("Trace-BucketListContext-OnConfiguring(arg)");
+
             if (!optionsBuilder.IsConfigured)
             {
                 if (useTestDatabase)

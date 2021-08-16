@@ -23,6 +23,10 @@ namespace TgimbaNetCoreWebShared
 
         public List<SystemStatistic> GetSystemStatistics()
         {
+            System.Console.WriteLine("Console-WebClient-GetSystemStatistics()");
+            System.Diagnostics.Debug.WriteLine("Debug-WebClient-GetSystemStatistics()");
+            System.Diagnostics.Trace.WriteLine("Trace-WebClient-GetSystemStatistics()");
+
             var url = host + "/api/tgimbaapi/getsystemstatistics";
             var token = DemoUserLogin();
 
