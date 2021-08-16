@@ -9,6 +9,7 @@ namespace DALNetCore.Models
 
         public BucketListContext(bool userTestDatabase = false)
         {
+            System.Console.WriteLine("Console-BucketListContext(arg)");
             this.useTestDatabase = userTestDatabase;
         }
 
@@ -27,8 +28,6 @@ namespace DALNetCore.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             System.Console.WriteLine("Console-BucketListContext-OnConfiguring(arg)");
-            System.Diagnostics.Debug.WriteLine("Debug-BucketListContext-OnConfiguring(arg)");
-            System.Diagnostics.Trace.WriteLine("Trace-BucketListContext-OnConfiguring(arg)");
 
             if (!optionsBuilder.IsConfigured)
             {
@@ -45,6 +44,8 @@ namespace DALNetCore.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            System.Console.WriteLine("Console-BucketListContext-OnModelCreating(arg)");
+
             modelBuilder.HasPostgresExtension("adminpack")
                 .HasAnnotation("Relational:Collation", "English_United States.1252");
 

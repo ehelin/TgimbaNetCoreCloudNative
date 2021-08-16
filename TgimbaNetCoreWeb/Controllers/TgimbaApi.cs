@@ -79,8 +79,6 @@ namespace TgimbaNetCoreWeb.Controllers
         public IActionResult GetSystemStatistics()
         {
             System.Console.WriteLine("Console-TgimbaApi-GetSystemStatistics()");
-            System.Diagnostics.Debug.WriteLine("Debug-TgimbaApi-GetSystemStatistics()");
-            System.Diagnostics.Trace.WriteLine("Trace-TgimbaApi-GetSystemStatistics()");
 
             return this.sharedTgimbaApiController.GetSystemStatistics
             (

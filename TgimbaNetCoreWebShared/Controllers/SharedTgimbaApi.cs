@@ -140,25 +140,24 @@ namespace TgimbaNetCoreWebShared.Controllers
         public IActionResult GetSystemStatistics(string encodedUser, string encodedToken)
         {
             System.Console.WriteLine("Console-SharedTgimbaApi-GetSystemStatistics(args)");
-            System.Diagnostics.Debug.WriteLine("Debug-SharedTgimbaApi-GetSystemStatistics(args)");
-            System.Diagnostics.Trace.WriteLine("Trace-SharedTgimbaApi-GetSystemStatistics(args)");
+            return NotFound();
 
-            try
-            {
-                var systemStatistics = this.service.GetSystemStatistics(encodedUser, encodedToken);
+            //try
+            //{
+            //    var systemStatistics = this.service.GetSystemStatistics(encodedUser, encodedToken);
 
-                if (systemStatistics == null || systemStatistics.Count == 0)
-                {
-                    return NotFound();
-                }
+            //    if (systemStatistics == null || systemStatistics.Count == 0)
+            //    {
+            //        return NotFound();
+            //    }
 
-                return Ok(systemStatistics); // 200
-            }
-            catch (Exception ex)
-            {
-                this.service.Log(ex.Message);
-                return StatusCode(Convert.ToInt32(HttpStatusCode.InternalServerError));
-            }
+            //    return Ok(systemStatistics); // 200
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.service.Log(ex.Message);
+            //    return StatusCode(Convert.ToInt32(HttpStatusCode.InternalServerError));
+            //}
         }
 
         public IActionResult GetSystemBuildStatistics(string encodedUser, string encodedToken)
