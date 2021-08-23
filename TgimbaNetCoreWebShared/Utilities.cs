@@ -71,16 +71,18 @@ namespace TgimbaNetCoreWebShared
 
         public static void SetUpDI(IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddSingleton<IWebClient>(new WebClient(Configuration["ApiHost"], new TgimbaHttpClient()));
+            services.AddSingleton<IWebClient>(new WebClient(EnvironmentalConfig.GetApiHost(), new TgimbaHttpClient()));
             services.AddSingleton<IUserHelper>(new UserHelper());
 
             // true load test db connection, false load prod db connection
             services.AddSingleton(new DALNetCore.Models.BucketListContext
             (
-                Configuration["Env"] != null
-                    && Configuration["Env"] == "Development"
-                        ? true
-                            : false
+                //TODO - temporary test
+                false
+                //Configuration["Env"] != null
+                //    && Configuration["Env"] == "Development"
+                //        ? true
+                //            : false
             ));
             services.AddSingleton<IBucketListData>(x =>
                 new BucketListData(x.GetRequiredService<DALNetCore.Models.BucketListContext>(),

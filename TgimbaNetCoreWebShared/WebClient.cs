@@ -26,6 +26,9 @@ namespace TgimbaNetCoreWebShared
             System.Console.WriteLine("Console-WebClient-GetSystemStatistics()");
 
             var url = host + "/api/tgimbaapi/getsystemstatistics";
+            System.Console.WriteLine("Console-WebClient-GetSystemStatistics()-host: {0}", host);
+            System.Console.WriteLine("Console-WebClient-GetSystemStatistics()-url: {0}", url);
+
             var token = DemoUserLogin();
 
             var result = httpClient.Get(url,

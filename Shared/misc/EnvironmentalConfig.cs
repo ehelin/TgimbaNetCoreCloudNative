@@ -4,11 +4,18 @@ namespace Shared.misc
 {
     public class EnvironmentalConfig
     {
+        public static string GetApiHost()
+        {
+            System.Console.WriteLine("EnvironmentalConfig-GetApiHost()");
+
+            string apHost = Environment.GetEnvironmentVariable("ApiHost");
+
+            return apHost;
+        }
+
         public static string GetDbSetting(bool useTestDb = false)
         {
-            System.Console.WriteLine("Console-GetDbSetting(args)");
-            System.Diagnostics.Debug.WriteLine("Debug-GetDbSetting(args)");
-            System.Diagnostics.Trace.WriteLine("Trace-GetDbSetting(args)");
+            System.Console.WriteLine("EnvironmentalConfig-GetDbSetting(args)");
 
             string dbConn = string.Empty;
 
@@ -26,9 +33,7 @@ namespace Shared.misc
 
         public static string GetJwtPrivateKey()
         {
-            System.Console.WriteLine("Console-GetJwtPrivateKey()");
-            System.Diagnostics.Debug.WriteLine("Debug-GetJwtPrivateKey()");
-            System.Diagnostics.Trace.WriteLine("Trace-GetJwtPrivateKey()");
+            System.Console.WriteLine("EnvironmentalConfig-GetJwtPrivateKey()");
 
             var key = Environment.GetEnvironmentVariable("JwtPrivateKey");
 
@@ -37,9 +42,7 @@ namespace Shared.misc
 
         public static string GetJwtIssuer()
         {
-            System.Console.WriteLine("Console-GetJwtIssuer()");
-            System.Diagnostics.Debug.WriteLine("Debug-GetJwtIssuer()");
-            System.Diagnostics.Trace.WriteLine("Trace-GetJwtIssuer()");
+            System.Console.WriteLine("EnvironmentalConfig-GetJwtIssuer()");
 
             var key = Environment.GetEnvironmentVariable("JwtIssuer");
 
