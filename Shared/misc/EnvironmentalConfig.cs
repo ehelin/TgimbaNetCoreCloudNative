@@ -8,9 +8,10 @@ namespace Shared.misc
         {
             System.Console.WriteLine("EnvironmentalConfig-GetApiHost()");
 
-            string apHost = Environment.GetEnvironmentVariable("ApiHost");
+            string apiHost = Environment.GetEnvironmentVariable("ApiHost");
+            System.Console.WriteLine("EnvironmentalConfig-GetApiHost()-ApiHost: {0}", apiHost);
 
-            return apHost;
+            return apiHost;
         }
 
         public static string GetDbSetting(bool useTestDb = false)

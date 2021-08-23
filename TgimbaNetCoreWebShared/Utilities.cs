@@ -71,6 +71,16 @@ namespace TgimbaNetCoreWebShared
 
         public static void SetUpDI(IServiceCollection services, IConfiguration Configuration)
         {
+            System.Console.WriteLine("Utilities.cs-SetUpDI(args)");
+
+            var dbConn = EnvironmentalConfig.GetDbSetting();
+            var jwtPrivateKey = EnvironmentalConfig.GetJwtPrivateKey();
+            var apiHost = EnvironmentalConfig.GetApiHost();
+
+            System.Console.WriteLine("Utilities.cs-SetUpDI(args) - dbConn: {0}", dbConn);
+            System.Console.WriteLine("Utilities.cs-SetUpDI(args) - jwtPrivateKey: {0}", jwtPrivateKey);
+            System.Console.WriteLine("Utilities.cs-SetUpDI(args) - apiHost: {0}", apiHost);
+
             services.AddSingleton<IWebClient>(new WebClient(EnvironmentalConfig.GetApiHost(), new TgimbaHttpClient()));
             services.AddSingleton<IUserHelper>(new UserHelper());
 
