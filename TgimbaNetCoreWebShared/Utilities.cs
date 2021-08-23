@@ -44,9 +44,11 @@ namespace TgimbaNetCoreWebShared
             Environment.SetEnvironmentVariable("DbConnection", null);
             Environment.SetEnvironmentVariable("JwtPrivateKey", null);
             Environment.SetEnvironmentVariable("JwtIssuer", null);
+            Environment.SetEnvironmentVariable("ApiHost", null);
 
             var dbConn = Configuration.GetSection("DbConnection")?.Value;
             var jwtIssuer = Configuration.GetSection("JwtIssuer")?.Value;
+            var apiHost = Configuration.GetSection("ApiHost")?.Value;
 
             dynamic jwtPrivateKeyObj = JsonConvert.DeserializeObject(GetSecret());
             var jwtPrivateKey = jwtPrivateKeyObj["JwtPrivateKey"]?.ToString();
@@ -54,6 +56,7 @@ namespace TgimbaNetCoreWebShared
             Environment.SetEnvironmentVariable("DbConnection", dbConn);
             Environment.SetEnvironmentVariable("JwtPrivateKey", jwtPrivateKey);
             Environment.SetEnvironmentVariable("JwtIssuer", jwtIssuer);
+            Environment.SetEnvironmentVariable("ApiHost", apiHost);
         }
 
         private static string GetSecret()

@@ -21,6 +21,7 @@ namespace TgimbaNetCoreWeb
             System.Console.WriteLine("Console-ConfigureServices(args)");
             System.Diagnostics.Debug.WriteLine("Debug-ConfigureServices(args)");
             System.Diagnostics.Trace.WriteLine("Trace-ConfigureServices(args)");
+            Utilities.SetProductionEnvironmentalVariables(Configuration);
             Utilities.SetUpDI(services, Configuration);
             services.AddMvc();
 
@@ -32,8 +33,6 @@ namespace TgimbaNetCoreWeb
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             System.Console.WriteLine("Console-Configure(args)");
-            System.Diagnostics.Debug.WriteLine("Debug-Configure(args)");
-            System.Diagnostics.Trace.WriteLine("Trace-Configure(args)");
 
             if (env.IsDevelopment())
             {
@@ -41,7 +40,7 @@ namespace TgimbaNetCoreWeb
             }
             else
             {
-                Utilities.SetProductionEnvironmentalVariables(Configuration);
+                //Utilities.SetProductionEnvironmentalVariables(Configuration);
                 app.UseExceptionHandler("/Home/Error");
             }
 
