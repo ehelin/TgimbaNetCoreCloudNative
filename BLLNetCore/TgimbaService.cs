@@ -252,7 +252,7 @@ namespace APINetCore
 
         public IList<SystemStatistic> GetSystemStatistics(string encodedUser, string encodedToken)
         {
-            System.Console.WriteLine("Console-TgimbaService-GetSystemStatistics(args)");
+            System.Console.WriteLine("TgimbaService-GetSystemStatistics(args)");
 
             IList<SystemStatistic> systemBuildStatistics = null;
             

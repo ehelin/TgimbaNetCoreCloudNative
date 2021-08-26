@@ -8,7 +8,7 @@ namespace TgimbaNetCoreWeb
     {
         public static void Main(string[] args)
         {
-            System.Console.WriteLine("Console-Main(args)");
+            System.Console.WriteLine("Main(args)");
             BuildWebHost(args).Run();
         }
 
@@ -18,12 +18,12 @@ namespace TgimbaNetCoreWeb
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     var env = hostingContext.HostingEnvironment;
-                    System.Console.WriteLine("Console-BuildWebHost(args)-env: {0}", env);
+                    System.Console.WriteLine("BuildWebHost(args)-env: {0}", env);
 
                     //load config from aws
                     if (env.EnvironmentName != "Development")
                     {
-                        System.Console.WriteLine("Console-BuildWebHost(args)-loading config.AddSystemsManager(args)");
+                        System.Console.WriteLine("BuildWebHost(args)-loading config.AddSystemsManager(args)");
                         config.AddSystemsManager($"/", System.TimeSpan.FromMinutes(5));
                     } 
                     //load config from local appsettings.json

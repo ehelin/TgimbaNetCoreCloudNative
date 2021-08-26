@@ -78,13 +78,17 @@ namespace TgimbaNetCoreWeb.Controllers
         [HttpGet("getsystemstatistics")]
         public IActionResult GetSystemStatistics()
         {
-            System.Console.WriteLine("Console-TgimbaApi-GetSystemStatistics()");
+            System.Console.WriteLine("TgimbaApi-GetSystemStatistics()");
 
-            return this.sharedTgimbaApiController.GetSystemStatistics
+            var result = this.sharedTgimbaApiController.GetSystemStatistics
             (
                 Utilities.GetHeaderValue("EncodedUserName", this.Request),
                 Utilities.GetHeaderValue("EncodedToken", this.Request)
             );
+
+            System.Console.WriteLine("TgimbaApi-GetSystemStatistics() - result {0}", result);
+
+            return result;
         }
 
         [HttpGet("getsystembuildstatistics")]

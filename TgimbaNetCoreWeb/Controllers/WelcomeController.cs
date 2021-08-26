@@ -14,14 +14,14 @@ namespace TgimbaNetCoreWeb.Controllers
 
         public WelcomeController(IWebClient webClient)
         {
-            System.Console.WriteLine("Console-WelcomeController(arg)");
+            System.Console.WriteLine("WelcomeController(arg)");
 
             sharedWelcomeController = new SharedWelcomeController(webClient);
 		}
 
         public IActionResult Index()
         {
-            System.Console.WriteLine("Console-WelcomeController-Index()");
+            System.Console.WriteLine("WelcomeController-Index()");
 
             return View();
         }
@@ -31,7 +31,7 @@ namespace TgimbaNetCoreWeb.Controllers
         {
             var systemStatistics = new SystemStatistics();
 
-            System.Console.WriteLine("Console-WelcomeController-GetSystemStatistics()");
+            System.Console.WriteLine("WelcomeController-GetSystemStatistics()");
 
             systemStatistics.SystemStats = this.sharedWelcomeController.webClient.GetSystemStatistics();
             //systemStatistics.SystemBuildStats = this.sharedWelcomeController.webClient.GetSystemBuildStatistics();

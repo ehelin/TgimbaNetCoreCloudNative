@@ -40,6 +40,8 @@ namespace TgimbaNetCoreWebShared
 
         public static void SetProductionEnvironmentalVariables(IConfiguration Configuration)
         {
+            System.Console.WriteLine("SetProductionEnvironmentalVariables(args)");
+
             Environment.SetEnvironmentVariable("DbConnectionTest", null);
             Environment.SetEnvironmentVariable("DbConnection", null);
             Environment.SetEnvironmentVariable("JwtPrivateKey", null);
@@ -52,6 +54,11 @@ namespace TgimbaNetCoreWebShared
 
             dynamic jwtPrivateKeyObj = JsonConvert.DeserializeObject(GetSecret());
             var jwtPrivateKey = jwtPrivateKeyObj["JwtPrivateKey"]?.ToString();
+
+            System.Console.WriteLine("DbConnection: {0}", dbConn);
+            System.Console.WriteLine("JwtPrivateKey: {0}", jwtPrivateKey);
+            System.Console.WriteLine("JwtIssuer: {0}", jwtIssuer);
+            System.Console.WriteLine("ApiHost: {0}", apiHost);
 
             Environment.SetEnvironmentVariable("DbConnection", dbConn);
             Environment.SetEnvironmentVariable("JwtPrivateKey", jwtPrivateKey);

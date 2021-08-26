@@ -139,7 +139,7 @@ namespace TgimbaNetCoreWebShared.Controllers
 
         public IActionResult GetSystemStatistics(string encodedUser, string encodedToken)
         {
-            System.Console.WriteLine("Console-SharedTgimbaApi-GetSystemStatistics(args)");
+            System.Console.WriteLine("SharedTgimbaApi-GetSystemStatistics(args)");
             return NotFound();
 
             //try

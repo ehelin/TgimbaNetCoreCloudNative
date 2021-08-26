@@ -23,27 +23,38 @@ namespace TgimbaNetCoreWebShared
 
         public List<SystemStatistic> GetSystemStatistics()
         {
-            System.Console.WriteLine("Console-WebClient-GetSystemStatistics()");
+            System.Console.WriteLine("WebClient-GetSystemStatistics()");
 
             var url = host + "/api/tgimbaapi/getsystemstatistics";
-            System.Console.WriteLine("Console-WebClient-GetSystemStatistics()-host: {0}", host);
-            System.Console.WriteLine("Console-WebClient-GetSystemStatistics()-url: {0}", url);
+            System.Console.WriteLine("WebClient-GetSystemStatistics()-host: {0}", host);
+            System.Console.WriteLine("WebClient-GetSystemStatistics()-url: {0}", url);
 
+            System.Console.WriteLine("WebClient-GetSystemStatistics() - before DemoUserLogin()");
             var token = DemoUserLogin();
+            System.Console.WriteLine("WebClient-GetSystemStatistics() - after DemoUserLogin() - token: {0}", token);
 
+            System.Console.WriteLine("WebClient-GetSystemStatistics() - before - var result = httpClient.Get(");
             var result = httpClient.Get(url,
                 Shared.misc.Utilities.EncodeClientBase64String(Shared.Constants.DEMO_USER),
                 Shared.misc.Utilities.EncodeClientBase64String(token));
+            System.Console.WriteLine("WebClient-GetSystemStatistics() -  after - var result = httpClient.Get( - result: {0}", result);
 
             var systemStatistics = JsonConvert.DeserializeObject<List<SystemStatistic>>(result);
+
+            System.Console.WriteLine("WebClient-GetSystemStatistics() - systemStatistics: {0}", systemStatistics);
 
             return systemStatistics;
         }
 
         private string DemoUserLogin()
         {
+            System.Console.WriteLine("WebClient-DemoUserLogin()");
+
             var encodedUser = Shared.misc.Utilities.EncodeClientBase64String(Shared.Constants.DEMO_USER);
             var encodedPassword = Shared.misc.Utilities.EncodeClientBase64String(Shared.Constants.DEMO_USER_PASSWORD);
+
+            System.Console.WriteLine("WebClient-DemoUserLogin() - encodedUser: {0}", encodedUser);
+            System.Console.WriteLine("WebClient-DemoUserLogin() - encodedPassword: {0}", encodedPassword);
 
             var token = this.Login(encodedUser, encodedPassword);
 
@@ -138,6 +149,8 @@ namespace TgimbaNetCoreWebShared
 
         public string Login(string encodedUserName, string encodedPassword)
         {
+            System.Console.WriteLine("WebClient-Login()");
+
             var request = new SharedApi.LoginRequest()
             {
                 EncodedUserName = encodedUserName,
@@ -145,10 +158,17 @@ namespace TgimbaNetCoreWebShared
             };
 
             var json = JsonConvert.SerializeObject(request);
+            System.Console.WriteLine("WebClient-Login() - json: {0}", json);
+
             var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
             var url = host + "/api/tgimbaapi/processuser";
 
+            System.Console.WriteLine("WebClient-Login() - host: {0}", host);
+            System.Console.WriteLine("WebClient-Login() - url: {0}", url);
+
+            System.Console.WriteLine("WebClient-Login() - before post");
             var token = httpClient.Post(url, content);
+            System.Console.WriteLine("WebClient-Login() - after post - token: {0}", token);
 
             return token;
         }
