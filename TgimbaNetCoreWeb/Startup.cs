@@ -32,15 +32,17 @@ namespace TgimbaNetCoreWeb
         {
             System.Console.WriteLine("Configure(args)");
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();      
-            }
-            else
-            {
-                //Utilities.SetProductionEnvironmentalVariables(Configuration);
-                app.UseExceptionHandler("/Home/Error");
-            }
+            app.UseDeveloperExceptionPage();
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();      
+            //}
+            //else
+            //{
+            //    //Utilities.SetProductionEnvironmentalVariables(Configuration);
+            //    app.UseExceptionHandler("/Home/Error");
+            //}
 
             app.UseStaticFiles();
             app.UseHttpsRedirection();  // TODO - add local flag to handle

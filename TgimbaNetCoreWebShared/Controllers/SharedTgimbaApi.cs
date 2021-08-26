@@ -41,6 +41,23 @@ namespace TgimbaNetCoreWebShared.Controllers
 
         public IActionResult ProcessUser([FromBody] LoginRequest request)
         {
+            System.Console.WriteLine("SharedTgimbaApi.cs - ProcessUser(args)");
+            if (this.validationHelper != null)
+            {
+                System.Console.WriteLine("SharedTgimbaApi.cs - ProcessUser(args) -  validationHelper is not null");
+            }
+            else
+            {
+                System.Console.WriteLine("SharedTgimbaApi.cs - ProcessUser(args) -  validationHelper is null");
+            }
+            if (this.service != null)
+            {
+                System.Console.WriteLine("SharedTgimbaApi.cs - ProcessUser(args) -  service is not null");
+            }
+            else
+            {
+                System.Console.WriteLine("SharedTgimbaApi.cs - ProcessUser(args) -  service is null");
+            }
             try
             {
                 this.validationHelper.IsValidRequest(request);
@@ -51,6 +68,7 @@ namespace TgimbaNetCoreWebShared.Controllers
             }
             catch (Exception ex)
             {
+                System.Console.WriteLine("SharedTgimbaApi.cs - ProcessUser(args) -  ex: " + ex.Message);
                 return this.HandleError(ex);
             }
         }

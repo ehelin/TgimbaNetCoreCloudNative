@@ -39,6 +39,8 @@ namespace APINetCore
 
         public string ProcessUser(string encodedUserName, string encodedPassword)
         {
+            System.Console.WriteLine("TgimbaService.cs - ProcessUser(args)");
+
             string token = string.Empty;
             string decodedUserName = this.stringHelper.DecodeBase64String(encodedUserName);
             string decodedPassword = this.stringHelper.DecodeBase64String(encodedPassword);
