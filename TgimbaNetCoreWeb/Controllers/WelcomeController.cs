@@ -34,7 +34,7 @@ namespace TgimbaNetCoreWeb.Controllers
             System.Console.WriteLine("WelcomeController-GetSystemStatistics()");
 
             systemStatistics.SystemStats = this.sharedWelcomeController.webClient.GetSystemStatistics();
-            //systemStatistics.SystemBuildStats = this.sharedWelcomeController.webClient.GetSystemBuildStatistics();
+            systemStatistics.SystemBuildStats = this.sharedWelcomeController.webClient.GetSystemBuildStatistics();
 
             return systemStatistics;
         }
