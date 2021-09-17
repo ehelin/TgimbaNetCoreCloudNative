@@ -1,5 +1,5 @@
 # TgimbaNetCoreCloudNative
-Simply stated, this repository is the next incarnation of The Globe In My BucketList Application (TGIMBA).  TGIMBA, with this and its previous versions, are a vehicle that I use to learn technology relative to my current position as well as perform other technology experiments.  This time, it will live on as an AWS cloud native application. 
+Simply stated, this repository is the next incarnation of The Globe In My BucketList Application (TGIMBA).  TGIMBA, with this and its previous versions, is a vehicle that I use to learn technology relative to my current position as well as perform other technology experiments.  This time, it will live on as an AWS cloud native application. 
 <br/>
 ## Related Projects/Items
 
