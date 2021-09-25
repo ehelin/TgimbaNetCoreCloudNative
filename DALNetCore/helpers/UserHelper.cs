@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Shared.dto;
 using DALNetCore.interfaces;
-using Shared.dto;
 using models = DALNetCore.Models;
 
 namespace DALNetCore.helpers
@@ -14,7 +13,7 @@ namespace DALNetCore.helpers
                 UserId = dbUser.UserId,
                 UserName = dbUser.UserName,
                 Salt = dbUser.Salt,
-                Password = dbUser.Password,
+                Password = dbUser.PassWord,
                 Email = dbUser.Email,
                 Token = dbUser.Token
             };

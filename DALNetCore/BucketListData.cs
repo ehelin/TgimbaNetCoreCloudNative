@@ -11,10 +11,10 @@ namespace DALNetCore
 {
     public class BucketListData : IBucketListData
     {
-        private models.BucketListContext context = null;
+        private BucketListContext context = null;
         private IUserHelper userHelper = null;
 
-        public BucketListData(models.BucketListContext context, IUserHelper userHelper)
+        public BucketListData(BucketListContext context, IUserHelper userHelper)
         {
             this.userHelper = userHelper;
             this.context = context;
@@ -22,7 +22,7 @@ namespace DALNetCore
 
         #region User 
 
-        public void AddToken(long userId, string token)
+        public void AddToken(int userId, string token)
         {
             var dbUser = this.context.User
                                    .Where(x => x.UserId == userId)
@@ -38,7 +38,7 @@ namespace DALNetCore
             this.context.SaveChanges();
         }
 
-        public User GetUser(long id)
+        public User GetUser(int id)
         {
             var dbUser = this.context.User
                                    .Where(x => x.UserId == id)
@@ -53,50 +53,27 @@ namespace DALNetCore
             return user;
         }
 
-        // TODO - add test
-        public List<User> GetUsers(string userName)
-        {
-            List<User> users = new List<User>();
-
-            var dbUsers = this.context.User.Where(x => x.UserName == userName).ToList();
-            foreach(var dbUser in dbUsers)
-            {
-                users.Add(this.userHelper.ConvertDbUserToUser(dbUser));
-            }
-
-            return users;
-        }
-
         public User GetUser(string userName)
         {
-            try 
-            {
-                var dbUser = this.context.User
-                                .Where(x => x.UserName == userName)
-                                .FirstOrDefault();
+            var dbUser = this.context.User
+                            .Where(x => x.UserName == userName)
+                            .FirstOrDefault();
 
-                // TODO - update tests
-                if (dbUser == null) { return null; }
+            // TODO - update tests
+            if (dbUser == null) { return null; }
 
-                var user = this.userHelper.ConvertDbUserToUser(dbUser);
+            var user = this.userHelper.ConvertDbUserToUser(dbUser);
           
-                return user;
-            } 
-            catch(Exception ex)
-            {
-                var test = 1;
-            }
-
-            return null;
+            return user;
         }
 
-        public long AddUser(User user)
+        public int AddUser(User user)
         {
             var dbUser = new models.User
             {
                 UserName = user.UserName,
                 Email = user.Email,
-                Password = user.Password,
+                PassWord = user.Password,
                 Salt = user.Salt,
                 Created = DateTime.Now.ToUniversalTime(),
                 CreatedBy = "Website",
@@ -109,27 +86,7 @@ namespace DALNetCore
             return dbUser.UserId;
         }
 
-        public void DeleteUserBucketListItems(string userName, bool onlyDeleteBucketListItems)
-        {
-            var bucketListItems = GetBucketList(userName);
-
-            foreach (var bucketListItem in bucketListItems)
-            {
-                DeleteBucketListItem(bucketListItem.Id.Value);
-            }
-
-            if (!onlyDeleteBucketListItems)
-            {
-                var users = this.context.User.Where(x => x.UserName == userName).ToList();
-                foreach (var user in users)
-                {
-                    this.context.Remove(user);
-                    this.context.SaveChanges();
-                }
-            }
-        }
-
-        public void DeleteUser(long userId)
+        public void DeleteUser(int userId)
         {
             var dbUser = this.context.User
                                    .Where(x => x.UserId == userId)
@@ -154,14 +111,14 @@ namespace DALNetCore
                 LogMessage = msg,
                 Created = DateTime.UtcNow
             };
-            this.context.Logs.Add(logModel);
+            this.context.Log.Add(logModel);
             this.context.SaveChanges();
         }
 
         public IList<SystemBuildStatistic> GetSystemBuildStatistics()
         {
             var buildStatistics = this.context.BuildStatistics
-                                    .OrderByDescending(s => s.StartTime)
+                                    .OrderByDescending(s => s.Start)
                                     .Take(2)
                                     .ToList();
             var systemBuildStatics = new List<SystemBuildStatistic>();
@@ -172,8 +129,8 @@ namespace DALNetCore
                 {
                     var systemBuildStatistic = new SystemBuildStatistic
                     {
-                        Start = buildStatistic.StartTime.ToString(),
-                        End = buildStatistic.EndTime.ToString(),
+                        Start = buildStatistic.Start.ToString(),
+                        End = buildStatistic.End.ToString(),
                         BuildNumber = buildStatistic.BuildNumber,
                         Status = buildStatistic.Status
                     };
@@ -187,8 +144,6 @@ namespace DALNetCore
 
         public IList<SystemStatistic> GetSystemStatistics()
         {
-            System.Console.WriteLine("BucketListData-GetSystemStatistics()");
-
             var systemStatistics = this.context.SystemStatistics
                                     .OrderByDescending(s => s.Created)
                                     .Take(2)
@@ -201,9 +156,9 @@ namespace DALNetCore
                 {
                     var systemSystemStatistic = new SystemStatistic
                     {
-                        WebSiteIsUp = systemStatistic.WebsiteIsUp.HasValue ? systemStatistic.WebsiteIsUp.Value : false,
-                        DatabaseIsUp = systemStatistic.DatabaseIsUp.HasValue ? systemStatistic.DatabaseIsUp.Value : false,
-                        AzureFunctionIsUp = systemStatistic.AzureFunctionIsUp.HasValue ? systemStatistic.AzureFunctionIsUp.Value : false,
+                        WebSiteIsUp = systemStatistic.WebsiteIsUp,
+                        DatabaseIsUp = systemStatistic.DatabaseIsUp,
+                        AzureFunctionIsUp = systemStatistic.AzureFunctionIsUp,
                         Created = systemStatistic.Created.ToString()
                     };
 
@@ -220,7 +175,7 @@ namespace DALNetCore
 
         public void UpsertBucketListItem(Shared.dto.BucketListItem bucketListItem, string userName)
         {
-            var existingBucketListItem = this.context.BucketListItems
+            var existingBucketListItem = this.context.BucketListItem
                                                             .Where(x => x.BucketListItemId == bucketListItem.Id)
                                                             .FirstOrDefault();
 
@@ -236,8 +191,8 @@ namespace DALNetCore
 
         public IList<Shared.dto.BucketListItem> GetBucketList(string userName)
         {
-            var dbBucketListItems = from bli in this.context.BucketListItems
-                                    join blu in this.context.BucketListUsers on bli.BucketListItemId equals blu.BucketListItemId
+            var dbBucketListItems = from bli in this.context.BucketListItem
+                                    join blu in this.context.BucketListUser on bli.BucketListItemId equals blu.BucketListItemId
                                     join u in this.context.User on blu.UserId equals u.UserId
                                     where u.UserName == userName
                                     select bli;
@@ -263,12 +218,12 @@ namespace DALNetCore
             return bucketListItems;
         }
 
-        public void DeleteBucketListItem(long bucketListItemDbId)
+        public void DeleteBucketListItem(int bucketListItemDbId)
         {
-            var bucketListItemToDelete = this.context.BucketListItems
+            var bucketListItemToDelete = this.context.BucketListItem
                                                         .Where(x => x.BucketListItemId == bucketListItemDbId)
                                                         .FirstOrDefault();
-            var bucketListItemUserToDelete = this.context.BucketListUsers
+            var bucketListItemUserToDelete = this.context.BucketListUser
                                                         .Where(x => x.BucketListItemId == bucketListItemDbId)
                                                         .FirstOrDefault();
 
@@ -277,8 +232,8 @@ namespace DALNetCore
                 throw new RecordDoesNotExistException("Bucket list item to be deleted does not exist - id: " + bucketListItemDbId.ToString());
             }
 
-            this.context.BucketListUsers.Remove(bucketListItemUserToDelete);
-            this.context.BucketListItems.Remove(bucketListItemToDelete);
+            this.context.BucketListUser.Remove(bucketListItemUserToDelete);
+            this.context.BucketListItem.Remove(bucketListItemToDelete);
             this.context.SaveChanges();
         }
 
@@ -324,7 +279,7 @@ namespace DALNetCore
                 Longitude = bucketListItem.Longitude
             };
 
-            this.context.BucketListItems.Add(bucketListItemToSave);
+            this.context.BucketListItem.Add(bucketListItemToSave);
             this.context.SaveChanges();
 
             var bucketListItemUser = new models.BucketListUser
@@ -333,7 +288,7 @@ namespace DALNetCore
                 UserId = user.UserId
             };
 
-            this.context.BucketListUsers.Add(bucketListItemUser);
+            this.context.BucketListUser.Add(bucketListItemUser);
             this.context.SaveChanges();
         }
 
