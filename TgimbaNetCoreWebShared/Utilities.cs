@@ -51,7 +51,7 @@ namespace TgimbaNetCoreWebShared
             services.AddSingleton<IUserHelper>(new UserHelper());
 
             // true load test db connection, false load prod db connection
-            services.AddSingleton(new DALNetCore.Models.BucketListContext
+            services.AddSingleton(new DALNetCore.BucketListContext
             (
                 //TODO - temporary test
                 false
@@ -61,7 +61,7 @@ namespace TgimbaNetCoreWebShared
                 //            : false
             ));
             services.AddSingleton<IBucketListData>(x =>
-                new BucketListData(x.GetRequiredService<DALNetCore.Models.BucketListContext>(),
+                new BucketListData(x.GetRequiredService<DALNetCore.BucketListContext>(),
                                    x.GetRequiredService<IUserHelper>()
                                    ));
             services.AddSingleton<IPassword>(new PasswordHelper());

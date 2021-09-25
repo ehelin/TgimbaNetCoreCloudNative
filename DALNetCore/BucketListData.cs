@@ -22,7 +22,7 @@ namespace DALNetCore
 
         #region User 
 
-        public void AddToken(int userId, string token)
+        public void AddToken(long userId, string token)
         {
             var dbUser = this.context.User
                                    .Where(x => x.UserId == userId)
@@ -38,11 +38,11 @@ namespace DALNetCore
             this.context.SaveChanges();
         }
 
-        public User GetUser(int id)
+        public User GetUser(long id)
         {
             var dbUser = this.context.User
-                                   .Where(x => x.UserId == id)
-                                   .FirstOrDefault();
+                                    .Where(x => x.UserId == id)
+                                    .FirstOrDefault();
             if (dbUser == null)
             {
                 throw new RecordDoesNotExistException("GetUser - User does not exist. userId - " + id.ToString());
@@ -56,8 +56,8 @@ namespace DALNetCore
         public User GetUser(string userName)
         {
             var dbUser = this.context.User
-                            .Where(x => x.UserName == userName)
-                            .FirstOrDefault();
+                        .Where(x => x.UserName == userName)
+                        .FirstOrDefault();
 
             // TODO - update tests
             if (dbUser == null) { return null; }
@@ -67,7 +67,7 @@ namespace DALNetCore
             return user;
         }
 
-        public int AddUser(User user)
+        public long AddUser(User user)
         {
             var dbUser = new models.User
             {
@@ -86,7 +86,7 @@ namespace DALNetCore
             return dbUser.UserId;
         }
 
-        public void DeleteUser(int userId)
+        public void DeleteUser(long userId)
         {
             var dbUser = this.context.User
                                    .Where(x => x.UserId == userId)
@@ -218,7 +218,7 @@ namespace DALNetCore
             return bucketListItems;
         }
 
-        public void DeleteBucketListItem(int bucketListItemDbId)
+        public void DeleteBucketListItem(long bucketListItemDbId)
         {
             var bucketListItemToDelete = this.context.BucketListItem
                                                         .Where(x => x.BucketListItemId == bucketListItemDbId)
@@ -298,6 +298,16 @@ namespace DALNetCore
                                                                               .Where(x => x.ListItemName.Contains(srchTerm));
 
             return searchedBucketListItems;
+        }
+
+        void IBucketListData.DeleteUserBucketListItems(string userName, bool onlyDeleteBucketListItems)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<User> IBucketListData.GetUsers(string userName)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
