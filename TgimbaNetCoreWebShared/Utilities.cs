@@ -5,9 +5,6 @@ using Algorithms.Algorithms.Search;
 using Algorithms.Algorithms.Search.Implementations;
 using Algorithms.Algorithms.Sorting;
 using Algorithms.Algorithms.Sorting.Implementations;
-using Amazon;
-using Amazon.SecretsManager;
-using Amazon.SecretsManager.Model;
 using APINetCore;
 using BLLNetCore.helpers;
 using BLLNetCore.Security;  // TODO - remove after namespaces changed to bllnetcore.helpers
@@ -36,47 +33,6 @@ namespace TgimbaNetCoreWebShared
             }
 
             return section.Value;
-        }
-
-        public static void SetProductionEnvironmentalVariables(IConfiguration Configuration)
-        {
-            System.Console.WriteLine("SetProductionEnvironmentalVariables(args)");
-
-            Environment.SetEnvironmentVariable("DbConnectionTest", null);
-            Environment.SetEnvironmentVariable("DbConnection", null);
-            Environment.SetEnvironmentVariable("JwtPrivateKey", null);
-            Environment.SetEnvironmentVariable("JwtIssuer", null);
-            Environment.SetEnvironmentVariable("ApiHost", null);
-
-            var dbConn = Configuration.GetSection("DbConnection")?.Value;
-            var jwtIssuer = Configuration.GetSection("JwtIssuer")?.Value;
-            var apiHost = Configuration.GetSection("ApiHost")?.Value;
-
-            dynamic jwtPrivateKeyObj = JsonConvert.DeserializeObject(GetSecret());
-            var jwtPrivateKey = jwtPrivateKeyObj["JwtPrivateKey"]?.ToString();
-
-            System.Console.WriteLine("DbConnection: {0}", dbConn);
-            System.Console.WriteLine("JwtPrivateKey: {0}", jwtPrivateKey);
-            System.Console.WriteLine("JwtIssuer: {0}", jwtIssuer);
-            System.Console.WriteLine("ApiHost: {0}", apiHost);
-
-            Environment.SetEnvironmentVariable("DbConnection", dbConn);
-            Environment.SetEnvironmentVariable("JwtPrivateKey", jwtPrivateKey);
-            Environment.SetEnvironmentVariable("JwtIssuer", jwtIssuer);
-            Environment.SetEnvironmentVariable("ApiHost", apiHost);
-        }
-
-        private static string GetSecret()
-        {
-            IAmazonSecretsManager client = new AmazonSecretsManagerClient(RegionEndpoint.GetBySystemName("us-east-2"));
-            GetSecretValueRequest request = new GetSecretValueRequest();
-            request.SecretId = "TgimbaJwtPrivateKey";
-            request.VersionStage = "AWSCURRENT";
-
-            var response = client.GetSecretValueAsync(request).Result;
-            var secret = response.SecretString;
-
-            return secret;
         }
 
         public static void SetUpDI(IServiceCollection services, IConfiguration Configuration)

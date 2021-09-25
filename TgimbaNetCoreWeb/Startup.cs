@@ -19,7 +19,6 @@ namespace TgimbaNetCoreWeb
         public void ConfigureServices(IServiceCollection services)
         {
             System.Console.WriteLine("ConfigureServices(args)");
-            Utilities.SetProductionEnvironmentalVariables(Configuration);
             Utilities.SetUpDI(services, Configuration);
             services.AddMvc();
 

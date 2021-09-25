@@ -69,16 +69,25 @@ namespace DALNetCore
 
         public User GetUser(string userName)
         {
-            var dbUser = this.context.User
-                            .Where(x => x.UserName == userName)
-                            .FirstOrDefault();
+            try 
+            {
+                var dbUser = this.context.User
+                                .Where(x => x.UserName == userName)
+                                .FirstOrDefault();
 
-            // TODO - update tests
-            if (dbUser == null) { return null; }
+                // TODO - update tests
+                if (dbUser == null) { return null; }
 
-            var user = this.userHelper.ConvertDbUserToUser(dbUser);
+                var user = this.userHelper.ConvertDbUserToUser(dbUser);
           
-            return user;
+                return user;
+            } 
+            catch(Exception ex)
+            {
+                var test = 1;
+            }
+
+            return null;
         }
 
         public long AddUser(User user)

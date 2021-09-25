@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using DALNetCore.Models;
 using Shared.misc;
 
-namespace DALNetCore.Models
+namespace DALNetCore
 {
     public partial class BucketListContext : DbContext
     {
@@ -9,7 +12,6 @@ namespace DALNetCore.Models
 
         public BucketListContext(bool userTestDatabase = false)
         {
-            System.Console.WriteLine("BucketListContext(arg)");
             this.useTestDatabase = userTestDatabase;
         }
 
@@ -18,209 +20,242 @@ namespace DALNetCore.Models
         {
         }
 
-        public virtual DbSet<BucketListItem> BucketListItems { get; set; }
-        public virtual DbSet<BucketListUser> BucketListUsers { get; set; }
+        public virtual DbSet<BrowserCapability> BrowserCapability { get; set; }
+        public virtual DbSet<BrowserLog> BrowserLog { get; set; }
+        public virtual DbSet<BucketListItem> BucketListItem { get; set; }
+        public virtual DbSet<BucketListUser> BucketListUser { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<BuildStatistics> BuildStatistics { get; set; }
-        public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<SystemStatistics> SystemStatistics { get; set; }
+        public virtual DbSet<BuildStatistics> BuildStatistics { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            System.Console.WriteLine("BucketListContext-OnConfiguring(arg)");
-
             if (!optionsBuilder.IsConfigured)
             {
                 if (useTestDatabase)
                 {
-                    optionsBuilder.UseNpgsql(EnvironmentalConfig.GetDbSetting(true));
+                    optionsBuilder.UseSqlServer(EnvironmentalConfig.GetDbSetting(true));
                 }
                 else
-                { 
-                    optionsBuilder.UseNpgsql(EnvironmentalConfig.GetDbSetting());
+                {
+                    optionsBuilder.UseSqlServer(EnvironmentalConfig.GetDbSetting());
                 }
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            System.Console.WriteLine("BucketListContext-OnModelCreating(arg)");
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
-            modelBuilder.HasPostgresExtension("adminpack")
-                .HasAnnotation("Relational:Collation", "English_United States.1252");
+            modelBuilder.Entity<BrowserCapability>(entity =>
+            {
+                entity.ToTable("BrowserCapability", "Bucket");
+
+                entity.Property(e => e.Key)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Tett)
+                    .HasColumnName("tett")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.Value)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<BrowserLog>(entity =>
+            {
+                entity.HasKey(e => e.BrowserLogId);
+
+                entity.ToTable("BrowserLog", "Bucket");
+
+                entity.Property(e => e.ActiveXcontrols).HasColumnName("ActiveXControls");
+
+                entity.Property(e => e.Aol).HasColumnName("AOL");
+
+                entity.Property(e => e.Browser)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Cdf).HasColumnName("CDF");
+
+                entity.Property(e => e.ClrVersion)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EcmaScriptVersion)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GatewayVersion)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Id)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.InputType)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.JscriptVersion)
+                    .HasColumnName("JScriptVersion")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MinorVersionString)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MobileDeviceManufacturer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MobileDeviceModel)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MsdomVersion)
+                    .HasColumnName("MSDomVersion")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NumberOfSoftkeys)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Platform)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PreferredImageMime)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PreferredRenderingMime)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PreferredRenderingType)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PreferredRequestEncoding)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PreferredResponseEncoding)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RequiredMetaTagNameValue)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RequiresDbcscharacter).HasColumnName("RequiresDBCSCharacter");
+                entity.Property(e => e.SupportsImodeSymbols).HasColumnName("SupportsIModeSymbols");
+                entity.Property(e => e.SupportsInputIstyle).HasColumnName("SupportsInputIStyle");
+                entity.Property(e => e.SupportsJphoneMultiMediaAttribute).HasColumnName("SupportsJPhoneMultiMediaAttribute");
+                entity.Property(e => e.SupportsJphoneSymbols).HasColumnName("SupportsJPhoneSymbols");
+
+                entity.Property(e => e.Type)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Vbscript).HasColumnName("VBScript");
+
+                entity.Property(e => e.Version)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.W3cdomVersion)
+                    .HasColumnName("W3CDomVersion")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<BucketListItem>(entity =>
             {
-                entity.ToTable("bucketlistitem", "bucket");
+                entity.ToTable("BucketListItem", "Bucket");
 
-                entity.Property(e => e.BucketListItemId)
-                    .HasColumnName("bucketlistitemid")
-                    .UseIdentityAlwaysColumn();
+                entity.Property(e => e.Category).HasMaxLength(255);
 
-                entity.Property(e => e.Achieved).HasColumnName("achieved");
+                //entity.Property(e => e.Country)
+                //    .HasMaxLength(500)
+                //    .IsUnicode(false);
 
-                entity.Property(e => e.Category)
-                    .HasMaxLength(255)
-                    .HasColumnName("category");
-
-                entity.Property(e => e.CategorySortOrder).HasColumnName("categorysortorder");
-
-                entity.Property(e => e.Created)
-                    .HasColumnType("timestamp with time zone")
-                    .HasColumnName("created");
-
-                entity.Property(e => e.Latitude)
-                    .HasPrecision(18, 10)
-                    .HasColumnName("latitude");
-
-                entity.Property(e => e.ListItemName)
-                    .HasColumnType("character varying")
-                    .HasColumnName("listitemname");
-
-                entity.Property(e => e.Longitude)
-                    .HasPrecision(18, 10)
-                    .HasColumnName("longitude");
-            });
-
-            modelBuilder.Entity<BucketListUser>(entity =>
-            {
-                entity.ToTable("bucketlistuser", "bucket");
-
-                entity.Property(e => e.BucketListUserId)
-                    .HasColumnName("bucketlistuserid")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.BucketListItemId).HasColumnName("bucketlistitemid");
-
-                entity.Property(e => e.UserId).HasColumnName("userid");
-
-                entity.HasOne(d => d.BucketListItem)
-                    .WithMany(p => p.BucketListUsers)
-                    .HasForeignKey(d => d.BucketListItemId)
-                    .HasConstraintName("bucketlistuser_bucketlistitemid_fkey");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.BucketListUsers)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("bucketlistuser_userid_fkey");
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.UserId)
-                    .HasName("bucketuser_pkey");
-
-                entity.ToTable("bucketuser", "bucket");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userid")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.Created)
-                    .HasColumnType("timestamp with time zone")
-                    .HasColumnName("created");
-
-                entity.Property(e => e.CreatedBy)
-                    .HasMaxLength(255)
-                    .HasColumnName("createdby");
-
-                entity.Property(e => e.Email)
-                    .HasMaxLength(255)
-                    .HasColumnName("email");
-
-                entity.Property(e => e.Modified)
-                    .HasColumnType("timestamp with time zone")
-                    .HasColumnName("modified");
-
-                entity.Property(e => e.ModifiedBy)
-                    .HasMaxLength(255)
-                    .HasColumnName("modifiedby");
-
-                entity.Property(e => e.Password)
-                    .HasColumnType("character varying")
-                    .HasColumnName("password");
-
-                entity.Property(e => e.Salt)
-                    .HasColumnType("character varying")
-                    .HasColumnName("salt");
-
-                entity.Property(e => e.Token)
-                    .HasMaxLength(1000)
-                    .HasColumnName("token");
-
-                entity.Property(e => e.UserName)
-                    .HasMaxLength(255)
-                    .HasColumnName("username");
-            });
-
-            modelBuilder.Entity<BuildStatistics>(entity =>
-            {
-                entity.ToTable("buildstatistics", "bucket");
-
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.BuildNumber)
-                    .HasMaxLength(500)
-                    .HasColumnName("buildnumber");
-
-                entity.Property(e => e.EndTime)
-                    .HasColumnType("timestamp with time zone")
-                    .HasColumnName("endtime");
-
-                entity.Property(e => e.StartTime)
-                    .HasColumnType("timestamp with time zone")
-                    .HasColumnName("starttime");
-
-                entity.Property(e => e.Status)
-                    .HasMaxLength(500)
-                    .HasColumnName("status");
-
-                entity.Property(e => e.Type)
-                    .HasMaxLength(500)
-                    .HasColumnName("type");
-            });
-
-            modelBuilder.Entity<Log>(entity =>
-            {
-                entity.ToTable("log", "bucket");
-
-                entity.Property(e => e.LogId)
-                    .HasColumnName("logid")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.Created)
-                    .HasColumnType("timestamp with time zone")
-                    .HasColumnName("created");
-
-                entity.Property(e => e.LogMessage)
-                    .HasColumnType("character varying")
-                    .HasColumnName("messate");
+                entity.Property(e => e.Created).HasColumnType("datetime");
+                entity.Property(e => e.Latitude).HasColumnType("decimal(18, 10)");
+                entity.Property(e => e.Longitude).HasColumnType("decimal(18, 10)");
             });
 
             modelBuilder.Entity<SystemStatistics>(entity =>
             {
-                entity.ToTable("systemstatistics", "bucket");
+                entity.ToTable("SystemStatistics", "Bucket");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.AzureFunctionIsUp).HasColumnName("azurefunctionisup");
-
-                entity.Property(e => e.Created)
-                    .HasColumnType("timestamp with time zone")
-                    .HasColumnName("created");
-
-                entity.Property(e => e.DatabaseIsUp).HasColumnName("databaseisup");
-
-                entity.Property(e => e.WebsiteIsUp).HasColumnName("websiteisup");
+                entity.Property(e => e.WebsiteIsUp).HasColumnType("bit");
+                entity.Property(e => e.DatabaseIsUp).HasColumnType("bit");
+                entity.Property(e => e.AzureFunctionIsUp).HasColumnType("bit");
+                entity.Property(e => e.Created).HasColumnType("datetime");
             });
 
-            OnModelCreatingPartial(modelBuilder);
-        }
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("User", "Bucket");
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+                entity.Property(e => e.Created).HasColumnType("datetime");
+                entity.Property(e => e.CreatedBy).HasMaxLength(255);
+                entity.Property(e => e.Email).HasMaxLength(255);
+                entity.Property(e => e.Modified).HasColumnType("datetime");
+                entity.Property(e => e.ModifiedBy).HasMaxLength(255);
+                entity.Property(e => e.Token).HasMaxLength(1000);
+                entity.Property(e => e.UserName).HasMaxLength(255);
+            });
+
+            modelBuilder.Entity<BuildStatistics>(entity =>
+            {
+                entity.ToTable("BuildStatistics", "Bucket");
+
+                entity.Property(e => e.Start).HasColumnType("datetime");
+                entity.Property(e => e.End).HasColumnType("datetime");
+                entity.Property(e => e.BuildNumber).HasMaxLength(500);
+                entity.Property(e => e.Status).HasMaxLength(500);
+                entity.Property(e => e.Type).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<BucketListUser>(entity =>
+            {
+                entity.ToTable("BucketListUser", "Bucket");
+            });
+
+            modelBuilder.Entity<Log>(entity =>
+            {
+                entity.ToTable("Log", "Bucket");
+
+                entity.Property(e => e.Created).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("User", "Bucket");
+
+                entity.Property(e => e.Created).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy).HasMaxLength(255);
+
+                entity.Property(e => e.Email).HasMaxLength(255);
+
+                entity.Property(e => e.Modified).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedBy).HasMaxLength(255);
+
+                entity.Property(e => e.Token).HasMaxLength(1000);
+
+                entity.Property(e => e.UserName).HasMaxLength(255);
+            });
+        }
     }
 }

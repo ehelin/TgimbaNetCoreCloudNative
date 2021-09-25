@@ -8,7 +8,6 @@ namespace TgimbaNetCoreWeb
     {
         public static void Main(string[] args)
         {
-            System.Console.WriteLine("Main(args)");
             BuildWebHost(args).Run();
         }
 
@@ -18,18 +17,16 @@ namespace TgimbaNetCoreWeb
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     var env = hostingContext.HostingEnvironment;
-                    System.Console.WriteLine("BuildWebHost(args)-env: {0}", env);
+                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-                    //load config from aws
+                    // HACK: I cannot do environmental variables on my shared production environment, so if not 
+                    //       development, force production app settings to load.
                     if (env.EnvironmentName != "Development")
                     {
-                        System.Console.WriteLine("BuildWebHost(args)-loading config.AddSystemsManager(args)");
-                        config.AddSystemsManager($"/", System.TimeSpan.FromMinutes(5));
-                    } 
-                    //load config from local appsettings.json
+                        config.AddJsonFile("appsettings.Production.json", optional: true, reloadOnChange: true);
+                    }
                     else
                     {
-                        System.Console.WriteLine("Console-BuildWebHost(args)-loading else appsettings");
                         config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                     }
                     config.AddEnvironmentVariables();
