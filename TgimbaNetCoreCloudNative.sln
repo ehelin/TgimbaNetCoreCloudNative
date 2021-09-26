@@ -28,6 +28,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuroraPostgreSQLDatabase", 
 		AuroraPostgreSQLDatabase\CreateScript.sql = AuroraPostgreSQLDatabase\CreateScript.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureSqlDatabase", "AzureSqlDatabase", "{B0FAD456-E817-4084-AD39-E85694ECCE77}"
+	ProjectSection(SolutionItems) = preProject
+		CreateScript.sql = CreateScript.sql
+		InsertScript.sql = InsertScript.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
