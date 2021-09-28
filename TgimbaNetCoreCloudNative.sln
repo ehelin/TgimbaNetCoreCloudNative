@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureSqlDatabase", "AzureSq
 		InsertScript.sql = InsertScript.sql
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automation", "Automation\Automation.csproj", "{4696816A-9F39-4114-B250-7601BBF25CB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{46288FEB-8E4F-4840-8983-CC95026B6C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46288FEB-8E4F-4840-8983-CC95026B6C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46288FEB-8E4F-4840-8983-CC95026B6C64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4696816A-9F39-4114-B250-7601BBF25CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4696816A-9F39-4114-B250-7601BBF25CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4696816A-9F39-4114-B250-7601BBF25CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4696816A-9F39-4114-B250-7601BBF25CB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
