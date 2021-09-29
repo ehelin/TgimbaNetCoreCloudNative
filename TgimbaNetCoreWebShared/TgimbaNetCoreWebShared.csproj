@@ -7,8 +7,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Algorithms\Algorithms.csproj" />
-    <ProjectReference Include="..\BLLNetCore\BLLNetCore.csproj" />
-    <ProjectReference Include="..\DALNetCore\DALNetCore.csproj" />
+    <ProjectReference Include="..\BLLNetCore\BLL.csproj" />
+    <ProjectReference Include="..\DALNetCore\DALSqlServer.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 

@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Containerization", "Contain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms", "Algorithms\Algorithms.csproj", "{A12A73E3-20FA-4BF1-92FC-644E0024E7D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLLNetCore", "BLLNetCore\BLLNetCore.csproj", "{F0EE378B-2997-488D-8D7B-36E49ECAF2DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLLNetCore\BLL.csproj", "{F0EE378B-2997-488D-8D7B-36E49ECAF2DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALNetCore", "DALNetCore\DALNetCore.csproj", "{EEC9DA43-55DE-4899-944E-AC2138012BC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALSqlServer", "DALNetCore\DALSqlServer.csproj", "{EEC9DA43-55DE-4899-944E-AC2138012BC2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{F796E478-3EE8-4097-A1F1-1B9A75CBA963}"
 EndProject
@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureSqlDatabase", "AzureSq
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automation", "Automation\Automation.csproj", "{4696816A-9F39-4114-B250-7601BBF25CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALBlobStorage", "DALBlobStorage\DALBlobStorage.csproj", "{CB7B1A93-F5AB-4AD5-BD7E-07B493C9F657}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,10 @@ Global
 		{4696816A-9F39-4114-B250-7601BBF25CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4696816A-9F39-4114-B250-7601BBF25CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4696816A-9F39-4114-B250-7601BBF25CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB7B1A93-F5AB-4AD5-BD7E-07B493C9F657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB7B1A93-F5AB-4AD5-BD7E-07B493C9F657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB7B1A93-F5AB-4AD5-BD7E-07B493C9F657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB7B1A93-F5AB-4AD5-BD7E-07B493C9F657}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,6 +4,13 @@ namespace Shared.misc
 {
     public class EnvironmentalConfig
     {
+        public static string GetBlobStorageConnectionString()
+        {
+            var blobConnectionString = "";
+        
+            return blobConnectionString;
+        }
+
         public static string GetApiHost()
         {
             System.Console.WriteLine("EnvironmentalConfig-GetApiHost()");
