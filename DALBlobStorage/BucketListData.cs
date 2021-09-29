@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Azure.Storage.Blobs;
 using Shared.dto;
 using Shared.interfaces;
 
@@ -7,29 +9,53 @@ namespace DALBlobStorage
 {
     public class BucketListData : IBucketListData
     {
-        private string blobConnectionString = string.Empty;
+        private BlobContainerClient blobStorageContainerClient = null;
 
-        public BucketListData(string blobConnectionString)
+        public BucketListData(BlobContainerClient blobStorageContainerClient)
         {
-            this.blobConnectionString = blobConnectionString;
+            this.blobStorageContainerClient = blobStorageContainerClient;
         }
 
-        void IBucketListData.UpsertBucketListItem(BucketListItem bucketListItem, string userName)
+        async void IBucketListData.UpsertBucketListItem(BucketListItem bucketListItem, string userName)
         {
-            throw new NotImplementedException();
+            string fileName = "bucketListItem" + userName + ".txt";
+
+            // Write text to the file
+            //await File.WriteAllTextAsync(localFilePath, "Hello, World!");
+
+            // Get a reference to a blob
+            BlobClient blobClient = this.blobStorageContainerClient.GetBlobClient(fileName);
+
+            Console.WriteLine("Uploading to Blob storage as blob:\n\t {0}\n", blobClient.Uri);
+
+            await blobClient.UploadAsync(fileName, true);
         }
 
-        IList<BucketListItem> IBucketListData.GetBucketList(string userName)
+        // NEW for blob storage data client
+        async Task<IList<BucketListItem>> IBucketListData.GetBucketListBlobStorage(string blobStorageItemId)
         {
-            throw new NotImplementedException();
+            var blobClient = this.blobStorageContainerClient.GetBlobClient(blobStorageItemId);
+            var result = await blobClient.DownloadToAsync(blobStorageItemId);
+
+            // TODO - convert result to the saved bucket list item
+            //return result;
+            return null;
         }
+
+        // NEW for blob storage data client
+        async void DeleteBucketListItem(string blobStorageItemId)
+        {
+            var blobClient = this.blobStorageContainerClient.GetBlobClient(blobStorageItemId);
+
+            this.blobStorageContainerClient.GetBlobClient(blobStorageItemId).DeleteIfExists();
+        }
+
+        #region Not Implemented
 
         void IBucketListData.DeleteBucketListItem(long bucketListItemDbId)
         {
             throw new NotImplementedException();
         }
-
-        #region Not Implemented
 
         void IBucketListData.AddToken(long userId, string token)
         {
@@ -77,6 +103,16 @@ namespace DALBlobStorage
         }
 
         void IBucketListData.LogMsg(string msg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<BucketListItem> GetBucketList(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IBucketListData.DeleteBucketListItem(string blobStorageItemId)
         {
             throw new NotImplementedException();
         }

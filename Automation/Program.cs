@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Azure.Storage.Blobs;
 using DALBlobStorage;
 using Shared.dto;
 using Shared.interfaces;
@@ -18,10 +20,20 @@ namespace Automation
             Console.WriteLine("TgimbaService.cs - ProcessUser(args) - Process is stopped!");
         }
 
-        private static void RunJob()
+        private static async Task<BlobContainerClient> CreateAzureBlobStorageContainerClient()
         {
             var blobConnectionString = EnvironmentalConfig.GetBlobStorageConnectionString();
-            IBucketListData blobClient = new BucketListData(blobConnectionString);
+            var blobServiceClient = new BlobServiceClient(blobConnectionString);
+            string containerName = "tgimba" + Guid.NewGuid().ToString();
+            BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
+
+            return containerClient;
+        }
+
+        private static void RunJob()
+        {
+            var blobStorageContainerClient = CreateAzureBlobStorageContainerClient().Result;
+            IBucketListData blobClient = new BucketListData(blobStorageContainerClient);
             string userName = "";
 
             SaveBucketListItem(blobClient, userName);
@@ -52,9 +64,13 @@ namespace Automation
         private static BucketListItem VerifyRecordExists(IBucketListData blobClient, string userName)
         {
             Console.WriteLine("TgimbaService.cs - VerifyRecordExists(args) - Retrieving saved bucket list item from blob storage.");
-            var bucketListItems = blobClient.GetBucketList(userName);
-            var bucketListItem = bucketListItems[0];
 
+            // NOTE: With this current design, each user could only have one saved bucket list item.  If this were for real, an Id would need be to included in the id
+            var blobStorageItemId = "bucketListItem" + userName + ".txt";
+
+            var bucketListItems = blobClient.GetBucketList(blobStorageItemId);
+
+            var bucketListItem = bucketListItems[0];
             if (bucketListItem != null)
             {
                 Console.WriteLine("TgimbaService.cs - VerifyRecordExists(args) - Bucket List item exists - Name {0}", bucketListItem.Name);

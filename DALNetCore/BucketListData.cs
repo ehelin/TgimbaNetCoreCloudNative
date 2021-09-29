@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DALNetCore.interfaces;
 using Shared.dto;
 using Shared.exceptions;
@@ -306,6 +307,17 @@ namespace DALNetCore
         }
 
         List<User> IBucketListData.GetUsers(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        // TODO - from blob storage...at somepoint, refactor the interface if blob storage is used
+        public void DeleteBucketListItem(string blobStorageItemId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<BucketListItem>> GetBucketListBlobStorage(string blobStorageItemId)
         {
             throw new NotImplementedException();
         }
