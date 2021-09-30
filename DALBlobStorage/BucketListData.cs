@@ -17,7 +17,7 @@ namespace DALBlobStorage
             this.blobStorageContainerClient = blobStorageContainerClient;
         }
 
-        async Task IBlobStorage.UpsertBucketListItem(BucketListItem bucketListItem, string userName)
+        async Task<int> IBlobStorage.UpsertBucketListItem(BucketListItem bucketListItem, string userName)
         {
             string localPath = "./";
             string fileName = "bucketListItem" + userName + ".txt";
@@ -34,6 +34,8 @@ namespace DALBlobStorage
             await blobClient.UploadAsync(localFilePath, true);
 
             File.Delete(localFilePath);
+
+            return 1; // wait for method to complete
         }
 
         async Task<BucketListItem> IBlobStorage.GetBucketList(string blobStorageItemId)

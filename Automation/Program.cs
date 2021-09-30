@@ -36,16 +36,17 @@ namespace Automation
             IBlobStorage blobClient = new BucketListData(blobStorageContainerClient);
             string userName = "bucketUserSeeTheWorld";
 
-            await SaveBucketListItem(blobClient, userName);
+            var result = SaveBucketListItem(blobClient, userName).Result;
 
             var bucketListItem = VerifyRecordExists(blobClient, userName).Result;
 
             Cleanup(blobClient, userName, bucketListItem);
 
             blobStorageContainerClient.Delete();
+            Console.WriteLine("TgimbaService.cs - RunJob() - Container client deleted.");
         }
 
-        private async static Task SaveBucketListItem(IBlobStorage blobClient, string userName)
+        private async static Task<int> SaveBucketListItem(IBlobStorage blobClient, string userName)
         {
             Console.WriteLine("TgimbaService.cs - SaveBucketListItem(args) - Creating/Saving bucket list item to blob storage.");
 
@@ -60,7 +61,9 @@ namespace Automation
                 Longitude = (decimal)2.1,
             };
 
-            await blobClient.UpsertBucketListItem(newBucketList, userName);
+            var result = await blobClient.UpsertBucketListItem(newBucketList, userName);
+
+            return result;
         }
 
         private async static Task<BucketListItem> VerifyRecordExists(IBlobStorage blobClient, string userName)
