@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
+using Newtonsoft.Json;
 using Shared.dto;
 using Shared.interfaces;
 
 namespace DALBlobStorage
 {
-    public class BucketListData : IBucketListData
+    public class BucketListData : IBlobStorage
     {
         private BlobContainerClient blobStorageContainerClient = null;
 
@@ -16,107 +17,50 @@ namespace DALBlobStorage
             this.blobStorageContainerClient = blobStorageContainerClient;
         }
 
-        async void IBucketListData.UpsertBucketListItem(BucketListItem bucketListItem, string userName)
+        async Task IBlobStorage.UpsertBucketListItem(BucketListItem bucketListItem, string userName)
         {
+            string localPath = "./";
             string fileName = "bucketListItem" + userName + ".txt";
+            string localFilePath = Path.Combine(localPath, fileName);
 
-            // Write text to the file
-            //await File.WriteAllTextAsync(localFilePath, "Hello, World!");
+            var json = JsonConvert.SerializeObject(bucketListItem);
 
-            // Get a reference to a blob
+            await File.WriteAllTextAsync(localFilePath, json);
+
             BlobClient blobClient = this.blobStorageContainerClient.GetBlobClient(fileName);
 
             Console.WriteLine("Uploading to Blob storage as blob:\n\t {0}\n", blobClient.Uri);
 
-            await blobClient.UploadAsync(fileName, true);
+            await blobClient.UploadAsync(localFilePath, true);
+
+            File.Delete(localFilePath);
         }
 
-        // NEW for blob storage data client
-        async Task<IList<BucketListItem>> IBucketListData.GetBucketListBlobStorage(string blobStorageItemId)
+        async Task<BucketListItem> IBlobStorage.GetBucketList(string blobStorageItemId)
         {
+            BucketListItem bucketListItem = null;
             var blobClient = this.blobStorageContainerClient.GetBlobClient(blobStorageItemId);
-            var result = await blobClient.DownloadToAsync(blobStorageItemId);
+            if (await blobClient.ExistsAsync())
+            {
+                var result = await blobClient.DownloadAsync();
+                string resultJson = "";
 
-            // TODO - convert result to the saved bucket list item
-            //return result;
-            return null;
+                using (StreamReader streamReader = new StreamReader(result.Value.Content))
+                {
+                    resultJson = streamReader.ReadToEnd();
+                }
+
+                bucketListItem = JsonConvert.DeserializeObject<BucketListItem>(resultJson);
+            }
+
+            return bucketListItem;
         }
 
-        // NEW for blob storage data client
-        async void DeleteBucketListItem(string blobStorageItemId)
+        void IBlobStorage.DeleteBucketListItem(string blobStorageItemId)
         {
             var blobClient = this.blobStorageContainerClient.GetBlobClient(blobStorageItemId);
 
             this.blobStorageContainerClient.GetBlobClient(blobStorageItemId).DeleteIfExists();
         }
-
-        #region Not Implemented
-
-        void IBucketListData.DeleteBucketListItem(long bucketListItemDbId)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IBucketListData.AddToken(long userId, string token)
-        {
-            throw new NotImplementedException();
-        }
-
-        long IBucketListData.AddUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IBucketListData.DeleteUser(long userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IBucketListData.DeleteUserBucketListItems(string userName, bool onlyDeleteBucketListItems)
-        {
-            throw new NotImplementedException();
-        }
-
-        IList<SystemBuildStatistic> IBucketListData.GetSystemBuildStatistics()
-        {
-            throw new NotImplementedException();
-        }
-
-        IList<SystemStatistic> IBucketListData.GetSystemStatistics()
-        {
-            throw new NotImplementedException();
-        }
-
-        User IBucketListData.GetUser(long id)
-        {
-            throw new NotImplementedException();
-        }
-
-        User IBucketListData.GetUser(string userName)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<User> IBucketListData.GetUsers(string userName)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IBucketListData.LogMsg(string msg)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<BucketListItem> GetBucketList(string userName)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IBucketListData.DeleteBucketListItem(string blobStorageItemId)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }

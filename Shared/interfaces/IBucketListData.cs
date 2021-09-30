@@ -20,9 +20,5 @@ namespace Shared.interfaces
         void DeleteUser(long userId);
         void DeleteUserBucketListItems(string userName, bool onlyDeleteBucketListItems);
         List<User> GetUsers(string userName);
-
-        // NEW for blob storage data client (refactor interface is blob storage is used)
-        void DeleteBucketListItem(string blobStorageItemId);
-        Task<IList<BucketListItem>> GetBucketListBlobStorage(string blobStorageItemId);
     }
 }

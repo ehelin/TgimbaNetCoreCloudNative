@@ -14,9 +14,9 @@ namespace Automation
         {
             Console.WriteLine("TgimbaService.cs - ProcessUser(args) - Process is starting!");
 
-            Console.WriteLine("TgimbaService.cs - ProcessUser(args) - Process is running!"); 
+            Console.WriteLine("TgimbaService.cs - ProcessUser(args) - Process is running!");
             RunJob();
-
+            
             Console.WriteLine("TgimbaService.cs - ProcessUser(args) - Process is stopped!");
         }
 
@@ -30,23 +30,25 @@ namespace Automation
             return containerClient;
         }
 
-        private static void RunJob()
+        public async static void RunJob()
         {
             var blobStorageContainerClient = CreateAzureBlobStorageContainerClient().Result;
-            IBucketListData blobClient = new BucketListData(blobStorageContainerClient);
-            string userName = "";
+            IBlobStorage blobClient = new BucketListData(blobStorageContainerClient);
+            string userName = "bucketUserSeeTheWorld";
 
-            SaveBucketListItem(blobClient, userName);
+            await SaveBucketListItem(blobClient, userName);
 
-            var bucketListItem = VerifyRecordExists(blobClient, userName);
+            var bucketListItem = VerifyRecordExists(blobClient, userName).Result;
 
             Cleanup(blobClient, userName, bucketListItem);
+
+            blobStorageContainerClient.Delete();
         }
 
-        private static void SaveBucketListItem(IBucketListData blobClient, string userName)
+        private async static Task SaveBucketListItem(IBlobStorage blobClient, string userName)
         {
             Console.WriteLine("TgimbaService.cs - SaveBucketListItem(args) - Creating/Saving bucket list item to blob storage.");
-          
+
             var newBucketList = new BucketListItem()
             {
                 Name = "IAmABucketListItem",
@@ -58,19 +60,17 @@ namespace Automation
                 Longitude = (decimal)2.1,
             };
 
-            blobClient.UpsertBucketListItem(newBucketList, userName);
+            await blobClient.UpsertBucketListItem(newBucketList, userName);
         }
 
-        private static BucketListItem VerifyRecordExists(IBucketListData blobClient, string userName)
+        private async static Task<BucketListItem> VerifyRecordExists(IBlobStorage blobClient, string userName)
         {
             Console.WriteLine("TgimbaService.cs - VerifyRecordExists(args) - Retrieving saved bucket list item from blob storage.");
 
             // NOTE: With this current design, each user could only have one saved bucket list item.  If this were for real, an Id would need be to included in the id
             var blobStorageItemId = "bucketListItem" + userName + ".txt";
 
-            var bucketListItems = blobClient.GetBucketList(blobStorageItemId);
-
-            var bucketListItem = bucketListItems[0];
+            var bucketListItem = await blobClient.GetBucketList(blobStorageItemId);
             if (bucketListItem != null)
             {
                 Console.WriteLine("TgimbaService.cs - VerifyRecordExists(args) - Bucket List item exists - Name {0}", bucketListItem.Name);
@@ -83,15 +83,16 @@ namespace Automation
             return bucketListItem;
         }
 
-        private static void Cleanup(IBucketListData blobClient, string userName, BucketListItem bucketListItem)
+        private static void Cleanup(IBlobStorage blobClient, string userName, BucketListItem bucketListItem)
         {
             Console.WriteLine("TgimbaService.cs - Cleanup(args) - Deleting saved bucket list item from blob storage.");
-            blobClient.DeleteBucketListItem(bucketListItem.Id.Value);
+            var blobStorageItemId = "bucketListItem" + userName + ".txt";
+            blobClient.DeleteBucketListItem(blobStorageItemId);
 
             Console.WriteLine("TgimbaService.cs - Cleanup(args) - Verifying bucket list item was deleted from blob storage.");
-            var bucketListItemsAfterDeletion = blobClient.GetBucketList(userName);
+            var bucketListItemsAfterDeletion = blobClient.GetBucketList(userName).Result;
 
-            if (bucketListItemsAfterDeletion != null || bucketListItemsAfterDeletion.Count > 0)
+            if (bucketListItemsAfterDeletion != null)
             {
                 Console.WriteLine("TgimbaService.cs - Cleanup(args) - Deleting bucket list item from blob storage failed.");
             }
