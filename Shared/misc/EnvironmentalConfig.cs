@@ -6,8 +6,8 @@ namespace Shared.misc
     {
         public static string GetBlobStorageConnectionString()
         {
-            var blobConnectionString = Environment.GetEnvironmentVariable("BlobStorageConnectionString");
-            
+            var blobConnectionString = "Add";
+
             return blobConnectionString;
         }
 

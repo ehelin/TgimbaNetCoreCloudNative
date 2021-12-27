@@ -343,3 +343,4 @@ healthchecksdb
 /WebUIIntegrationTests/Properties/launchSettings.json
 /TgimbaNetCoreWeb/Properties/launchSettings.json
 /WelcomeApp/Properties/launchSettings.json
+/Automation/Properties/ServiceDependencies/Automation20210930004124 - Web Deploy/profile.arm.json
