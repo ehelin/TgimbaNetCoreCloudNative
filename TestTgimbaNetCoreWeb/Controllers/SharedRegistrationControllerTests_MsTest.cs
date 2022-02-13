@@ -5,7 +5,7 @@ using TgimbaNetCoreWebShared.Controllers;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class SharedRegistrationControllerTests : BaseTest
+    public class SharedRegistrationControllerTests_MsTest : BaseTest
     {
         [TestMethod]
         public void TestSharedRegistrationController_GoodRegistration()

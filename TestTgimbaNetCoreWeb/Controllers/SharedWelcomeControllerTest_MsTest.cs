@@ -5,7 +5,7 @@ using TgimbaNetCoreWebShared.Controllers;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class SharedWelcomeControllerTest : BaseTest
+    public class SharedWelcomeControllerTest_MsTest : BaseTest
     {
         [TestMethod]
         public void TestSharedWelcomeControllerIndex()

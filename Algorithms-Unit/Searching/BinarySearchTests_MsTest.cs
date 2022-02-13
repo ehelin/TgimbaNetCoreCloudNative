@@ -7,7 +7,7 @@ using Shared.dto;
 namespace Algorithms_Unit
 {
     [TestClass]
-    public class BinarySearchTests
+    public class BinarySearchTests_MsTest
     {
         #region prototype tests
 

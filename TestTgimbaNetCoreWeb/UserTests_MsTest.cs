@@ -8,7 +8,7 @@ using TgimbaNetCoreWebShared.Controllers;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class UserTests : BaseTest
+    public class UserTests_MsTest : BaseTest
     {
         #region Process User
 

@@ -9,7 +9,7 @@ using Shared.dto;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class WebClientTest : BaseTest
+    public class WebClientTests_MsTest : BaseTest
     {
         [TestMethod]
         public void Test_GoodRegistration()

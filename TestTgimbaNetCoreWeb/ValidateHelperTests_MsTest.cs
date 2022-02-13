@@ -7,11 +7,11 @@ using TgimbaNetCoreWebShared;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class ValidateHelperTests : BaseTest
+    public class ValidateHelperTests_MsTest : BaseTest
     {
         private IValidationHelper sut = null;
 
-        public ValidateHelperTests()
+        public ValidateHelperTests_MsTest()
         {
             sut = new ValidationHelper();
         }

@@ -5,11 +5,11 @@ using Algorithms.Algorithms.Predict.Implementations;
 namespace Algorithms_Unit
 {
     [TestClass]
-    public class PredictXYTests
+    public class PredictXYTests_MsTest
     {
         private readonly IPredict sut;
 
-        public PredictXYTests()
+        public PredictXYTests_MsTest()
         {
             sut = new PredictXY();
         }

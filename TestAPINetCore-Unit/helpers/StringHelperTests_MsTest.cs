@@ -7,13 +7,13 @@ using Shared.misc;
 namespace TestAPINetCore_Unit.helpers
 {
     [TestClass]
-    public class StringHelperTests : BaseTest
+    public class StringHelperTests_MsTest : BaseTest
     {
         private IString sut = null;
         private string unencodedBase64String = "IAmAnUnBased64String";
         private string encodedBase64String = "SUFtQW5VbkJhc2VkNjRTdHJpbmc=";
 
-        public StringHelperTests() {
+        public StringHelperTests_MsTest() {
             sut = new StringHelper();
         }
 

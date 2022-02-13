@@ -6,7 +6,7 @@ using Algorithms.Algorithms.Sorting;
 namespace Algorithms_Unit
 {
     [TestClass]
-    public class SortAlgorithmTests : BaseSortingTest
+    public class SortAlgorithmTests_MsTest : BaseSortingTest
     {
         [TestMethod]
         public void SortAlgorithmGetAlgorithmLinqTest()

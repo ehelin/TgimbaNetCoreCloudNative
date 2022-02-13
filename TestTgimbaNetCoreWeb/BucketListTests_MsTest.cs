@@ -9,7 +9,7 @@ using TgimbaNetCoreWebShared.Controllers;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class BucketListTests : BaseTest
+    public class BucketListTests_MsTest : BaseTest
     {
         #region DeleteBucketListItem
 

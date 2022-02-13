@@ -7,7 +7,7 @@ using Shared.dto;
 namespace Algorithms_Unit
 {
     [TestClass]
-    public class LinqSearchingTests
+    public class LinqSearchingTests_MsTest
     {
         #region name tests
 

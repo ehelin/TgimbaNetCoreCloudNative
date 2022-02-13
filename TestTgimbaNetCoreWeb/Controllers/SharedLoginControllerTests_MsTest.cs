@@ -5,7 +5,7 @@ using TgimbaNetCoreWebShared.Controllers;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class SharedLoginControllerTests : BaseTest
+    public class SharedLoginControllerTests_MsTest : BaseTest
     {
         [TestMethod]
         public void TestSharedLoginController_GoodLogin()

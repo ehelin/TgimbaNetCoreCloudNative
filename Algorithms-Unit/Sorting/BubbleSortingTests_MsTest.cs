@@ -5,7 +5,7 @@ using Shared.misc;
 namespace Algorithms_Unit
 {
     [TestClass]
-    public class BubbleSortingTests : BaseSortingTest
+    public class BubbleSortingTests_MsTest : BaseSortingTest
     {
         #region name tests
 

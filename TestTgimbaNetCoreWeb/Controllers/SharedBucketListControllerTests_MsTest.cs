@@ -5,7 +5,7 @@ using TgimbaNetCoreWebShared;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class SharedBucketListControllerTests : BaseTest
+    public class SharedBucketListControllerTests_MsTest : BaseTest
     {
         [TestMethod]
         public void TestSharedBucketListController_Initialize()

@@ -6,11 +6,11 @@ using Shared.interfaces;
 namespace TestAPINetCore_Unit.helpers
 {
     [TestClass]
-    public class ConversionHelperTests : BaseTest
+    public class ConversionHelperTests_MsTest : BaseTest
     {
         private IConversion sut = null;
 
-        public ConversionHelperTests() {
+        public ConversionHelperTests_MsTest() {
             sut = new ConversionHelper();
         }
 

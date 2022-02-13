@@ -12,7 +12,7 @@ using TgimbaNetCoreWebShared.Controllers;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class MiscTests : BaseTest
+    public class MiscTests_MsTest : BaseTest
     {
         #region GetSystemBuildStatistics
 

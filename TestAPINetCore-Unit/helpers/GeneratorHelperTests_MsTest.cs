@@ -7,11 +7,11 @@ using Shared.misc.testUtilities;
 namespace TestAPINetCore_Unit.helpers
 {
     [TestClass]
-    public class GeneratorHelperTests : BaseTest
+    public class GeneratorHelperTests_MsTest : BaseTest
     {
         private IGenerator sut = null;
 
-        public GeneratorHelperTests() 
+        public GeneratorHelperTests_MsTest() 
         {
             sut = new GeneratorHelper();
         }

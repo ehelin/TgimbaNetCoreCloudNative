@@ -6,7 +6,7 @@ using SharedWeb = TgimbaNetCoreWebShared;
 namespace TestTgimbaNetCoreWeb
 {
     [TestClass]
-    public class UtilitiesTest : BaseTest
+    public class UtilitiesTests_MsTest : BaseTest
     {
         [TestMethod]
         public void Test_IsMobileTrue()

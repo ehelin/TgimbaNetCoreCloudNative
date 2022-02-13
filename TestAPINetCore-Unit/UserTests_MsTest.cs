@@ -7,7 +7,7 @@ using Shared.misc.testUtilities;
 namespace TestAPINetCore_Unit
 {
     [TestClass]
-    public class UserTests : BaseTest
+    public class UserTests_MsTest : BaseTest
     {
         [TestCleanup]
         public void Cleanup()

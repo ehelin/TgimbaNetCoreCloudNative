@@ -8,7 +8,7 @@ using Shared.misc.testUtilities;
 namespace TestAPINetCore_Unit
 {
     [TestClass]
-    public class BucketListTests : BaseTest
+    public class BucketListTests_MsTest : BaseTest
     {
         [TestCleanup]
         public void Cleanup()

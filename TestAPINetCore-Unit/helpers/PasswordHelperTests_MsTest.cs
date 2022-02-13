@@ -10,11 +10,11 @@ using Shared.misc.testUtilities;
 namespace TestAPINetCore_Unit.helpers
 {
     [TestClass]
-    public class PasswordHelperTests : BaseTest
+    public class PasswordHelperTests_MsTest : BaseTest
     {
         private IPassword sut = null;
 
-        public PasswordHelperTests() {
+        public PasswordHelperTests_MsTest() {
             sut = new PasswordHelper();
         }
 
