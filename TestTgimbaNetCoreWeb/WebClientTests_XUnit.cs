@@ -1,17 +1,17 @@
 using System.Net.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TgimbaNetCoreWebShared;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Shared.dto;
+using Xunit;
 
 namespace TestTgimbaNetCoreWeb
 {
-    [TestClass]
-    public class WebClientTests_MsTest : BaseTest
+    public class WebClientTests_XUnit : BaseTest
     {
-        [TestMethod]
+        [Fact]
         public void Test_GoodRegistration()
         {
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuserregistration")),
@@ -22,13 +22,13 @@ namespace TestTgimbaNetCoreWeb
                                                                     "base64EncodedGoodEmail", 
                                                                         "base64EncodedGoodPass");
 
-            Assert.AreEqual(true, goodRegistration);
+            Assert.True(goodRegistration);
             mockTgimbaHttpClient.Verify(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuserregistration")),
                                                      It.IsAny<StringContent>())
                                                              , Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void Test_BadRegistration()
         {
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuserregistration")),
@@ -39,13 +39,13 @@ namespace TestTgimbaNetCoreWeb
                                                                       "base64EncodedBadEmail", 
                                                                            "base64EncodedBadPass");
 
-            Assert.AreEqual(false, goodRegistration);
+            Assert.False(goodRegistration);
             mockTgimbaHttpClient.Verify(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuserregistration")),
                                                      It.IsAny<StringContent>())
                                                              , Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void Test_GoodLogin()
         {
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuser")),
@@ -54,13 +54,13 @@ namespace TestTgimbaNetCoreWeb
 
             string token = GetWebClient().Login("base64EncodedGoodUser", "base64EncodedGoodPass");
 
-            Assert.AreEqual("token", token);
+            Assert.Equal("token", token);
             mockTgimbaHttpClient.Verify(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuser")),
                                                       It.IsAny<StringContent>())
                                                                 , Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void Test_BadLogin()
         {
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuser")),
@@ -69,13 +69,13 @@ namespace TestTgimbaNetCoreWeb
 
             string token = GetWebClient().Login("base64EncodedBadUser", "base64EncodedBadPass");
 
-            Assert.AreEqual("", token);
+            Assert.Equal("", token);
             mockTgimbaHttpClient.Verify(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuser")),
                                                       It.IsAny<StringContent>())
                                                                 , Times.Once);
         }
-        
-        [TestMethod]
+
+        [Fact]
         public void Test_GoodAddBucketListItem()
         {
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", "newBucketListItem", null, true);
@@ -85,13 +85,13 @@ namespace TestTgimbaNetCoreWeb
 
             var bucketListAdded = GetWebClient().AddBucketListItem(bucketListItemModel, "base64EncodedGoodUser", "base64EncodedGoodToken");
 
-            Assert.IsTrue(bucketListAdded);
+            Assert.True(bucketListAdded);
             mockTgimbaHttpClient.Verify(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/upsert")),
                                                       It.IsAny<StringContent>())
                                                                 , Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void Test_BadAddBucketListItem()
         {
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", "newBucketListItem", null, true);
@@ -101,13 +101,13 @@ namespace TestTgimbaNetCoreWeb
 
             var bucketListAdded = GetWebClient().AddBucketListItem(bucketListItemModel, "base64EncodedGoodUser", "base64EncodedGoodToken");
 
-            Assert.IsFalse(bucketListAdded);
+            Assert.False(bucketListAdded);
             mockTgimbaHttpClient.Verify(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/upsert")),
                                                       It.IsAny<StringContent>())
                                                                 , Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void Test_GoodEditBucketListItem()
         {
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", "newBucketListItem", null, true);
@@ -117,13 +117,13 @@ namespace TestTgimbaNetCoreWeb
 
             var bucketListAdded = GetWebClient().AddBucketListItem(bucketListItemModel, "base64EncodedGoodUser", "base64EncodedGoodToken");
 
-            Assert.IsTrue(bucketListAdded);
+            Assert.True(bucketListAdded);
             mockTgimbaHttpClient.Verify(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/upsert")),
                                                       It.IsAny<StringContent>())
                                                                 , Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void Test_BadEditBucketListItem()
         {
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", "newBucketListItem", null, true);
@@ -133,13 +133,13 @@ namespace TestTgimbaNetCoreWeb
 
             var bucketListAdded = GetWebClient().AddBucketListItem(bucketListItemModel, "base64EncodedGoodUser", "base64EncodedGoodToken");
 
-            Assert.IsFalse(bucketListAdded);
+            Assert.False(bucketListAdded);
             mockTgimbaHttpClient.Verify(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/upsert")),
                                                       It.IsAny<StringContent>())
                                                                 , Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void Test_GoodGetBucketListItems()
         {
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", 
@@ -170,15 +170,15 @@ namespace TestTgimbaNetCoreWeb
                                                                     "base64EncodedGoodToken",
                                                                     "base64EncodedGoodSrchTerm");
 
-            Assert.IsNotNull(results);
-            Assert.AreEqual("newBucketListItem", results[0].Name);
+            Assert.NotNull(results);
+            Assert.Equal("newBucketListItem", results[0].Name);
             mockTgimbaHttpClient.Verify(x => x.Get(It.Is<string>(s => s.Contains("/api/tgimbaapi/getbucketlistitems")),
                 It.IsAny<string>(),
                 It.IsAny<string>())
                 , Times.Once);
         }
 
-        [TestMethod]
+        [Fact]
         public void Test_BadGetBucketListItems()
         {
             mockTgimbaHttpClient.Setup(x => x.Get(It.Is<string>(s => s.Contains("/api/tgimbaapi/getbucketlistitems")),
@@ -188,7 +188,7 @@ namespace TestTgimbaNetCoreWeb
 
             var bucketItemList = GetWebClient().GetBucketListItems("", "", "");
 
-            Assert.IsNull(bucketItemList);
+            Assert.Null(bucketItemList);
             mockTgimbaHttpClient.Verify(x => x.Get(It.Is<string>(s => s.Contains("/api/tgimbaapi/getbucketlistitems")),
               It.IsAny<string>(),
               It.IsAny<string>())
