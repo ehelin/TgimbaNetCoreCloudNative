@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shared.dto.api;
 using TgimbaNetCoreWebShared;
 using TgimbaNetCoreWebShared.Models;
 using SharedInterfaces = Shared.interfaces;
+using Xunit;
 
 namespace TestTgimbaNetCoreWeb
 {
@@ -152,17 +152,17 @@ namespace TestTgimbaNetCoreWeb
 
         protected void BadResultVerify(IActionResult result, int code = 400)
         {
-            Assert.IsNotNull(result);
+            Assert.NotNull(result);
 
             if (code == 400)
             {
                 var badResult = (BadRequestResult)result;
-                Assert.AreEqual(code, badResult.StatusCode);
+                Assert.Equal(code, badResult.StatusCode);
                 tgimbaService.Verify(x => x.Log(It.Is<string>(s => s.Contains("400 BadRequest"))), Times.Once);
             }
             else
             {
-                Assert.AreEqual(code, Convert.ToInt32(HttpStatusCode.InternalServerError));
+                Assert.Equal(code, Convert.ToInt32(HttpStatusCode.InternalServerError));
                 tgimbaService.Verify(x => x.Log(It.IsAny<string>()), Times.Once);
             }
         }
@@ -171,8 +171,8 @@ namespace TestTgimbaNetCoreWeb
         {
             OkObjectResult requestResult = (OkObjectResult)result;
 
-            Assert.IsNotNull(requestResult);
-            Assert.AreEqual(200, requestResult.StatusCode);
+            Assert.NotNull(requestResult);
+            Assert.Equal(200, requestResult.StatusCode);
             tgimbaService.Verify(x => x.Log(It.IsAny<string>()), Times.Never);
         }
 

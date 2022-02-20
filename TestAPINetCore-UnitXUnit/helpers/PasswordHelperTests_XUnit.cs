@@ -13,8 +13,10 @@ namespace TestAPINetCore_Unit.helpers
     {
         private IPassword sut = null;
 
-        public PasswordHelperTests_XUnit() {
+        public PasswordHelperTests_XUnit() 
+        {
             sut = new PasswordHelper();
+            SetUp();
         }
 
         //[TestCleanup]

@@ -13,6 +13,7 @@ namespace TestAPINetCore_Unit.helpers
         public GeneratorHelperTests_XUnit() 
         {
             sut = new GeneratorHelper();
+            SetUp();
         }
 
         //[TestCleanup]
