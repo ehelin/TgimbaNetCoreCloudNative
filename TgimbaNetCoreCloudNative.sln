@@ -40,17 +40,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALBlobStorage", "DALBlobSt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsShared-Unit", "TestShared\TestsShared-Unit.csproj", "{90161662-0FEB-42A3-B299-A15E5F6ADC8C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsAlgorithms-UnitMSTest", "Algorithms-UnitMSTest\TestsAlgorithms-UnitMSTest.csproj", "{DEBDECF1-96B7-4391-9DD3-A65230ADE630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms-Unit-MSTest-Tests", "Algorithms-UnitMSTest\Algorithms-Unit-MSTest-Tests.csproj", "{DEBDECF1-96B7-4391-9DD3-A65230ADE630}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsBLLNetCore-UnitMSTest", "TestAPINetCore-UnitMSTest\TestsBLLNetCore-UnitMSTest.csproj", "{0E204A23-AB7F-4B57-AB75-1F8893DD90CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL-Unit-MSTest-Tests", "TestAPINetCore-UnitMSTest\BLL-Unit-MSTest-Tests.csproj", "{0E204A23-AB7F-4B57-AB75-1F8893DD90CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsTgimbaNetCoreWeb-UnitMSTest", "TestTgimbaNetCoreWebMSTest\TestsTgimbaNetCoreWeb-UnitMSTest.csproj", "{45BD6AC1-8E32-474A-93C5-20BC6961EF8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgimbaNetCoreWebShared-Unit-MSTest-Tests", "TestTgimbaNetCoreWebMSTest\TgimbaNetCoreWebShared-Unit-MSTest-Tests.csproj", "{45BD6AC1-8E32-474A-93C5-20BC6961EF8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms-UnitXUnit", "Algorithms-UnitXUnit\Algorithms-UnitXUnit.csproj", "{14E0965B-7652-451D-BBF2-0780A0125BD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms-Unit-XUnit-Tests", "Algorithms-UnitXUnit\Algorithms-Unit-XUnit-Tests.csproj", "{14E0965B-7652-451D-BBF2-0780A0125BD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAPINetCore-UnitXUnit", "TestAPINetCore-UnitXUnit\TestAPINetCore-UnitXUnit.csproj", "{0E8C97F7-C9E0-4B36-B2BC-F6C9360F18B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL-Unit-XUnit-Tests", "TestAPINetCore-UnitXUnit\BLL-Unit-XUnit-Tests.csproj", "{0E8C97F7-C9E0-4B36-B2BC-F6C9360F18B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTgimbaNetCoreWebXUnit", "TestTgimbaNetCoreWebXUnit\TestTgimbaNetCoreWebXUnit.csproj", "{9B23D987-1EAB-4C4C-B52D-096E07E00130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgimbaNetCoreWebShared-Unit-XUnit-Tests", "TestTgimbaNetCoreWebXUnit\TgimbaNetCoreWebShared-Unit-XUnit-Tests.csproj", "{9B23D987-1EAB-4C4C-B52D-096E07E00130}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
