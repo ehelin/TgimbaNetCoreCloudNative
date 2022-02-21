@@ -1,4 +1,4 @@
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shared.dto;
 using Shared.misc;
@@ -7,18 +7,25 @@ using Shared.misc.testUtilities;
 
 namespace TestAPINetCore_Unit
 {
-    public class BucketListTests_XUnit : BaseTest
+    [TestClass]
+    public class BucketListTests : BaseTest
     {
-        public BucketListTests_XUnit()
+        [TestCleanup]
+        public void Cleanup()
+        {
+            TestUtilities.ClearEnvironmentalVariablesForUnitTests();
+        }
+
+        [TestInitialize]
+        public void SetUp()
         {
             TestUtilities.SetEnvironmentalVariablesForUnitTests();
-            //TestUtilities.ClearEnvironmentalVariablesForUnitTests();
         }
 
         #region DeletetBucketListItem(args)
 
-        [Theory]
-        [InlineData(true)]
+        [DataTestMethod]
+        [DataRow(true)]
         //[DataRow(false)]
         public void DeletetBucketListItem_HappyPathTest(bool returnValidToken)
         {
@@ -36,7 +43,7 @@ namespace TestAPINetCore_Unit
                                                     returnValidToken);
 
             var response = this.service.DeleteBucketListItem(dbBucketListItemId, encodedUser, encodedToken);
-            Assert.True(returnValidToken ? response == true : response == false);
+            Assert.IsTrue(returnValidToken ? response == true : response == false);
 
             DeletetBucketListItem_HappyPathTest_Asserts(encodedUser, encodedToken,
                                                         decodedUser, decodedToken, userToReturn,
@@ -118,9 +125,9 @@ namespace TestAPINetCore_Unit
 
         #region UpsertBucketListItem(args)
 
-        [Theory]
-        [InlineData(true)]         
-        [InlineData(false)] 
+        [DataTestMethod]
+        [DataRow(true)]         
+        [DataRow(false)] 
         public void UpsertBucketListItem_HappyPathTest(bool returnValidToken)
         {
             var encodedUser = "base64=>username";
@@ -136,7 +143,7 @@ namespace TestAPINetCore_Unit
                                                     returnValidToken);
 
             var response = this.service.UpsertBucketListItem(bucketListItemToReturn, encodedUser, encodedToken);
-            Assert.True(returnValidToken ? response == true : response == false);
+            Assert.IsTrue(returnValidToken ? response == true : response == false);
 
             UpsertBucketListItem_HappyPathTest_Asserts(encodedUser, encodedToken,
                                                         decodedUser, decodedToken, userToReturn,
@@ -217,13 +224,13 @@ namespace TestAPINetCore_Unit
 
         #region GetBucketListItems(args)
 
-        [Theory]
-        [InlineData(true, null)]                   //valid token/null sort string    
-        [InlineData(true, "")]                     //valid token/empty sort string  
-        [InlineData(true, "ListItemName")]           //valid token/sort string    
-        [InlineData(false, null)]                  //invalid token/null sort string    
-        [InlineData(false, "")]                    //invalid token/empty sort string  
-        [InlineData(false, "ListItemName")]          //invalid token/sort string    
+        [DataTestMethod]
+        [DataRow(true, null)]                   //valid token/null sort string    
+        [DataRow(true, "")]                     //valid token/empty sort string  
+        [DataRow(true, "ListItemName")]           //valid token/sort string    
+        [DataRow(false, null)]                  //invalid token/null sort string    
+        [DataRow(false, "")]                    //invalid token/empty sort string  
+        [DataRow(false, "ListItemName")]          //invalid token/sort string    
         public void GetBucketListItems_Tests(bool isValidToken, string sortString)
         {
             var encodedUser = "base64=>username";
@@ -253,12 +260,12 @@ namespace TestAPINetCore_Unit
             var response = this.service.GetBucketListItems(encodedUser, encodedSortString, encodedToken, encodedSrchString, encodedSortType, encodedSearchType);
             if (isValidToken)
             {
-                Assert.NotNull(response);
-                Assert.Equal("Bucket list item", response[0].Name);
+                Assert.IsNotNull(response);
+                Assert.AreEqual("Bucket list item", response[0].Name);
             } 
             else 
             {
-                Assert.Null(response);
+                Assert.IsNull(response);
             }
 
             GetBucketListItems_HappyPathTest_Asserts(encodedUser, encodedSortString, encodedToken, 

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shared.dto;
 using Shared;
@@ -8,17 +8,24 @@ using Shared.misc.testUtilities;
 
 namespace TestAPINetCore_Unit
 {
-    public class MiscTests_XUnit : BaseTest
+    [TestClass]
+    public class MiscTests : BaseTest
     {
-        public MiscTests_XUnit()
+        [TestCleanup]
+        public void Cleanup()
         {
-            TestUtilities.SetEnvironmentalVariablesForUnitTests();
-            //TestUtilities.ClearEnvironmentalVariablesForUnitTests();
+            TestUtilities.ClearEnvironmentalVariablesForUnitTests();
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
+        [TestInitialize]
+        public void SetUp()
+        {
+            TestUtilities.SetEnvironmentalVariablesForUnitTests();
+        }
+
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
         public void LogAuthenticated_HappyPathTest(bool isValidToken)
         {
             var msg = "I am a message";
@@ -38,7 +45,7 @@ namespace TestAPINetCore_Unit
             TestTokenVerifies(testToken);
         }
 
-        [Fact]
+        [TestMethod]
         public void Log_HappyPathTest()
         {
             var msg = "I am a message";
@@ -48,9 +55,9 @@ namespace TestAPINetCore_Unit
             this.mockBucketListData.Verify(x => x.LogMsg(It.Is<string>(s => s.Contains(msg))), Times.Once);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
         public void GetSystemStatistics_HappyPathTest(bool isValidToken)
         {
             var testToken = SetUpTokenForTesting(isValidToken);
@@ -69,24 +76,24 @@ namespace TestAPINetCore_Unit
 
             if (isValidToken)
             {
-                Assert.NotNull(systemStatistics);
-                Assert.Equal(systemStatisticToReturn.WebSiteIsUp, systemStatistics[0].WebSiteIsUp);
-                Assert.Equal(systemStatisticToReturn.DatabaseIsUp, systemStatistics[0].DatabaseIsUp);
-                Assert.Equal(systemStatisticToReturn.AzureFunctionIsUp, systemStatistics[0].AzureFunctionIsUp);
-                Assert.Equal(systemStatisticToReturn.Created, systemStatistics[0].Created);
+                Assert.IsNotNull(systemStatistics);
+                Assert.AreEqual(systemStatisticToReturn.WebSiteIsUp, systemStatistics[0].WebSiteIsUp);
+                Assert.AreEqual(systemStatisticToReturn.DatabaseIsUp, systemStatistics[0].DatabaseIsUp);
+                Assert.AreEqual(systemStatisticToReturn.AzureFunctionIsUp, systemStatistics[0].AzureFunctionIsUp);
+                Assert.AreEqual(systemStatisticToReturn.Created, systemStatistics[0].Created);
                 this.mockBucketListData.Verify(x => x.GetSystemStatistics(), Times.Once);
             }
             else
             {
-                Assert.Null(systemStatistics);
+                Assert.IsNull(systemStatistics);
             }
 
             TestTokenVerifies(testToken);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
         public void GetSystemBuildStatistics_HappyPathTest(bool isValidToken)
         {
             var testToken = SetUpTokenForTesting(isValidToken);
@@ -106,33 +113,33 @@ namespace TestAPINetCore_Unit
 
             if (isValidToken)
             {
-                Assert.NotNull(systemBuildStatistics);
-                Assert.Equal(systemBuildStatisticToReturn.Start, systemBuildStatistics[0].Start);
-                Assert.Equal(systemBuildStatisticToReturn.End, systemBuildStatistics[0].End);
-                Assert.Equal(systemBuildStatisticToReturn.BuildNumber, systemBuildStatistics[0].BuildNumber);
-                Assert.Equal(systemBuildStatisticToReturn.Status, systemBuildStatistics[0].Status);
+                Assert.IsNotNull(systemBuildStatistics);
+                Assert.AreEqual(systemBuildStatisticToReturn.Start, systemBuildStatistics[0].Start);
+                Assert.AreEqual(systemBuildStatisticToReturn.End, systemBuildStatistics[0].End);
+                Assert.AreEqual(systemBuildStatisticToReturn.BuildNumber, systemBuildStatistics[0].BuildNumber);
+                Assert.AreEqual(systemBuildStatisticToReturn.Status, systemBuildStatistics[0].Status);
                 this.mockBucketListData.Verify(x => x.GetSystemBuildStatistics(), Times.Once);
             }
             else
             {
-                Assert.Null(systemBuildStatistics);
+                Assert.IsNull(systemBuildStatistics);
             }
 
             TestTokenVerifies(testToken);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetTestResult_HappyPathTest()
         {
             var testResult = this.service.GetTestResult();
 
-            Assert.NotNull(testResult);
-            Assert.Equal(Constants.API_TEST_RESULT, testResult);
+            Assert.IsNotNull(testResult);
+            Assert.AreEqual(Constants.API_TEST_RESULT, testResult);
         }
 
         #region Login Demo User Tests
 
-        [Fact]
+        [TestMethod]
         public void LoginDemoUser_HappyPathTest()
         {
             var jwtToken = "jwtToken";
@@ -149,7 +156,7 @@ namespace TestAPINetCore_Unit
             LoginDemoUserTest_Asserts(token, jwtToken, jwtPrivateKey, jwtIssuer, demoUserToReturn, expectedHashPasswordParameter, expectedHashPasswordToReturn);
         }
 
-        [Fact]
+        [TestMethod]
         public void LoginDemoUser_PasswordsDoNotMatch()
         {
             var demoUserToReturn = GetUser(1, Constants.DEMO_USER, Constants.DEMO_USER_PASSWORD);
@@ -158,15 +165,15 @@ namespace TestAPINetCore_Unit
                     .Returns(demoUserToReturn);
             var token = this.service.LoginDemoUser();
 
-            Assert.Null(token);
+            Assert.IsNull(token);
         }
 
-        [Fact]
+        [TestMethod]
         public void LoginDemoUser_UserDoesNotExist()
         {
             var token = this.service.LoginDemoUser();
 
-            Assert.Null(token);
+            Assert.IsNull(token);
         }
 
         #region private methods
@@ -214,9 +221,9 @@ namespace TestAPINetCore_Unit
             Password expectedHashPasswordToReturn
         )
         {
-            Assert.NotNull(token);
-            Assert.True(token.Length > 0);
-            Assert.Equal(jwtToken, token);
+            Assert.IsNotNull(token);
+            Assert.IsTrue(token.Length > 0);
+            Assert.AreEqual(jwtToken, token);
 
             this.mockPassword
                 .Verify(x => x.HashPassword(

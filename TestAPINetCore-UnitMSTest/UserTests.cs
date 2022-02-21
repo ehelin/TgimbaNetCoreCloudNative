@@ -1,4 +1,4 @@
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Shared;
 using Shared.dto;
@@ -6,19 +6,26 @@ using Shared.misc.testUtilities;
 
 namespace TestAPINetCore_Unit
 {
-    public class UserTests_XUnit : BaseTest
+    [TestClass]
+    public class UserTests : BaseTest
     {
-        public UserTests_XUnit()
+        [TestCleanup]
+        public void Cleanup()
+        {
+            TestUtilities.ClearEnvironmentalVariablesForUnitTests();
+        }
+
+        [TestInitialize]
+        public void SetUp()
         {
             TestUtilities.SetEnvironmentalVariablesForUnitTests();
-            //TestUtilities.ClearEnvironmentalVariablesForUnitTests();
         }
 
         #region ProcessUser(args)
 
-        [Theory]
-        [InlineData(true)]         // token is returned by generator helper
-        [InlineData(false)]        // token is not returned by generator helper (only covers null...not empty string)
+        [DataTestMethod]
+        [DataRow(true)]         // token is returned by generator helper
+        [DataRow(false)]        // token is not returned by generator helper (only covers null...not empty string)
         public void ProcessUser_HappyPathTest(bool tokenIsGenerated)
         {
             var encodedUserName = "base64=>userName";
@@ -50,7 +57,7 @@ namespace TestAPINetCore_Unit
                                                 userToReturn, tokenIsGenerated);
         }
 
-        [Fact]
+        [TestMethod]
         public void ProcessUser_UserIsNull()
         {
             var encodedUserName = "base64=>userName";
@@ -63,7 +70,7 @@ namespace TestAPINetCore_Unit
 
             var token = this.service.ProcessUser(encodedUserName, encodedPassword);
 
-            Assert.True(token == "");
+            Assert.IsTrue(token == "");
             this.mockString.Verify(x => x.DecodeBase64String
                                                    (It.Is<string>(s => s == encodedUserName))
                                                        , Times.Once);
@@ -75,7 +82,7 @@ namespace TestAPINetCore_Unit
                                                         , Times.Once);
         }
         
-        [Fact]
+        [TestMethod]
         public void ProcessUser_PasswordsDoNotMatch()
         {
             var encodedUserName = "base64=>userName";
@@ -103,7 +110,7 @@ namespace TestAPINetCore_Unit
 
             var token = this.service.ProcessUser(encodedUserName, encodedPassword);
 
-            Assert.True(token == "");
+            Assert.IsTrue(token == "");
             this.mockString.Verify(x => x.DecodeBase64String
                                                    (It.Is<string>(s => s == encodedUserName))
                                                        , Times.Once);
@@ -195,14 +202,14 @@ namespace TestAPINetCore_Unit
 
             if (tokenIsGenerated)
             {
-                Assert.NotNull(token);
-                Assert.True(token.Length > 0);
+                Assert.IsNotNull(token);
+                Assert.IsTrue(token.Length > 0);
                 this.mockBucketListData.Verify(x => x.AddToken(It.Is<long>(s => s == user.UserId),
                                                             It.Is<string>(s => s == token))
                                                             , Times.Once);
             } else
             {
-                Assert.Null(token);
+                Assert.IsNull(token);
                 this.mockBucketListData.Verify(x => x.AddToken(It.Is<long>(s => s == user.UserId),
                                                                 It.Is<string>(s => s == token))
                                                                 , Times.Never);
@@ -213,7 +220,7 @@ namespace TestAPINetCore_Unit
 
         #region ProcessUserRegistration(args)
 
-        [Fact]
+        [TestMethod]
         public void ProcessUserRegistration_HappyPathTest()
         {
             var encodedUserName = "base64=>userName";
@@ -234,19 +241,19 @@ namespace TestAPINetCore_Unit
 
             var userRegistered = this.service.ProcessUserRegistration(encodedUserName, encodedEmail, encodedPassword);
 
-            Assert.True(userRegistered);
+            Assert.IsTrue(userRegistered);
 
             ProcessUserRegistration_Asserts(encodedUserName, encodedPassword, encodedEmail,
                                                         decodedUserNameToReturn, decodedPasswordToReturn,
                                                         decodedEmailToReturn, saltToReturn, saltedPasswordToReturn);
         }
 
-        [Fact]
+        [TestMethod]
         public void ProcessUserRegistration_NotValidUserRegistration()
         {
             var userRegistered = this.service.ProcessUserRegistration(null, null, null);
 
-            Assert.False(userRegistered);
+            Assert.IsFalse(userRegistered);
             
             this.mockPassword.Verify(x => x.IsValidUserToRegister
                         (It.Is<string>(s => s == null),
@@ -259,7 +266,7 @@ namespace TestAPINetCore_Unit
             this.mockBucketListData.Verify(x => x.AddUser(It.IsAny<User>()), Times.Never);
         }
 
-        [Fact]
+        [TestMethod]
         public void ProcessUserRegistration_UserNotAdded()
         {
             var encodedUserName = "base64=>userName";
@@ -280,7 +287,7 @@ namespace TestAPINetCore_Unit
 
             var userRegistered = this.service.ProcessUserRegistration(encodedUserName, encodedEmail, encodedPassword);
 
-            Assert.False(userRegistered);
+            Assert.IsFalse(userRegistered);
 
             ProcessUserRegistration_Asserts(encodedUserName, encodedPassword, encodedEmail,
                                                         decodedUserNameToReturn, decodedPasswordToReturn,
