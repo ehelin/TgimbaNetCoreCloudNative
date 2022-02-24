@@ -8,6 +8,7 @@ using TgimbaNetCoreWebShared.Controllers;
 
 namespace TestTgimbaNetCoreWeb
 {
+    [NonParallelizable]
     public class BucketListTests : BaseTest
     {
         #region DeleteBucketListItem
@@ -15,6 +16,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void DeleteBucketListItem_HappyPathTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetDeleteListItemRequest();
@@ -27,6 +30,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void DeleteBucketListItem_ValidationErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetDeleteListItemRequest();
@@ -45,6 +50,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void DeleteBucketListItem_GeneralErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetDeleteListItemRequest();
@@ -65,6 +72,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void GetBucketListItem_HappyPathTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetBucketListItemRequest();
@@ -83,6 +92,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void GetBucketListItem_ValidationErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetBucketListItemRequest();
@@ -106,6 +117,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void GetBucketListItem_GeneralErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetBucketListItemRequest();
@@ -129,6 +142,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void UpsertBucketListItem_HappyPathTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetUpsertRequest();
@@ -141,6 +156,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void LogMessage_HappyPathTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetLogMessageRequest();
@@ -161,6 +178,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void LogMessage_ValidationError()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetLogMessageRequest();
@@ -182,6 +201,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void UpsertBucketListItem_ValidationErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetUpsertRequest();
@@ -199,6 +220,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void UpsertBucketListItem_GeneralErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetUpsertRequest();

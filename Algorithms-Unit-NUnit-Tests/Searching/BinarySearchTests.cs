@@ -6,6 +6,7 @@ using Shared.dto;
 
 namespace Algorithms_Unit
 {
+    [NonParallelizable]
     public class BinarySearchTests
     {
         #region prototype tests

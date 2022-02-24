@@ -4,11 +4,14 @@ using TgimbaNetCoreWebShared.Controllers;
 
 namespace TestTgimbaNetCoreWeb
 {
+    [NonParallelizable]
     public class SharedWelcomeControllerTests : BaseTest
     {
         [Test]
         public void TestSharedWelcomeControllerIndex()
         {
+            Initialize();
+
             SharedWelcomeController welcomeController = new SharedWelcomeController(this.mockWebClient.Object);
 
             IActionResult result = welcomeController.Index();

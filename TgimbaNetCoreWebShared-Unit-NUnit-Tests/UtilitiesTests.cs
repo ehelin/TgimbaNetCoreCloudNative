@@ -5,6 +5,7 @@ using SharedWeb = TgimbaNetCoreWebShared;
 
 namespace TestTgimbaNetCoreWeb
 {
+    [NonParallelizable]
     public class UtilitiesTests : BaseTest
     {
         [Test]

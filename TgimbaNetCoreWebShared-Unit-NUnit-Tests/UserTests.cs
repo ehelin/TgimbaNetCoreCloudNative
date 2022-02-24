@@ -7,6 +7,7 @@ using TgimbaNetCoreWebShared.Controllers;
 
 namespace TestTgimbaNetCoreWeb
 {
+    [NonParallelizable]
     public class UserTests : BaseTest
     {
         #region Process User
@@ -14,6 +15,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void ProcessUser_HappyPathTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetLoginRequest();
@@ -39,6 +42,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void ProcessUser_ValidationErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetLoginRequest();
@@ -55,6 +60,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void ProcessUser_GeneralErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = GetLoginRequest();
@@ -74,6 +81,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void ProcessUserRegistration_HappyPathTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var email = "email";
@@ -102,6 +111,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void ProcessUserRegistration_ErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var registration = new RegistrationRequest() { Login = GetLoginRequest(), EncodedEmail = "email" };
@@ -119,6 +130,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void ProcessUserRegistration_GeneralErrorTest()
         {
+            Initialize();
+
             var tgimbaApi = new SharedTgimbaApiController(this.tgimbaService.Object, this.validationHelper.Object);
 
             var request = new RegistrationRequest() { Login = GetLoginRequest(), EncodedEmail = "email" };

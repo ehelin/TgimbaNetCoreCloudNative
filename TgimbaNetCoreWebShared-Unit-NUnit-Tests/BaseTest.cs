@@ -20,6 +20,10 @@ namespace TestTgimbaNetCoreWeb
 
         public BaseTest()
         {
+        }
+
+        protected void Initialize()
+        {
             mockWebClient = new Mock<IWebClient>();
             mockTgimbaHttpClient = new Mock<ITgimbaHttpClient>();
             tgimbaService = new Mock<SharedInterfaces.ITgimbaService>();

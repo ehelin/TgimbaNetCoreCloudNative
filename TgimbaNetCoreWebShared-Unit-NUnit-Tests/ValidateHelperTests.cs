@@ -6,6 +6,7 @@ using TgimbaNetCoreWebShared;
 
 namespace TestTgimbaNetCoreWeb
 {
+    [NonParallelizable]
     public class ValidateHelperTests : BaseTest
     {
         private IValidationHelper sut = null;

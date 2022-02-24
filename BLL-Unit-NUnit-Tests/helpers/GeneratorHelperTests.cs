@@ -6,6 +6,7 @@ using Shared.misc.testUtilities;
 
 namespace TestAPINetCore_Unit.helpers
 {
+    [NonParallelizable]
     public class GeneratorHelperTests : BaseTest
     {
         private IGenerator sut = null;

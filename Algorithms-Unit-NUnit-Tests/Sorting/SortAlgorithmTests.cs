@@ -5,6 +5,7 @@ using Algorithms.Algorithms.Sorting;
 
 namespace Algorithms_Unit
 {
+    [NonParallelizable]
     public class SortAlgorithmTests : BaseSortingTest
     {
         [Test]

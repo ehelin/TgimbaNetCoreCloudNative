@@ -8,11 +8,14 @@ using Shared.dto;
 
 namespace TestTgimbaNetCoreWeb
 {
+    [NonParallelizable]
     public class WebClientTests : BaseTest
     {
         [Test]
         public void Test_GoodRegistration()
         {
+            Initialize();
+
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuserregistration")),
                                                         It.IsAny<StringContent>()))
                                                                 .Returns("true");
@@ -30,6 +33,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_BadRegistration()
         {
+            Initialize();
+
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuserregistration")),
                                                         It.IsAny<StringContent>()))
                                                                 .Returns("false");
@@ -47,6 +52,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_GoodLogin()
         {
+            Initialize();
+
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuser")),
                                                       It.IsAny<StringContent>()))
                                                               .Returns("token");
@@ -62,6 +69,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_BadLogin()
         {
+            Initialize();
+
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/processuser")),
                                                       It.IsAny<StringContent>()))
                                                               .Returns("");
@@ -77,6 +86,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_GoodAddBucketListItem()
         {
+            Initialize();
+
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", "newBucketListItem", null, true);
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/upsert")),
                                                       It.IsAny<StringContent>()))
@@ -93,6 +104,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_BadAddBucketListItem()
         {
+            Initialize();
+
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", "newBucketListItem", null, true);
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/upsert")),
                                                       It.IsAny<StringContent>()))
@@ -109,6 +122,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_GoodEditBucketListItem()
         {
+            Initialize();
+
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", "newBucketListItem", null, true);
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/upsert")),
                                                       It.IsAny<StringContent>()))
@@ -125,6 +140,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_BadEditBucketListItem()
         {
+            Initialize();
+
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", "newBucketListItem", null, true);
             mockTgimbaHttpClient.Setup(x => x.Post(It.Is<string>(s => s.Contains("/api/tgimbaapi/upsert")),
                                                       It.IsAny<StringContent>()))
@@ -141,6 +158,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_GoodGetBucketListItems()
         {
+            Initialize();
+
             var bucketListItemModel = GetBucketListItemModel("base64EncodedGoodUser", 
                                                                 "newBucketListItem", 
                                                                     null, 
@@ -180,6 +199,8 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void Test_BadGetBucketListItems()
         {
+            Initialize();
+
             mockTgimbaHttpClient.Setup(x => x.Get(It.Is<string>(s => s.Contains("/api/tgimbaapi/getbucketlistitems")),
              It.IsAny<string>(),
              It.IsAny<string>()))

@@ -4,6 +4,7 @@ using Shared.misc;
 
 namespace Algorithms_Unit
 {
+    [NonParallelizable]
     public class InsertionSortTests : BaseSortingTest
     {
         #region name tests

@@ -6,7 +6,8 @@ using Shared.misc.testUtilities;
 
 namespace TestAPINetCore_Unit
 {
-	public class UserTests : BaseTest
+    [NonParallelizable]
+    public class UserTests : BaseTest
     {
         [TearDown]
         public void Cleanup()
@@ -26,6 +27,8 @@ namespace TestAPINetCore_Unit
         [TestCase(false)]        // token is not returned by generator helper (only covers null...not empty string)
         public void ProcessUser_HappyPathTest(bool tokenIsGenerated)
         {
+            Initialize();
+
             var encodedUserName = "base64=>userName";
             var encodedPassword = "base64=>password";
             var decodedUserNameToReturn = "userName";
@@ -58,6 +61,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void ProcessUser_UserIsNull()
         {
+            Initialize();
+
             var encodedUserName = "base64=>userName";
             var encodedPassword = "base64=>password";
             var decodedUserNameToReturn = "userName";
@@ -83,6 +88,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void ProcessUser_PasswordsDoNotMatch()
         {
+            Initialize();
+
             var encodedUserName = "base64=>userName";
             var encodedPassword = "base64=>password";
             var decodedUserNameToReturn = "userName";
@@ -221,6 +228,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void ProcessUserRegistration_HappyPathTest()
         {
+            Initialize();
+
             var encodedUserName = "base64=>userName";
             var encodedPassword = "base64=>password";
             var encodedEmail = "base64=>email";
@@ -249,6 +258,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void ProcessUserRegistration_NotValidUserRegistration()
         {
+            Initialize();
+
             var userRegistered = this.service.ProcessUserRegistration(null, null, null);
 
             Assert.IsFalse(userRegistered);
@@ -267,6 +278,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void ProcessUserRegistration_UserNotAdded()
         {
+            Initialize();
+
             var encodedUserName = "base64=>userName";
             var encodedPassword = "base64=>password";
             var encodedEmail = "base64=>email";

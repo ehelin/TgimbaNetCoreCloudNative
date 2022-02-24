@@ -9,6 +9,7 @@ using Shared.misc.testUtilities;
 
 namespace TestAPINetCore_Unit.helpers
 {
+    [NonParallelizable]
     public class PasswordHelperTests : BaseTest
     {
         private IPassword sut = null;
@@ -76,12 +77,12 @@ namespace TestAPINetCore_Unit.helpers
         #endregion
         
         #region Salt
-
-        //[TestCase(Constants.SALT_SIZE, false)]
-        //[TestCase(18, false)]
-        //[TestCase(64, false)]
-        //[TestCase(128, false)]
-        [TestCase(2, true)]
+        
+        [TestCase(Constants.SALT_SIZE, false)]
+        [TestCase(18, false)]
+        [TestCase(64, false)]
+        [TestCase(128, false)]
+        [TestCase(2, false)]
         public void GetSalt_MultipleTests(int size, bool expectError)
         {
             if (expectError) 
@@ -163,6 +164,8 @@ namespace TestAPINetCore_Unit.helpers
         public void IsValidUserToRegister_MultipleTests(string user, string email,
                                                             string password, bool isValid, bool mock)
         {
+            Initialize();
+
             this.mockPassword.Setup(x => x.ContainsOneNumber
                                     (It.Is<string>(s => s == password)))
                                         .Returns(mock);

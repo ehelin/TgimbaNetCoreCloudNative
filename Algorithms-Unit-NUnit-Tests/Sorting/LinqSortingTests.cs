@@ -4,6 +4,7 @@ using Shared.misc;
 
 namespace Algorithms_Unit
 {
+    [NonParallelizable]
     public class LinqSortingTests : BaseSortingTest
     {
         #region name tests

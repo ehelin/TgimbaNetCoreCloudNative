@@ -5,6 +5,7 @@ using Shared.interfaces;
 
 namespace TestAPINetCore_Unit.helpers
 {
+    [NonParallelizable]
     public class ConversionHelperTests : BaseTest
     {
         private IConversion sut = null;

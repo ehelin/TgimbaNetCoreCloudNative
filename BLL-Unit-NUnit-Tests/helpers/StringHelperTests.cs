@@ -6,6 +6,7 @@ using Shared.misc;
 
 namespace TestAPINetCore_Unit.helpers
 {
+    [NonParallelizable]
     public class StringHelperTests : BaseTest
     {
         private IString sut = null;

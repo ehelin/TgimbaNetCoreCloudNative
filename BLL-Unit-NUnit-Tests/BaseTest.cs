@@ -26,6 +26,22 @@ namespace TestAPINetCore_Unit
 
         public BaseTest()
         {
+            //this.mockBucketListData = new Mock<IBucketListData>();
+            //this.mockPassword = new Mock<IPassword>();
+            //this.mockGenerator = new Mock<IGenerator>();
+            //this.mockString = new Mock<IString>();
+            //this.mockSearchAlgorithm = new Mock<IAvailableSearchingAlgorithms>();
+            //this.mockSortAlgorithm = new Mock<IAvailableSortingAlgorithms>();
+            //this.mockSort = new Mock<ISort>();
+            //this.mockSearch = new Mock<ISearch>();
+            //this.service = new TgimbaService(this.mockBucketListData.Object, 
+            //                        mockPassword.Object, mockGenerator.Object,
+            //                            mockString.Object, mockSortAlgorithm.Object,
+            //                            mockSearchAlgorithm.Object);
+        }
+
+        protected void Initialize()
+        {
             this.mockBucketListData = new Mock<IBucketListData>();
             this.mockPassword = new Mock<IPassword>();
             this.mockGenerator = new Mock<IGenerator>();
@@ -34,7 +50,7 @@ namespace TestAPINetCore_Unit
             this.mockSortAlgorithm = new Mock<IAvailableSortingAlgorithms>();
             this.mockSort = new Mock<ISort>();
             this.mockSearch = new Mock<ISearch>();
-            this.service = new TgimbaService(this.mockBucketListData.Object, 
+            this.service = new TgimbaService(this.mockBucketListData.Object,
                                     mockPassword.Object, mockGenerator.Object,
                                         mockString.Object, mockSortAlgorithm.Object,
                                         mockSearchAlgorithm.Object);

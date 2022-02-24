@@ -8,6 +8,7 @@ using Shared.misc.testUtilities;
 
 namespace TestAPINetCore_Unit
 {
+    [NonParallelizable]
     public class MiscTests : BaseTest
     {
         [TearDown]
@@ -26,6 +27,8 @@ namespace TestAPINetCore_Unit
         [TestCase(false)]
         public void LogAuthenticated_HappyPathTest(bool isValidToken)
         {
+            Initialize();
+
             var msg = "I am a message";
             var testToken = SetUpTokenForTesting(isValidToken);
 
@@ -46,6 +49,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void Log_HappyPathTest()
         {
+            Initialize();
+
             var msg = "I am a message";
 
             this.service.Log(msg);
@@ -57,6 +62,8 @@ namespace TestAPINetCore_Unit
         [TestCase(false)]
         public void GetSystemStatistics_HappyPathTest(bool isValidToken)
         {
+            Initialize();
+
             var testToken = SetUpTokenForTesting(isValidToken);
             var systemStatisticToReturn = new SystemStatistic()
             {
@@ -92,6 +99,8 @@ namespace TestAPINetCore_Unit
         [TestCase(false)]
         public void GetSystemBuildStatistics_HappyPathTest(bool isValidToken)
         {
+            Initialize();
+
             var testToken = SetUpTokenForTesting(isValidToken);
             var commonDate = DateTime.UtcNow.ToString();
             var systemBuildStatisticToReturn = new SystemBuildStatistic()
@@ -127,6 +136,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void GetTestResult_HappyPathTest()
         {
+            Initialize();
+
             var testResult = this.service.GetTestResult();
 
             Assert.IsNotNull(testResult);
@@ -138,6 +149,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void LoginDemoUser_HappyPathTest()
         {
+            Initialize();
+
             var jwtToken = "jwtToken";
             var jwtPrivateKey = "jwtPrivateKey";
             var jwtIssuer = "jwtIssuer";
@@ -155,6 +168,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void LoginDemoUser_PasswordsDoNotMatch()
         {
+            Initialize();
+
             var demoUserToReturn = GetUser(1, Constants.DEMO_USER, Constants.DEMO_USER_PASSWORD);
             this.mockBucketListData
                 .Setup(x => x.GetUser(It.Is<string>(s => s == Constants.DEMO_USER)))
@@ -167,6 +182,8 @@ namespace TestAPINetCore_Unit
         [Test]
         public void LoginDemoUser_UserDoesNotExist()
         {
+            Initialize();
+
             var token = this.service.LoginDemoUser();
 
             Assert.IsNull(token);
