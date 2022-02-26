@@ -7,11 +7,14 @@ namespace TestTgimbaNetCoreWeb
     [NonParallelizable]
     public class SharedWelcomeControllerTests : BaseTest
     {
+        public SharedWelcomeControllerTests()
+        {
+            Initialize();
+        }
+
         [Test]
         public void TestSharedWelcomeControllerIndex()
         {
-            Initialize();
-
             SharedWelcomeController welcomeController = new SharedWelcomeController(this.mockWebClient.Object);
 
             IActionResult result = welcomeController.Index();

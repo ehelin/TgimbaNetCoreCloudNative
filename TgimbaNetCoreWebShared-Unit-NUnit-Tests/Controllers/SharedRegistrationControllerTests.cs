@@ -7,11 +7,14 @@ namespace TestTgimbaNetCoreWeb
     [NonParallelizable]
     public class SharedRegistrationControllerTests : BaseTest
     {
+        public SharedRegistrationControllerTests()
+        {
+            Initialize();
+        }
+
         [Test]
         public void TestSharedRegistrationController_GoodRegistration()
         {
-            Initialize();
-
             bool goodRegistration = GetController().Registration("base64EncodedGoodUser", "base64EncodedGoodEmail", "base64EncodedGoodPass");
 
             Assert.AreEqual(true, goodRegistration);
@@ -20,8 +23,6 @@ namespace TestTgimbaNetCoreWeb
         [Test]
         public void TestSharedRegistrationController_BadRegistration()
         {
-            Initialize();
-
             bool goodRegistration = GetController().Registration("base64EncodedBadUser", "base64EncodedBadEmail", "base64EncodedBadPass");
 
             Assert.AreEqual(false, goodRegistration);

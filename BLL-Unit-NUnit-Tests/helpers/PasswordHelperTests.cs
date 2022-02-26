@@ -27,6 +27,7 @@ namespace TestAPINetCore_Unit.helpers
         [SetUp]
         public void SetUp()
         {
+            Initialize();
             TestUtilities.SetEnvironmentalVariablesForUnitTests();
         }
 
@@ -164,8 +165,6 @@ namespace TestAPINetCore_Unit.helpers
         public void IsValidUserToRegister_MultipleTests(string user, string email,
                                                             string password, bool isValid, bool mock)
         {
-            Initialize();
-
             this.mockPassword.Setup(x => x.ContainsOneNumber
                                     (It.Is<string>(s => s == password)))
                                         .Returns(mock);
