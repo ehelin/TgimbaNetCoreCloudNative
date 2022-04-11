@@ -20,7 +20,8 @@ namespace TgimbaNetCoreWeb
         {
             System.Console.WriteLine("ConfigureServices(args)");
             Utilities.SetUpDI(services, Configuration);
-            services.AddMvc();
+            services.AddMvc()
+                .AddRazorRuntimeCompilation();
 
             services.AddDistributedMemoryCache();
             services.AddSession();
