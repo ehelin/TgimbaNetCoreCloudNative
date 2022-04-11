@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29324.140
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API-IntegrationTests", "API-IntegrationTests\API-IntegrationTests.csproj", "{6BCD9868-B72D-4B35-896D-C9505EDEE180}"
 EndProject
@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDALNetCore-Integration", "TestDALNetCore-Integration\TestDALNetCore-Integration.csproj", "{F1C8F5B1-3294-4BD7-89CA-644EBF05B032}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALNetCore", "DALNetCore\DALNetCore.csproj", "{2421CE31-6020-4E12-BBED-6945DC45E4E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUIIntegrationTests", "WebUIIntegrationTests\WebUIIntegrationTests.csproj", "{475A63D1-1207-42BE-8C9B-9397B46F848A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUIIntegrationTests", "WebUIIntegrationTests\WebUIIntegrationTests.csproj", "{475A63D1-1207-42BE-8C9B-9397B46F848A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALSqlServer", "DALNetCore\DALSqlServer.csproj", "{60933066-5EB9-4081-AE1F-AA5F90971307}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +45,6 @@ Global
 		{F1C8F5B1-3294-4BD7-89CA-644EBF05B032}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1C8F5B1-3294-4BD7-89CA-644EBF05B032}.Release|x86.ActiveCfg = Release|Any CPU
 		{F1C8F5B1-3294-4BD7-89CA-644EBF05B032}.Release|x86.Build.0 = Release|Any CPU
-		{2421CE31-6020-4E12-BBED-6945DC45E4E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2421CE31-6020-4E12-BBED-6945DC45E4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2421CE31-6020-4E12-BBED-6945DC45E4E4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2421CE31-6020-4E12-BBED-6945DC45E4E4}.Debug|x86.Build.0 = Debug|Any CPU
-		{2421CE31-6020-4E12-BBED-6945DC45E4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2421CE31-6020-4E12-BBED-6945DC45E4E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2421CE31-6020-4E12-BBED-6945DC45E4E4}.Release|x86.ActiveCfg = Release|Any CPU
-		{2421CE31-6020-4E12-BBED-6945DC45E4E4}.Release|x86.Build.0 = Release|Any CPU
 		{475A63D1-1207-42BE-8C9B-9397B46F848A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{475A63D1-1207-42BE-8C9B-9397B46F848A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{475A63D1-1207-42BE-8C9B-9397B46F848A}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -61,6 +53,14 @@ Global
 		{475A63D1-1207-42BE-8C9B-9397B46F848A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{475A63D1-1207-42BE-8C9B-9397B46F848A}.Release|x86.ActiveCfg = Release|Any CPU
 		{475A63D1-1207-42BE-8C9B-9397B46F848A}.Release|x86.Build.0 = Release|Any CPU
+		{60933066-5EB9-4081-AE1F-AA5F90971307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60933066-5EB9-4081-AE1F-AA5F90971307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60933066-5EB9-4081-AE1F-AA5F90971307}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60933066-5EB9-4081-AE1F-AA5F90971307}.Debug|x86.Build.0 = Debug|Any CPU
+		{60933066-5EB9-4081-AE1F-AA5F90971307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60933066-5EB9-4081-AE1F-AA5F90971307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60933066-5EB9-4081-AE1F-AA5F90971307}.Release|x86.ActiveCfg = Release|Any CPU
+		{60933066-5EB9-4081-AE1F-AA5F90971307}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

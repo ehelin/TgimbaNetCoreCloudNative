@@ -53,13 +53,11 @@ namespace TgimbaNetCoreWebShared
             // true load test db connection, false load prod db connection
             services.AddSingleton(new DALNetCore.BucketListContext
             (
-                //TODO - temporary test
-                false
-                //Configuration["Env"] != null
-                //    && Configuration["Env"] == "Development"
-                //        ? true
-                //            : false
-            ));
+				Configuration["Env"] != null
+					&& Configuration["Env"] == "Development"
+						? true
+							: false
+			));
             services.AddSingleton<IBucketListData>(x =>
                 new BucketListData(x.GetRequiredService<DALNetCore.BucketListContext>(),
                                    x.GetRequiredService<IUserHelper>()
