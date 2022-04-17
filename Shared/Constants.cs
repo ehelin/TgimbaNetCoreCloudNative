@@ -28,7 +28,7 @@
 
         //Demo user
         public const string DEMO_USER = "demouser";
-        public const string DEMO_USER_PASSWORD = "demouserPass123";
+        public const string DEMO_USER_PASSWORD = "P@ssw0rd123*";
     }
 
     public class Error
