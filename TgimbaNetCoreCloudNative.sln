@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgimbaNetCoreWeb", "TgimbaNetCoreWeb\TgimbaNetCoreWeb.csproj", "{1B344C78-B76E-47B7-AC71-05B0319BDA0A}"
 EndProject
@@ -52,11 +52,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL-Unit-XUnit-Tests", "Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgimbaNetCoreWebShared-Unit-XUnit-Tests", "TestTgimbaNetCoreWebXUnit\TgimbaNetCoreWebShared-Unit-XUnit-Tests.csproj", "{9B23D987-1EAB-4C4C-B52D-096E07E00130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms-Unit-NUnit-Tests", "Algorithms-Unit-NUnit-Tests\Algorithms-Unit-NUnit-Tests.csproj", "{1A5030AC-613A-4ECE-9F4C-615F93263F02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms-Unit-NUnit-Tests", "Algorithms-Unit-NUnit-Tests\Algorithms-Unit-NUnit-Tests.csproj", "{1A5030AC-613A-4ECE-9F4C-615F93263F02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL-Unit-NUnit-Tests", "BLL-Unit-NUnit-Tests\BLL-Unit-NUnit-Tests.csproj", "{A8BD8A6D-DC0E-4436-B2F9-FCD0109375EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL-Unit-NUnit-Tests", "BLL-Unit-NUnit-Tests\BLL-Unit-NUnit-Tests.csproj", "{A8BD8A6D-DC0E-4436-B2F9-FCD0109375EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TgimbaNetCoreWebShared-Unit-NUnit-Tests", "TgimbaNetCoreWebShared-Unit-NUnit-Tests\TgimbaNetCoreWebShared-Unit-NUnit-Tests.csproj", "{4E21F987-42F0-4113-B65A-1469D525CA15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TgimbaNetCoreWebShared-Unit-NUnit-Tests", "TgimbaNetCoreWebShared-Unit-NUnit-Tests\TgimbaNetCoreWebShared-Unit-NUnit-Tests.csproj", "{4E21F987-42F0-4113-B65A-1469D525CA15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadTests", "LoadTests", "{DB37F40D-A365-476D-84AB-2EA34BF75F0E}"
+	ProjectSection(SolutionItems) = preProject
+		LoadTesting\api_tgimbaapi_test.jmx = LoadTesting\api_tgimbaapi_test.jmx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
