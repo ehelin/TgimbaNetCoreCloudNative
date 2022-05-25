@@ -12,11 +12,11 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/test" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/test" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -79,17 +79,17 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\tmp\test.txt</stringProp>
+            <stringProp name="filename"></stringProp>
             <boolProp name="ResultCollector.success_only_logging">true</boolProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/getsystemstatistics" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/getsystemstatistics" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -122,11 +122,11 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedUserName</stringProp>
-                <stringProp name="Header.value">ZGVtb3VzZXI=</stringProp>
+                <stringProp name="Header.value">c3RhdGlzdGljVXNlcg==</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedToken</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5USXhOVFEwT0RZc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLlVGTEktUDlQbDBnWXpKSkVGVkFjSnE5dnJURXhSdktsQk5YRzctTmItU2c=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORGMwTXpFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLmVrc21Hb1k4dTA0UTRnRFNoSHVUNnlQR0tqaTFnQVdmejZsZlU2bmxsVWM=</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -171,11 +171,11 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/getsystembuildstatistics" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/getsystembuildstatistics" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -208,11 +208,11 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedUserName</stringProp>
-                <stringProp name="Header.value">ZGVtb3VzZXI=</stringProp>
+                <stringProp name="Header.value">c3RhdGlzdGljVXNlcg==</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedToken</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5USXhOVFEwT0RZc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLlVGTEktUDlQbDBnWXpKSkVGVkFjSnE5dnJURXhSdktsQk5YRzctTmItU2c=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORGMwTXpFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLmVrc21Hb1k4dTA0UTRnRFNoSHVUNnlQR0tqaTFnQVdmejZsZlU2bmxsVWM=</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -257,11 +257,11 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/getbucketlistitems" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/getbucketlistitems" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -347,7 +347,7 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedToken</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5USXhOVFEwT0RZc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLlVGTEktUDlQbDBnWXpKSkVGVkFjSnE5dnJURXhSdktsQk5YRzctTmItU2c=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORFU0T1RFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkVLMGhDLVNMb2t6T2gtZ3RSVEc5bkYtYUNPMXgwdjlubW90MDEtZ2loNm8=</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -392,11 +392,11 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/processuserregistration" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/processuserregistration" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -440,7 +440,7 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedToken</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5USXhOVFEwT0RZc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLlVGTEktUDlQbDBnWXpKSkVGVkFjSnE5dnJURXhSdktsQk5YRzctTmItU2c=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORFU0T1RFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkVLMGhDLVNMb2t6T2gtZ3RSVEc5bkYtYUNPMXgwdjlubW90MDEtZ2loNm8=</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">content-type</stringProp>
@@ -486,17 +486,17 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\tmp\test.txt</stringProp>
+            <stringProp name="filename"></stringProp>
             <boolProp name="ResultCollector.success_only_logging">true</boolProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/processuser" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/processuser" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -540,7 +540,7 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedToken</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5USXhOVFEwT0RZc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLlVGTEktUDlQbDBnWXpKSkVGVkFjSnE5dnJURXhSdktsQk5YRzctTmItU2c=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORFU0T1RFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkVLMGhDLVNMb2t6T2gtZ3RSVEc5bkYtYUNPMXgwdjlubW90MDEtZ2loNm8=</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">content-type</stringProp>
@@ -586,17 +586,17 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\tmp\test.txt</stringProp>
+            <stringProp name="filename"></stringProp>
             <boolProp name="ResultCollector.success_only_logging">true</boolProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/upsert" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/upsert" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -640,7 +640,7 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedToken</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5USXhOVFEwT0RZc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLlVGTEktUDlQbDBnWXpKSkVGVkFjSnE5dnJURXhSdktsQk5YRzctTmItU2c=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORFU0T1RFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkVLMGhDLVNMb2t6T2gtZ3RSVEc5bkYtYUNPMXgwdjlubW90MDEtZ2loNm8=</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">content-type</stringProp>
@@ -686,17 +686,17 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\tmp\test.txt</stringProp>
+            <stringProp name="filename"></stringProp>
             <boolProp name="ResultCollector.success_only_logging">true</boolProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/log" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/log" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -741,7 +741,7 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedToken</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5USXhOVFEwT0RZc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLlVGTEktUDlQbDBnWXpKSkVGVkFjSnE5dnJURXhSdktsQk5YRzctTmItU2c=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORFU0T1RFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkVLMGhDLVNMb2t6T2gtZ3RSVEc5bkYtYUNPMXgwdjlubW90MDEtZ2loNm8=</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">content-type</stringProp>
@@ -787,17 +787,17 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\tmp\test.txt</stringProp>
+            <stringProp name="filename"></stringProp>
             <boolProp name="ResultCollector.success_only_logging">true</boolProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/delete" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="/api/tgimbaapi/delete" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -831,17 +831,17 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedUserName</stringProp>
-                <stringProp name="Header.value">YVVzZXJXaG9Mb2dzSW4=</stringProp>
+                <stringProp name="Header.value">ZGVtb3VzZXI=</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedToken</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTXpOak0zT0RBc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkRoaFdVUVNKa2FYMHl2eEp2d2RGX2lDeGJhdzg2S0trSkZCODNPSUZJdDQ=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORFU0T1RFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkVLMGhDLVNMb2t6T2gtZ3RSVEc5bkYtYUNPMXgwdjlubW90MDEtZ2loNm8=</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
           <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
-            <boolProp name="ResultCollector.error_logging">true</boolProp>
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
               <value class="SampleSaveConfiguration">
@@ -877,7 +877,8 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\tmp\test.txt</stringProp>
+            <stringProp name="filename"></stringProp>
+            <boolProp name="ResultCollector.success_only_logging">true</boolProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>
@@ -886,7 +887,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -920,13 +921,13 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">EncodedJwtPrivateKey</stringProp>
-                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTXpOak0zT0RBc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkRoaFdVUVNKa2FYMHl2eEp2d2RGX2lDeGJhdzg2S0trSkZCODNPSUZJdDQ=</stringProp>
+                <stringProp name="Header.value">ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMk5UTTBORFU0T1RFc0ltbHpjeUk2SWxSbmFXMWlZVWx1YzNWeVpYSWlMQ0poZFdRaU9pSlVaMmx0WW1GSmJuTjFjbVZ5SW4wLkVLMGhDLVNMb2t6T2gtZ3RSVEc5bkYtYUNPMXgwdjlubW90MDEtZ2loNm8=</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
           <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
-            <boolProp name="ResultCollector.error_logging">true</boolProp>
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
               <value class="SampleSaveConfiguration">
@@ -962,7 +963,8 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\tmp\test.txt</stringProp>
+            <stringProp name="filename"></stringProp>
+            <boolProp name="ResultCollector.success_only_logging">true</boolProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>

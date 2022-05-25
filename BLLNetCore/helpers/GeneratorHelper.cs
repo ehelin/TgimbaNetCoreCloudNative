@@ -41,7 +41,7 @@ namespace BLLNetCore.Security // TODO - change namespace to BLLNetCore.helpers
         }
 
         // TODO - add test for variable token life
-        public string GetJwtToken(string jwtPrivateKey, string jwtIssuer, int tokenLife = Constants.TOKEN_LIFE)
+        public string GetJwtToken(string jwtPrivateKey, string jwtIssuer, int tokenLife = 1000)//Constants.TOKEN_LIFE)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtPrivateKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
