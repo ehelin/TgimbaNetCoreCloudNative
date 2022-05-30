@@ -107,14 +107,13 @@ namespace DALNetCore
 
         public void LogMsg(string msg)
         {
-            // Hack for load testing
-            //var logModel = new models.Log
-            //{
-            //    LogMessage = msg,
-            //    Created = DateTime.UtcNow
-            //};
-            //this.context.Log.Add(logModel);
-            //this.context.SaveChanges();
+            var logModel = new models.Log
+            {
+                LogMessage = msg,
+                Created = DateTime.UtcNow
+            };
+            this.context.Log.Add(logModel);
+            this.context.SaveChanges();
         }
 
         public IList<SystemBuildStatistic> GetSystemBuildStatistics()
