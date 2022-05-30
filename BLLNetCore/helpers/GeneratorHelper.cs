@@ -41,12 +41,13 @@ namespace BLLNetCore.Security // TODO - change namespace to BLLNetCore.helpers
         }
 
         // TODO - add test for variable token life
-        public string GetJwtToken(string jwtPrivateKey, string jwtIssuer, int tokenLife = 1000)//Constants.TOKEN_LIFE)
+        public string GetJwtToken(string jwtPrivateKey, string jwtIssuer, int tokenLife = Constants.TOKEN_LIFE)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtPrivateKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            //var expiresIn = DateTime.UtcNow.AddMinutes(100000); // Hack for long lived token for load testing
             var expiresIn = DateTime.UtcNow.AddMinutes(tokenLife);
-            
+
             var claims = new List<Claim>();
             var token = new JwtSecurityToken(jwtIssuer,
               jwtIssuer,

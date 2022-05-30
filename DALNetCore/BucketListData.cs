@@ -227,15 +227,14 @@ namespace DALNetCore
             var bucketListItemUserToDelete = this.context.BucketListUser
                                                         .Where(x => x.BucketListItemId == bucketListItemDbId)
                                                         .FirstOrDefault();
-
-            if (bucketListItemToDelete == null)
+            //Hack for load testing
+            if (bucketListItemToDelete != null)
             {
-                throw new RecordDoesNotExistException("Bucket list item to be deleted does not exist - id: " + bucketListItemDbId.ToString());
+                //throw new RecordDoesNotExistException("Bucket list item to be deleted does not exist - id: " + bucketListItemDbId.ToString());
+                this.context.BucketListUser.Remove(bucketListItemUserToDelete);
+                this.context.BucketListItem.Remove(bucketListItemToDelete);
+                this.context.SaveChanges();
             }
-
-            this.context.BucketListUser.Remove(bucketListItemUserToDelete);
-            this.context.BucketListItem.Remove(bucketListItemToDelete);
-            this.context.SaveChanges();
         }
 
         #endregion
